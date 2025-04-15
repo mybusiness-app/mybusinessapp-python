@@ -1,0 +1,38 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "environment": {
+            "value": "staging"
+        },
+        "aiHubFriendlyName": {
+            "value": "MyPetParlor App AI Agents (Staging)"
+        },
+        "aiHubDescription": {
+            "value": "The staging environment hub for MyPetParlor App AI Agents."
+        },
+        "location": {
+            "value": "eastus"
+        },
+        "tags":{
+            "value": {
+                "environment": "staging",
+                "team": "mypetparlorapp"
+            }
+        },
+        "aiSearchName": {
+            "value": "mpp-staging-search"
+        },
+        "capabilityHostName": {
+            "value": "mpp-staging-caphost"
+        },
+        "aiServiceKind": {
+            "value": "AIServices"
+        },
+        "models": {
+            "value": [
+                "gpt-4o"
+            ]
+        }
+    }
+} 

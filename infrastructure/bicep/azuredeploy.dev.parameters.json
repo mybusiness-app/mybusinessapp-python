@@ -1,0 +1,38 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "environment": {
+            "value": "dev"
+        },
+        "aiHubFriendlyName": {
+            "value": "MyPetParlor App AI Agents (Development)"
+        },
+        "aiHubDescription": {
+            "value": "The development environment hub for MyPetParlor App AI Agents."
+        },
+        "location": {
+            "value": "eastus"
+        },
+        "tags":{
+            "value": {
+                "environment": "dev",
+                "team": "mypetparlorapp"
+            }
+        },
+        "aiSearchName": {
+            "value": "mpp-dev-search"
+        },
+        "capabilityHostName": {
+            "value": "mpp-dev-caphost"
+        },
+        "aiServiceKind": {
+            "value": "AIServices"
+        },
+        "models": {
+            "value": [
+                "gpt-4o"
+            ]
+        }
+    }
+}
