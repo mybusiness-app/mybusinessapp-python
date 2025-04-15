@@ -17,16 +17,6 @@ setup: check-prereqs ## Setup development environment
 	@chmod +x scripts/setup.sh
 	@./scripts/setup.sh
 
-configure-environment-azure: ## Setup Azure environment and credentials
-	@chmod +x scripts/setup_azure.sh
-	@./scripts/setup_azure.sh
-
-configure-environment-gcloud: ## Setup Google Cloud environment and credentials
-	@chmod +x scripts/setup_google_cloud.sh
-	@./scripts/setup_google_cloud.sh
-
-configure-environment: configure-environment-azure configure-environment-gcloud ## Setup development environment
-
 dev: ## Start development environment
 	docker compose -f docker/compose/dev.yml up
 

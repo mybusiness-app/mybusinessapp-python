@@ -6,7 +6,6 @@ This monorepo contains the MyPetParlor App AI Agents platform, implementing a mu
 
 The project uses Make commands to simplify development workflows. To see all available commands:
 ```bash
-cd mypetparlorapp
 make help
 ```
 
