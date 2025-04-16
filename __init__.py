@@ -1,5 +1,5 @@
 """
-MyPetParlor App - AI-powered pet grooming scheduling system
+MyBusiness App - Monorepo for Python projects
 """
 
 __version__ = "0.1.0" 

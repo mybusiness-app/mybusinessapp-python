@@ -3,7 +3,8 @@ Agent factory for creating and managing MyPetParlor agents.
 """
 from typing import Dict, Optional
 from .base import BaseAgent
-from .azure.smart_scheduling.agent import SmartSchedulingAgent as AzureSmartSchedulingAgent
+from .azure.smart_scheduling.agent import SmartSchedulingAgent
+from .azure.smart_importer.agent import SmartImporterAgent
 import os
 
 class AgentFactory:
@@ -25,14 +26,19 @@ class AgentFactory:
     
     async def _create_agent(self, agent_type: str) -> Optional[BaseAgent]:
         """Create a new agent instance."""
-        if agent_type == "azure_smart_scheduling":
+        if agent_type == "smart_scheduling":
             project_connection_string = os.getenv("AZURE_AI_PROJECT_CONNECTION_STRING")
             if not project_connection_string:
                 raise ValueError("AZURE_AI_PROJECT_CONNECTION_STRING environment variable not set")
-            return AzureSmartSchedulingAgent(project_connection_string)
+            return SmartSchedulingAgent(project_connection_string)
+        elif agent_type == "smart_importer":
+            project_connection_string = os.getenv("AZURE_AI_PROJECT_CONNECTION_STRING")
+            if not project_connection_string:
+                raise ValueError("AZURE_AI_PROJECT_CONNECTION_STRING environment variable not set")
+            return SmartImporterAgent(project_connection_string)
             
         return None
         
     def get_available_agents(self) -> list[str]:
         """Get list of available agent types."""
-        return ["azure_smart_scheduling"] 
+        return ["smart_scheduling", "smart_importer"]

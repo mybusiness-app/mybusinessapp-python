@@ -1,4 +1,4 @@
-.PHONY: check-prereqs setup dev test build deploy clean help
+.PHONY: check-prereqs setup dev test build deploy clean help create-sp
 
 SHELL := /bin/bash
 
@@ -12,6 +12,10 @@ help: ## Show this help message
 check-prereqs: ## Check prerequisites
 	@chmod +x scripts/check_prerequisites.sh
 	@./scripts/check_prerequisites.sh
+
+create-sp: ## Create Azure service principal and update environment variables
+	@chmod +x scripts/create_service_principal.sh
+	@./scripts/create_service_principal.sh
 
 setup: check-prereqs ## Setup development environment
 	@chmod +x scripts/setup.sh

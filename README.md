@@ -1,4 +1,4 @@
-# MyPetParlor App AI Agents Platform
+# MyBusiness App Monorepo for Python projects
 
 This monorepo contains the MyPetParlor App AI Agents platform, implementing a multi-agent system using both Azure AI Agent Service and Semantic Kernel approaches.
 
@@ -26,7 +26,6 @@ make clean     # Clean up development environment
   - `semantic-kernel/`: Semantic Kernel implementations
 - `common/`: Shared code and utilities
   - `mcp/`: MCP server for MyBusiness App API
-- `infrastructure/`: Infrastructure as Code (Azure Bicep)
 - `tests/`: Test suites
 - `docker/`: Docker configuration files
   - `compose/`: Docker Compose files
@@ -55,7 +54,6 @@ make clean     # Clean up development environment
 
 Check prerequisites with:
 ```bash
-cd mypetparlorapp
 make check-prereqs
 ```
 

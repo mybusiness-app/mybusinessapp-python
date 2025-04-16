@@ -1,7 +1,7 @@
 """
 Backend API for MyPetParlor application.
 """
-from fastapi import FastAPI, HTTPException, Depends, Request
+from fastapi import FastAPI, HTTPException, Depends, Request, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 import httpx
 import os
@@ -9,9 +9,11 @@ import logging
 import time
 from typing import Dict, Any, Optional
 from pydantic import BaseModel
+import tempfile
+import shutil
 
-from mypetparlorapp.agents.factory import AgentFactory
-from mypetparlorapp.agents.base import BaseAgent
+from agents.factory import AgentFactory
+from agents.base import BaseAgent
 
 # Configure logging
 logging.basicConfig(
@@ -36,6 +38,10 @@ MCP_SERVER_URL = os.environ.get("MCP_SERVER_URL", "http://localhost:8002")
 
 # Initialize agent factory
 agent_factory = AgentFactory()
+
+# Create uploads directory if it doesn't exist
+UPLOAD_DIR = "uploads"
+os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 class ChatMessage(BaseModel):
     message: str
@@ -124,6 +130,40 @@ async def create_booking(booking: dict):
         except httpx.HTTPError as e:
             logger.error(f"Error creating booking: {str(e)}", exc_info=True)
             raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/upload")
+async def upload_file(file: UploadFile = File(...), agent_type: str = "smart_importer", thread_id: str = None):
+    """Handle file uploads and process them using the smart importer agent."""
+    logger.info(f"Received file upload: {file.filename} for agent type: {agent_type}")
+    
+    try:
+        # Create a temporary file
+        with tempfile.NamedTemporaryFile(delete=False, dir=UPLOAD_DIR) as temp_file:
+            # Copy uploaded file to temporary file
+            shutil.copyfileobj(file.file, temp_file)
+            temp_path = temp_file.name
+        
+        # Get agent instance
+        agent = await get_agent(agent_type)
+        
+        # Process file
+        response = await agent.process_file(temp_path, file.filename, thread_id)
+        
+        # Clean up temporary file
+        os.unlink(temp_path)
+        
+        logger.info(f"Successfully processed file: {file.filename}")
+        return response
+        
+    except Exception as e:
+        logger.error(f"Error processing uploaded file: {str(e)}", exc_info=True)
+        # Clean up temporary file if it exists
+        if 'temp_path' in locals():
+            try:
+                os.unlink(temp_path)
+            except:
+                pass
+        raise HTTPException(status_code=500, detail=str(e))
 
 @app.middleware("http")
 async def log_requests(request: Request, call_next):

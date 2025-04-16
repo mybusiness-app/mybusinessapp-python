@@ -7,6 +7,7 @@ import httpx
 import os
 import logging
 from typing import Dict, Any
+import aiofiles
 
 # Configure logging
 logging.basicConfig(
@@ -35,7 +36,7 @@ async def start():
     except Exception as e:
         logger.error(f"Error fetching agents: {str(e)}", exc_info=True)
         await cl.Message(content="❌ Error: Could not fetch available agents. Using default agent.").send()
-        agents = ["azure_smart_scheduling"]
+        agents = ["smart_scheduling", "smart_importer"]
     
     # Let user select agent type
     logger.info("Prompting user to select agent type")
@@ -43,25 +44,70 @@ async def start():
         agent_type = await cl.AskActionMessage(
             content="Please select an agent to help you:",
             actions=[
-                cl.Action(name="azure", value="azure_smart_scheduling", label="Azure Smart Scheduling", payload={"type": "azure"})
+                cl.Action(name="azure", value="smart_scheduling", label="Smart Scheduling", payload={"type": "azure"}),
+                cl.Action(name="azure", value="smart_importer", label="Smart Importer", payload={"type": "azure"})
             ]
         ).send()
         
+        content = f""
+        selected_type: str | None = None
         if not agent_type:
             # If no agent was selected, use default
             logger.info("No agent selected, using default")
-            cl.user_session.set("agent_type", "azure_smart_scheduling")
-            await cl.Message(
-                content="You're now chatting with the Azure Smart Scheduling agent. How can I help you?"
-            ).send()
+            cl.user_session.set("agent_type", "smart_scheduling")
+            content = "You're now chatting with the Smart Scheduling agent. How can I help you?"
         else:
-            selected_type = agent_type.get("value", "azure_smart_scheduling")
-            selected_label = agent_type.get("label", "Azure Smart Scheduling")
+            selected_type = agent_type.get("value", "smart_scheduling")
+            selected_label = agent_type.get("label", "Smart Scheduling")
             logger.info(f"User selected agent: {selected_type} ({selected_label})")
             cl.user_session.set("agent_type", selected_type)
+            content = f"You're now chatting with the {selected_label} agent."
+        
+        if selected_type == "smart_importer":
+            files = None
+            thread_id = cl.user_session.get("thread_id")
+            # Wait for the user to upload a file
+            while files == None:
+                files = await cl.AskFileMessage(
+                    content=f"{content} Please upload 1 or more files to begin.", 
+                    accept={"text/plain": ["*.txt"], 
+                           "text/csv": ["*.csv"],
+                           "application/xml": ["*.xml"],
+                           "application/vnd.ms-excel": ["*.xls"],
+                           "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": ["*.xlsx"]}
+                ).send()
+                
+                if files:
+                    for file in files:
+                        # Send file to backend
+                        logger.info(f"Processing file: {file.name}")
+                        try:
+                            async with httpx.AsyncClient() as client:
+                                form_data = aiofiles.open(file.path, "rb")
+                                files_data = {"file": (file.name, form_data, file.type)}
+                                response = await client.post(
+                                    f"{backend_url}/upload",
+                                    files=files_data,
+                                    params={"agent_type": selected_type, "thread_id": thread_id}
+                                )
+                                response.raise_for_status()
+                                result = response.json()
+                                
+                                await cl.Message(
+                                    content=f"✅ Successfully processed file: {file.name}\n\n{result.get('response', '')}"
+                                ).send()
+                                
+                        except Exception as e:
+                            logger.error(f"Error processing file {file.name}: {str(e)}", exc_info=True)
+                            await cl.Message(
+                                content=f"❌ Error processing file {file.name}: {str(e)}"
+                            ).send()
+        else:
+            # Send the message
             await cl.Message(
-                content=f"You're now chatting with the {selected_label} agent. How can I help you?"
+                content=content
             ).send()
+
     except Exception as e:
         logger.error(f"Error during agent selection: {str(e)}", exc_info=True)
         await cl.Message(content="❌ Error during agent selection. Please try again.").send()
@@ -83,8 +129,11 @@ async def main(message: cl.Message):
                 f"{backend_url}/chat",
                 json={
                     "message": message.content,
-                    "agent_type": agent_type
-                }
+                    "agent_type": agent_type,
+                    "thread_id": cl.user_session.get("thread_id"),
+                    "agent_id": cl.user_session.get("agent_id")
+                },
+                timeout=30.0
             )
             response.raise_for_status()
             result = response.json()
@@ -98,6 +147,14 @@ async def main(message: cl.Message):
                 content=f"❌ Error: {error_msg}",
             ).send()
             return
+        
+        if "agent_id" in result:
+            logger.info(f"Agent ID: {result['agent_id']}")
+            cl.user_session.set("agent_id", result['agent_id'])
+
+        if "thread_id" in result:
+            logger.info(f"Thread ID: {result['thread_id']}")
+            cl.user_session.set("thread_id", result['thread_id'])
 
         if "schedule" in result:
             logger.info("Processing schedule response")
@@ -140,7 +197,6 @@ async def main(message: cl.Message):
             logger.info("Sending regular message response")
             await cl.Message(
                 content=result.get("response", "No response from agent"),
-                status=result.get("status", "completed")
             ).send()
 
     except httpx.HTTPError as e:

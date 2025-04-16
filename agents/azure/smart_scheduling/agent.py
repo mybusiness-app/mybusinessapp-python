@@ -166,18 +166,12 @@ You use Google's Route Optimization API to calculate the most efficient routes b
 
     async def create(self) -> None:
         """Create and initialize the agent with necessary tools."""
-        # Initialize agent toolset with user functions and code interpreter
-        functions = FunctionTool(user_functions.user_functions)
-
-        toolset = ToolSet()
-        toolset.add(functions)
         
         # Create the agent
         self.agent = self.project_client.agents.create_agent(
             model=os.environ["MODEL_DEPLOYMENT_NAME"],
             name="smart-scheduling-agent",
             instructions=self.system_message,
-            toolset=toolset,
         )
 
     async def process_request(self, request: Dict[str, Any]) -> Dict[str, Any]:
@@ -187,41 +181,50 @@ You use Google's Route Optimization API to calculate the most efficient routes b
             thread = self.project_client.agents.create_thread()
             
             # Add user message to thread
-            await self.project_client.agents.add_message(
+            self.project_client.agents.create_message(
                 thread_id=thread.id,
                 role="user",
                 content=str(request)
             )
             
             # Run the agent
-            run = await self.project_client.agents.create_run(
+            run = self.project_client.agents.create_and_process_run(
                 thread_id=thread.id,
                 agent_id=self.agent.id
             )
             
-            # Wait for completion
-            run = await self.project_client.agents.wait_for_run(
-                thread_id=thread.id,
-                run_id=run.id
-            )
+            if run.status == "failed":
+                # Check if you got "Rate limit is exceeded.", then you want to get more quota
+                return {
+                    "error": run.last_error,
+                    "status": run.status.value
+                }
             
             # Get the agent's response
-            messages = await self.project_client.agents.list_messages(
+            messages = self.project_client.agents.list_messages(
                 thread_id=thread.id,
-                order="ascending"
+                order="asc"
             )
-            
+
+            # Get the last message from the sender
+            last_msg = messages.get_last_text_message_by_role("assistant")
+
+            # Delete the agent once done
+            # self.project_client.agents.delete_agent(self.agent.id)
+
+            if last_msg is None:
+                return {
+                    "error": "No response from agent",
+                    "status": run.status.value
+                }
+
             # Return the last message from the agent
-            for message in reversed(messages.data):
-                if message.role == "agent":
-                    return {
-                        "response": message.content,
-                        "status": run.status
-                    }
-            
             return {
-                "error": "No response from agent",
-                "status": run.status
+                "response": last_msg.text.value,
+                "status": run.status.value,
+                "agent_id": self.agent.id,
+                "thread_id": thread.id,
+                "run_id": run.id
             }
 
         except Exception as e:
