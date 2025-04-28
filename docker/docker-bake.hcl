@@ -7,20 +7,13 @@ variable "GITHUB_SHA" {
 }
 
 group "default" {
-    targets = ["frontend", "backend", "mcp-server"]
+    targets = ["chainlit", "mcp-server"]
 }
 
-target "frontend" {
-    context = "./apps/frontend"
-    dockerfile = "../../docker/frontend/Dockerfile"
-    tags = ["${REGISTRY}/mypetparlor/frontend:${GITHUB_SHA}"]
-    platforms = ["linux/amd64", "linux/arm64"]
-}
-
-target "backend" {
-    context = "./apps/backend"
-    dockerfile = "../../docker/backend/Dockerfile"
-    tags = ["${REGISTRY}/mypetparlor/backend:${GITHUB_SHA}"]
+target "chainlit" {
+    context = "./apps/chainlit"
+    dockerfile = "../../docker/chainlit/Dockerfile"
+    tags = ["${REGISTRY}/mypetparlor/chainlit:${GITHUB_SHA}"]
     platforms = ["linux/amd64", "linux/arm64"]
 }
 
