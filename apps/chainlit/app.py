@@ -3,6 +3,7 @@ Chainlit frontend for MyPetParlor AI Agents using Azure AI Agent.
 """
 import os
 import logging
+import json
 from typing import Optional, List
 from datetime import datetime
 import chainlit as cl
@@ -74,8 +75,9 @@ async def start():
     client = AzureAIAgent.create_client(credential=credential)
 
     # Access the spec files for OpenAPI tools
-    openapi_spec_file_path = "sample/filepath/..."
-        with open(os.path.join(openapi_spec_file_path, "spec_one.json")) as file_one:
+    openapi_spec_file_path = "openapi/mypetparlorapp"
+    with open(os.path.join(openapi_spec_file_path, "swagger.json")) as file_one:
+        openapi_spec_one = json.loads(file_one.read())
 
     # Create the tools
     code_interpreter = CodeInterpreterTool()
@@ -88,6 +90,7 @@ async def start():
     )
     
     # Create specialized agents
+    
     setup_guide_definition = await client.agents.create_agent(
         model=os.getenv("AZURE_AI_AGENT_MODEL_DEPLOYMENT_NAME"),
         name="SetupGuideAgent",
@@ -172,9 +175,8 @@ Important Guidelines:
         description="Main coordinator that routes requests to specialized agents",
         instructions="""You are the main coordinator. Evaluate user requests and:
         1. For setup & guide related queries, use the SetupGuideAgent
-        2. For a user's MyPetParlor App data retrieval related queries, use the MyPetParlorAppOpenAPIAgent
-        3. Provide complete answers incorporating information from the specialized agents
-        4. For general queries, respond directly"""
+        2. Provide complete answers incorporating information from the specialized agents
+        3. For general queries, respond directly"""
     )
     
     # Create agent instances with their plugins
