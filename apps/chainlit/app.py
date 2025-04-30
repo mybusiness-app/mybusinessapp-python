@@ -75,18 +75,17 @@ async def start():
     client = AzureAIAgent.create_client(credential=credential)
 
     # Access the spec files for OpenAPI tools
-    openapi_spec_file_path = "openapi/mypetparlorapp"
-    with open(os.path.join(openapi_spec_file_path, "swagger.json")) as file_one:
-        openapi_spec_one = json.loads(file_one.read())
+    with open(os.path.join("openapi/mypetparlorapp/customer/swagger.json")) as file_one:
+        openapi_spec_customer = json.loads(file_one.read())
 
     # Create the tools
     code_interpreter = CodeInterpreterTool()
     auth = OpenApiAnonymousAuthDetails()
-    openapi_mypetparlor_api = OpenApiTool(
-        name="OpenAPIMyPetParlorAppAPIAgent",
-        spec=openapi_spec_one,
-        description="<description>",
-        auth=auth,
+    customer_api = OpenApiTool(
+        name="customer_api",
+        spec=openapi_spec_customer,
+        description="An expert reader of the MyPetParlor App Customer API.",
+        auth=auth
     )
     
     # Create specialized agents
@@ -160,12 +159,12 @@ Important Guidelines:
 - Help troubleshoot any issues that arise during setup"""
     )
     
-    mypetparlorapp_api_definition = await client.agents.create_agent(
+    customer_api_definition = await client.agents.create_agent(
         model=os.getenv("AZURE_AI_AGENT_MODEL_DEPLOYMENT_NAME"),
-        name="MyPetParlorAppOpenAPIAgent",
-        description="",
-        instructions="""You are expert reader of the MyPetParlor App API.""",
-        tools=openapi_mypetparlor_api.definitions + code_interpreter.definitions,
+        name="CustomerAPIAgent",
+        description="An expert reader of the MyPetParlor App Customer API.",
+        instructions="""You are an expert reader of the MyPetParlor App Customer API.""",
+        tools=customer_api.definitions + code_interpreter.definitions,
         tool_resources=code_interpreter.resources,
     )
     
@@ -175,8 +174,9 @@ Important Guidelines:
         description="Main coordinator that routes requests to specialized agents",
         instructions="""You are the main coordinator. Evaluate user requests and:
         1. For setup & guide related queries, use the SetupGuideAgent
-        2. Provide complete answers incorporating information from the specialized agents
-        3. For general queries, respond directly"""
+        2. For customer related queries, use the CustomerAPIAgent
+        3. Provide complete answers incorporating information from the specialized agents
+        4. For general queries, respond directly"""
     )
     
     # Create agent instances with their plugins
@@ -185,15 +185,15 @@ Important Guidelines:
         definition=setup_guide_definition
     )
     
-    mypetparlorapp_api_agent = AzureAIAgent(
+    customer_api_agent = AzureAIAgent(
         client=client,
-        definition=mypetparlorapp_api_definition
+        definition=customer_api_definition
     )
     
     triage_agent = AzureAIAgent(
         client=client,
         definition=triage_definition,
-        plugins=[setup_guide_agent, mypetparlorapp_api_agent]
+        plugins=[setup_guide_agent, customer_api_agent]
     )
     
     # Create a new thread for the chat session
@@ -201,8 +201,13 @@ Important Guidelines:
     
     # Add Chainlit filter to capture function calls as Steps
     sk_filter = cl.SemanticKernelFilter(kernel=triage_agent.kernel)
+
+    # Run a copilot function call to obtain the authentication object
+    fn = cl.CopilotFunction(name="get_copilot_auth_settings", args={})
+    auth_settings = await fn.acall()
     
     # Store in session - including the client
+    cl.user_session.set("auth_settings", auth_settings)
     cl.user_session.set("client", client)
     cl.user_session.set("triage_agent", triage_agent)
     cl.user_session.set("thread", thread)
@@ -215,11 +220,33 @@ async def main(message: cl.Message):
     try:
         triage_agent: AzureAIAgent = cl.user_session.get("triage_agent")
         thread: AzureAIAgentThread = cl.user_session.get("thread")
+        auth_settings: dict = cl.user_session.get("auth_settings")
+
+        # Create a more structured and explicit system message
+        systemMessage = f"""
+        <user_message>
+        {message.content}
+        </user_message>
+
+        <api_authentication>
+        When using OpenAPI tools or other agents used to access the MyPetParlor App APIs, 
+        you MUST share and use these authentication parameters through instruction overrides:
         
+        Query Parameters:
+        - firebaseIdToken: {auth_settings.get('queryParameters', {}).get('firebaseIdToken', '')}
+        
+        Header Parameters:
+        - x-mba-application-id: {auth_settings.get('headerParameters', {}).get('x-mba-application-id', '')}
+        - x-mba-application-type: {auth_settings.get('headerParameters', {}).get('x-mba-application-type', '')}
+        - x-mba-deployment-location: {auth_settings.get('headerParameters', {}).get('x-mba-deployment-location', '')}
+        - ocp-apim-subscription-key: {auth_settings.get('headerParameters', {}).get('ocp-apim-subscription-key', '')}
+        </api_authentication>
+        """
+
         # Add user message to thread
         await triage_agent.get_response(
             thread=thread,
-            messages=[message.content]
+            messages=[systemMessage]
         )
         
         # Create a Chainlit message for the response stream
