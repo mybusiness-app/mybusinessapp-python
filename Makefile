@@ -18,6 +18,10 @@ setup: check-prereqs ## Setup development environment
 	@chmod +x scripts/setup.sh
 	@./scripts/setup.sh
 
+setup-prod: check-prereqs ## Setup production environment
+	@chmod +x scripts/setup.sh
+	@./scripts/setup.sh --environment production
+
 compose-up: ## Run the docker compose (development)
 	docker compose -f docker/compose/dev.yml up
 
