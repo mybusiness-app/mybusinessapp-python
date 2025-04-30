@@ -4,9 +4,7 @@ MyPetParlor AI Assistant - Chainlit frontend for Azure AI Agents
 This application provides a chat interface for interacting with specialized Azure AI agents
 that help users manage their MyPetParlor App portal through various APIs.
 
-Author: [Your Name]
-Version: 1.0.0
-Date: April 30, 2025
+Author: MyBusiness App (Pty) Ltd
 """
 
 import os
@@ -574,7 +572,7 @@ async def start():
         
         # Add Chainlit filter to capture function calls as Steps
         sk_filter = cl.SemanticKernelFilter(kernel=triage_agent.kernel)
-        
+
         # Run a copilot function call to obtain the authentication object
         logger.info("Retrieving authentication settings")
         fn = cl.CopilotFunction(name="get_copilot_auth_settings", args={})
