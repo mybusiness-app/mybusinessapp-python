@@ -1,3 +1,0 @@
-"""
-Azure AI Agents implementation
-""" 

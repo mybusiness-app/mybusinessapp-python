@@ -1,3 +1,0 @@
-"""
-Semantic Kernel Agents implementation
-""" 

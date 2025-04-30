@@ -75,16 +75,115 @@ async def start():
     client = AzureAIAgent.create_client(credential=credential)
 
     # Access the spec files for OpenAPI tools
-    with open(os.path.join("openapi/mypetparlorapp/customer/swagger.json")) as file_one:
-        openapi_spec_customer = json.loads(file_one.read())
+    with open(os.path.join("openapi/mypetparlorapp/booking/swagger.json")) as booking_file:
+        openapi_spec_booking = json.loads(booking_file.read())
+    with open(os.path.join("openapi/mypetparlorapp/customer/swagger.json")) as customer_file:
+        openapi_spec_customer = json.loads(customer_file.read())
+    with open(os.path.join("openapi/mypetparlorapp/document/swagger.json")) as document_file:
+        openapi_spec_document = json.loads(document_file.read())
+    with open(os.path.join("openapi/mypetparlorapp/team/swagger.json")) as team_file:
+        openapi_spec_team = json.loads(team_file.read())
+    with open(os.path.join("openapi/mypetparlorapp/tenants/swagger.json")) as tenant_file:
+        openapi_spec_tenant = json.loads(tenant_file.read())
 
     # Create the tools
     code_interpreter = CodeInterpreterTool()
     auth = OpenApiAnonymousAuthDetails()
+    booking_api = OpenApiTool(
+        name="booking_api",
+        spec=openapi_spec_booking,
+        description="""Expert on MyPetParlor App Booking API (OpenAPI 3.1).
+        Manages booking resources that belong to customers and teams.
+        
+        Key capabilities:
+        - Get/search bookings with filtering by customer, employee, state, date, team
+        - Create single or recurring bookings with customer details and services
+        - View booking details including customer info, pet details, status
+        - Update booking information and reschedule appointments
+        - Change transportation modes and apply vouchers/discounts
+        - Manage booking messages, notes, and service orders
+        - Handle accounting system integration
+        - Delete bookings individually or in batches
+        """,
+        auth=auth
+    )
     customer_api = OpenApiTool(
         name="customer_api",
         spec=openapi_spec_customer,
-        description="An expert reader of the MyPetParlor App Customer API.",
+        description="""Expert on MyPetParlor App Customer API (OpenAPI 3.1).
+        Manages customer resources belonging to tenants with team associations.
+        
+        Key capabilities:
+        - Get/search customers with pagination and team filtering
+        - Create customers with contact info, profiles, team associations
+        - Send email invitations during customer creation
+        - View customer details by ID or UID
+        - Update customer information and profile settings
+        - Manage payment flags, profile images, and accounting links
+        - Add/remove team associations
+        - Delete customer records
+        - Support Gravatar integration
+        - Handle multi-team customer relationships
+        """,
+        auth=auth
+    )
+    document_api = OpenApiTool(
+        name="document_api",
+        spec=openapi_spec_document,
+        description="""Expert on MyPetParlor App Document API (OpenAPI 3.1).
+        Manages legal documents for tenants, profiles, or teams.
+
+        Document types: refund_policy, terms
+        Reference types: organisation, profile, team
+        
+        Key capabilities:
+        - Get documents with type/reference filtering
+        - Create documents with content and references
+        - Retrieve documents by ID or reference
+        - Update document content and metadata
+        - Generate refund policies and terms based on business details
+        - Delete documents
+        - Support pagination for multiple documents
+        - Manage document relationships across entities
+        """,
+        auth=auth
+    )
+    team_api = OpenApiTool(
+        name="team_api",
+        spec=openapi_spec_team,
+        description="""Expert on MyPetParlor App Team API (OpenAPI 3.1).
+        Manages team resources belonging to tenants.
+        
+        Key capabilities:
+        - Get/search teams with pagination and filtering
+        - Create teams with coat types, payment, scheduling configurations
+        - Set default team properties
+        - View team details by ID
+        - Update team properties while preserving configuration
+        - Delete team records
+        - Support Gravatar integration
+        - Configure payment precedence and booking schedules
+        - Manage team types (e.g., mobile teams with timeblock scheduling)
+        """,
+        auth=auth
+    )
+    tenant_api = OpenApiTool(
+        name="tenant_api",
+        spec=openapi_spec_tenant,
+        description="""Expert on MyPetParlor App Tenant API (OpenAPI 3.1).
+        Manages tenant resources (parent of all other resources).
+        
+        Key capabilities:
+        - Get tenants with pagination and filtering
+        - Create tenants with payment, scheduling, application settings
+        - View tenant details by ID or unique identifier
+        - Update tenant properties and configurations
+        - Delete tenant records
+        - Disable specific payment methods
+        - Link cloud resources (Azure, Google Cloud)
+        - Configure coat requirements and booking advance time
+        - Manage third-party integrations like Xero
+        """,
         auth=auth
     )
     
@@ -158,6 +257,14 @@ Important Guidelines:
 - Verify completion of each guide before moving to the next
 - Help troubleshoot any issues that arise during setup"""
     )
+
+    booking_api_definition = await client.agents.create_agent(
+        model=os.getenv("AZURE_AI_AGENT_MODEL_DEPLOYMENT_NAME"),
+        name="BookingAPIAgent",
+        description="An expert reader of the MyPetParlor App Booking API.",
+        instructions="""You are an expert reader of the MyPetParlor App Booking API.""",
+        tools=booking_api.definitions + code_interpreter.definitions,
+    )
     
     customer_api_definition = await client.agents.create_agent(
         model=os.getenv("AZURE_AI_AGENT_MODEL_DEPLOYMENT_NAME"),
@@ -165,7 +272,30 @@ Important Guidelines:
         description="An expert reader of the MyPetParlor App Customer API.",
         instructions="""You are an expert reader of the MyPetParlor App Customer API.""",
         tools=customer_api.definitions + code_interpreter.definitions,
-        tool_resources=code_interpreter.resources,
+    )
+    
+    document_api_definition = await client.agents.create_agent(
+        model=os.getenv("AZURE_AI_AGENT_MODEL_DEPLOYMENT_NAME"),
+        name="DocumentAPIAgent",
+        description="An expert reader of the MyPetParlor App Document API.",
+        instructions="""You are an expert reader of the MyPetParlor App Document API.""",
+        tools=document_api.definitions + code_interpreter.definitions,
+    )
+
+    team_api_definition = await client.agents.create_agent(
+        model=os.getenv("AZURE_AI_AGENT_MODEL_DEPLOYMENT_NAME"),
+        name="TeamAPIAgent",
+        description="An expert reader of the MyPetParlor App Team API.",
+        instructions="""You are an expert reader of the MyPetParlor App Team API.""",
+        tools=team_api.definitions + code_interpreter.definitions,
+    )
+    
+    tenant_api_definition = await client.agents.create_agent(
+        model=os.getenv("AZURE_AI_AGENT_MODEL_DEPLOYMENT_NAME"),
+        name="TenantAPIAgent",
+        description="An expert reader of the MyPetParlor App Tenant API.",
+        instructions="""You are an expert reader of the MyPetParlor App Tenant API.""",
+        tools=tenant_api.definitions + code_interpreter.definitions,
     )
     
     triage_definition = await client.agents.create_agent(
@@ -174,9 +304,14 @@ Important Guidelines:
         description="Main coordinator that routes requests to specialized agents",
         instructions="""You are the main coordinator. Evaluate user requests and:
         1. For setup & guide related queries, use the SetupGuideAgent
+            1.1. For each guide, use the appropriate agent to get the information needed to complete the guide
         2. For customer related queries, use the CustomerAPIAgent
-        3. Provide complete answers incorporating information from the specialized agents
-        4. For general queries, respond directly"""
+        3. For document related queries, use the DocumentAPIAgent
+        4. For team related queries, use the TeamAPIAgent
+        5. For tenant related queries, use the TenantAPIAgent
+        6. For booking related queries, use the BookingAPIAgent
+        7. Provide complete answers incorporating information from the specialized agents
+        8. For general queries, respond directly"""
     )
     
     # Create agent instances with their plugins
@@ -184,16 +319,36 @@ Important Guidelines:
         client=client,
         definition=setup_guide_definition
     )
+
+    booking_api_agent = AzureAIAgent(
+        client=client,
+        definition=booking_api_definition
+    )
     
     customer_api_agent = AzureAIAgent(
         client=client,
         definition=customer_api_definition
     )
+
+    document_api_agent = AzureAIAgent(
+        client=client,
+        definition=document_api_definition
+    )
     
+    team_api_agent = AzureAIAgent(
+        client=client,
+        definition=team_api_definition
+    )
+
+    tenant_api_agent = AzureAIAgent(
+        client=client,
+        definition=tenant_api_definition
+    )
+
     triage_agent = AzureAIAgent(
         client=client,
         definition=triage_definition,
-        plugins=[setup_guide_agent, customer_api_agent]
+        plugins=[setup_guide_agent, customer_api_agent, document_api_agent, team_api_agent, tenant_api_agent, booking_api_agent]
     )
     
     # Create a new thread for the chat session

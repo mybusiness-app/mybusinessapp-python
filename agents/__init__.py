@@ -1,3 +1,0 @@
-"""
-MyPetParlor Agents package
-""" 
