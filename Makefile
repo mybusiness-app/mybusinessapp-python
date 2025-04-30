@@ -1,6 +1,7 @@
-.PHONY: check-prereqs setup dev test build deploy clean help create-sp
+.PHONY: check-prereqs setup compose-up compose-build chainlit-build chainlit-tag chainlit-push test test-unit test-integration deploy clean format lint update-deps
 
 SHELL := /bin/bash
+REGISTRY := crmppsharedsouthafricanorth.azurecr.io
 
 help: ## Show this help message
 	@echo 'Usage:'
@@ -13,19 +14,28 @@ check-prereqs: ## Check prerequisites
 	@chmod +x scripts/check_prerequisites.sh
 	@./scripts/check_prerequisites.sh
 
-create-sp: ## Create Azure service principal and update environment variables
-	@chmod +x scripts/create_service_principal.sh
-	@./scripts/create_service_principal.sh
-
 setup: check-prereqs ## Setup development environment
 	@chmod +x scripts/setup.sh
 	@./scripts/setup.sh
 
-dev: ## Start development environment
+compose-up: ## Run the docker compose (development)
 	docker compose -f docker/compose/dev.yml up
 
-dev-build: ## Start development environment with rebuild
-	docker compose -f docker/compose/dev.yml up --build
+compose-build: ## Build docker compose (development)
+	docker compose -f docker/compose/dev.yml build
+
+chainlit-build: ## Build the chainlit app using docker
+	docker build -f docker/chainlit/Dockerfile -t mybusiness-app-chainlit .
+
+chainlit-tag: ## Tag the chainlit app to Azure Container Registry
+	# Prompt for a version string
+	read -p "Enter a tag: " TAG
+	docker image tag mybusiness-app-chainlit $(REGISTRY)/web-apps/mpp-chainlit:$(TAG)
+
+chainlit-push: ## Push the chainlit app to Azure Container Registry
+	# Prompt for a version string
+	read -p "Enter a tag: " TAG
+	docker image push $(REGISTRY)/web-apps/mpp-chainlit:$(TAG)
 
 test: ## Run all tests
 	pytest tests/

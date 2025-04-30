@@ -8,6 +8,6 @@ services:
     ports:
       - "8501:8501"
     env_file:
-      - ../../.env.development
+      - ../../.env.production
     volumes:
       - ../../apps/chainlit:/app

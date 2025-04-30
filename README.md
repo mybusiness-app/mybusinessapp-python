@@ -11,10 +11,11 @@ make help
 
 Common commands:
 ```bash
-make setup      # Setup development environment
-make dev        # Start development environment
-make test      # Run all tests
-make clean     # Clean up development environment
+make setup                 # Setup development environment
+make compose-build         # Build docker compose
+make compose-up            # Run docker componse
+make test                  # Run all tests
+make clean                 # Clean up development environment
 ```
 
 ## Project Structure

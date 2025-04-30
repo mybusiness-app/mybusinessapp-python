@@ -16,10 +16,3 @@ target "chainlit" {
     tags = ["${REGISTRY}/mypetparlor/chainlit:${GITHUB_SHA}"]
     platforms = ["linux/amd64", "linux/arm64"]
 }
-
-target "mcp-server" {
-    context = "./common/mcp"
-    dockerfile = "../../docker/mcp-server/Dockerfile"
-    tags = ["${REGISTRY}/mypetparlor/mcp-server:${GITHUB_SHA}"]
-    platforms = ["linux/amd64", "linux/arm64"]
-}
