@@ -680,7 +680,7 @@ async def main(message: cl.Message):
             ).send()
             
     except Exception as e:
-        logger.error(f"Error processing message: {str(e)}", exc_info=True)
+        logger.error(f"Error processing the message: {str(e)}", exc_info=True)
         await cl.Message(
             content=f"❌ Error: {str(e)}. Please try again or contact support if the issue persists.",
         ).send()
@@ -740,16 +740,14 @@ def create_system_message(user_content: str, auth_settings: dict) -> str:
 
     <api_authentication>
     When using OpenAPI tools or other agents used to access the MyPetParlor App APIs, 
-    you MUST share and use these authentication parameters through instruction overrides:
+    you MUST share and MUST use these authentication parameters through instruction overrides:
     
-    Query Parameters:
-    - firebaseIdToken: {firebase_token}
-    
-    Header Parameters:
-    - x-mba-application-id: {app_id}
-    - x-mba-application-type: {app_type}
-    - x-mba-deployment-location: {deploy_location}
-    - ocp-apim-subscription-key: {subscription_key}
+    ALWAYS use the following values for the necessary parameters:
+    firebaseIdToken -> {firebase_token}
+    x-mba-application-id -> {app_id}
+    x-mba-application-type -> {app_type}
+    x-mba-deployment-location -> {deploy_location}
+    ocp-apim-subscription-key -> {subscription_key}
     </api_authentication>
     """
 

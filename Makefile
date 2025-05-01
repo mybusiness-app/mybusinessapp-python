@@ -29,17 +29,20 @@ compose-build: ## Build docker compose (development)
 	docker compose -f docker/compose/dev.yml build
 
 chainlit-build: ## Build the chainlit app using docker
-	docker build -f docker/chainlit/Dockerfile -t mybusiness-app-chainlit .
+	docker build --no-cache -f docker/chainlit/Dockerfile -t mybusiness-app-chainlit .
+
+chainlit-run: ## Run the chainlit app
+	docker run --env-file .env.development -it mybusiness-app-chainlit
 
 chainlit-tag: ## Tag the chainlit app to Azure Container Registry
 	# Prompt for a version string
-	read -p "Enter a tag: " TAG
-	docker image tag mybusiness-app-chainlit $(REGISTRY)/web-apps/mpp-chainlit:$(TAG)
+	@read -p "Enter version tag: " TAG; \
+	docker image tag mybusiness-app-chainlit $(REGISTRY)/web-apps/mpp-chainlit:$$TAG
 
 chainlit-push: ## Push the chainlit app to Azure Container Registry
 	# Prompt for a version string
-	read -p "Enter a tag: " TAG
-	docker image push $(REGISTRY)/web-apps/mpp-chainlit:$(TAG)
+	@read -p "Enter version tag: " TAG; \
+	docker image push $(REGISTRY)/web-apps/mpp-chainlit:$$TAG
 
 test: ## Run all tests
 	pytest tests/
