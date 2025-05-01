@@ -30,9 +30,9 @@ make clean                 # Clean up development environment
 
 ## Architecture
 
-The MyPetParlor App system architecture consists of several integrated components deployed on Azure:
+The MyPetParlor App system architecture consists of several integrated components deployed on Azure using the (Deployment Stamp)[https://learn.microsoft.com/en-us/azure/architecture/patterns/deployment-stamp] pattern for high availability and global scale.
 
-### Azure Container Apps Environment
+### Azure Container Apps Environment (Per Stamp)
 
 The system utilizes a unified Azure Container Apps environment that hosts multiple containerized applications:
 
@@ -49,14 +49,12 @@ The system utilizes a unified Azure Container Apps environment that hosts multip
    - Provides the user interface for the MyPetParlor App portal
    - Implements server-side rendering for improved performance and SEO
 
-### Go-based Multi-tenant API Backend
-
-The system is powered by a robust Go-based API backend with the following characteristics:
-
-- **Multi-tenant Architecture**
-  - Supports multiple business tenants within a single deployment
-  - Logical isolation of tenant data and configurations
-  - Tenant-specific customizations and settings
+3. **Go-based Multi-tenant API Backend**
+   - Deployed as a containerized service within Azure Container Apps
+   - Robust Go-based container image powering the backend services
+   - Features a multi-tenant architecture supporting multiple business tenants
+   - Provides logical isolation of tenant data and configurations
+   - Enables tenant-specific customizations and settings
 
 - **Multi-stamp Deployment**
   - Geographically distributed deployments for global scale
