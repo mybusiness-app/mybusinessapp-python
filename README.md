@@ -28,6 +28,92 @@ make clean                 # Clean up development environment
 - `scripts/`: Utility scripts
 - `keys/`: Authentication keys and certificates
 
+## Architecture
+
+The MyPetParlor App system architecture consists of several integrated components deployed on Azure:
+
+### Azure Container Apps Environment
+
+The system utilizes a unified Azure Container Apps environment that hosts multiple containerized applications:
+
+1. **Chainlit AI Assistant Backend**
+   - Runs as a containerized service within Azure Container Apps
+   - Provides the AI assistant functionality through a REST API
+   - Handles natural language processing and query routing
+   - Communicates with Azure AI services for advanced reasoning
+
+2. **Server-Side Rendered (SSR) Web Application**
+   - Built with the Vike framework (https://vike.dev/)
+   - Deployed to the same Azure Container Apps environment
+   - Accessible at https://staging.portal.mypetparlorapp.com/mppdemo/dashboard/overview
+   - Provides the user interface for the MyPetParlor App portal
+   - Implements server-side rendering for improved performance and SEO
+
+### Go-based Multi-tenant API Backend
+
+The system is powered by a robust Go-based API backend with the following characteristics:
+
+- **Multi-tenant Architecture**
+  - Supports multiple business tenants within a single deployment
+  - Logical isolation of tenant data and configurations
+  - Tenant-specific customizations and settings
+
+- **Multi-stamp Deployment**
+  - Geographically distributed deployments for global scale
+  - Regional data residency compliance
+  - Low-latency access for users worldwide
+
+- **Security Features**
+  - Role-based access control (RBAC) for fine-grained permissions
+  - JWT authentication integrated with Firebase Authentication
+  - Request validation and sanitization
+  - Comprehensive audit logging
+
+- **API Gateway**
+  - Hosted at https://mpp-api-mybusinessapp-san.azure-api.net/v2/
+  - RESTful endpoints with OpenAPI specifications
+  - Domain-specific APIs (Booking, Customer, Document, Team, etc.)
+
+### Azure AI Services Integration
+
+The system leverages Azure's AI capabilities:
+
+- **Azure OpenAI Service**
+  - Utilizes the GPT-4o model for advanced natural language understanding
+  - Powers the AI Assistant's reasoning and response generation
+  - Enables complex query handling and contextual understanding
+  - Fine-tuned for domain-specific knowledge about pet care services
+
+- **Azure AI Agent Service**
+  - Orchestrates specialized AI agents for different domains
+  - Manages agent routing and specialization
+  - Provides a unified interface for agent interactions
+  - Implements guardrails for responsible AI usage
+
+### Authentication and Authorization Flow
+
+1. Users authenticate via Firebase Authentication
+2. JWT tokens are issued with appropriate role claims
+3. AI Assistant inherits user permissions through token passing
+4. Go API validates tokens and enforces RBAC policies
+5. API responses are filtered based on user permissions
+6. AI Assistant only accesses and presents data the user is authorized to see
+
+### Data Flow Architecture
+
+1. User interacts with the SSR web application
+2. Web app communicates with the Chainlit AI Assistant backend
+3. AI Assistant processes queries using Azure OpenAI (GPT-4o)
+4. Specialized agents are invoked based on query intent
+5. Agents interact with the Go-based API using the user's JWT token
+6. Go API enforces access controls and retrieves authorized data
+7. Results are returned to the user through the web interface
+
+This architecture provides a scalable, globally distributed system with enterprise-grade security while leveraging Azure's managed services for reliability and performance.
+
+
+
+
 ## Key Features
 
 ### AI Assistant Capabilities

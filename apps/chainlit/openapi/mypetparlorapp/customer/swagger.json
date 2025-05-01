@@ -1,10 +1,2112 @@
 {
-    "components": {"schemas":{"customer.CreateCustomer":{"properties":{"defaultAuthorizationId":{"example":"62f298042b32093cf600963f","type":"string"},"defaultEftReference":{"example":"CUS-5543f324","type":"string"},"email":{"example":"info@mppdemo.co.za","type":"string"},"firstName":{"example":"MyPetParlor","minLength":1,"type":"string"},"gravatarUrl":{"example":"https://gravatar.com/avatar/fe1dad0128df2f64a8e50ba221fff1d1?d=retro","type":"string"},"id":{"example":"568c28fffc4be30d44d0398e","type":"string"},"isDifficult":{"example":false,"type":"boolean"},"isLatePayer":{"example":false,"type":"boolean"},"isXeroDataStale":{"example":false,"type":"boolean"},"lastName":{"example":"Demo","minLength":1,"type":"string"},"password":{"example":"password12345678","type":"string"},"phoneNumber":{"example":"+27654324343","type":"string"},"photoUrl":{"example":"https://shared-mybusinessapp.azureedge.net/images/mSI8TgB90dU0wd42WkwZdEQy9vL2-dd43f0be-9dcc-4326-87f1-beea52aed3d1.jpg","type":"string"},"teamsAssociatedWith":{"example":["[]"],"items":{"type":"string"},"type":"array","uniqueItems":false},"uid":{"example":"gSI5TgB90dU0wd42WkwZdEQy9vL2","type":"string"},"useGravatar":{"example":false,"type":"boolean"},"xeroContactId":{"example":"d12eb97b-d207-4vcb-9ab6-8b466a8b4d39","minLength":1,"type":"string"},"xeroContactName":{"example":"Jay Day","minLength":1,"type":"string"}},"type":"object"},"customer.Customer":{"properties":{"addressCount":{"example":4,"type":"integer"},"authorizationCount":{"example":4,"type":"integer"},"bookingCount":{"example":4,"type":"integer"},"createdAt":{"example":"2023-01-05T00:00:00.000Z","type":"string"},"customFieldValues":{"items":{"$ref":"#/components/schemas/entities.CustomFieldValue"},"type":"array","uniqueItems":false},"defaultAuthorization":{"$ref":"#/components/schemas/customer.CustomerAuthorization"},"defaultAuthorizationId":{"type":"string"},"defaultEftReference":{"example":"CUS-5543f324","type":"string"},"email":{"example":"jydy@gmail.com","type":"string"},"firstName":{"example":"Jay","type":"string"},"gravatarUrl":{"example":"https://gravatar.com/avatar/d0e9201191872ec2ea8c5916df838e7d?d=retro","type":"string"},"id":{"example":"568c28fffc4be30d44d0398e","type":"string"},"isDifficult":{"example":false,"type":"boolean"},"isLatePayer":{"example":false,"type":"boolean"},"isXeroDataStale":{"example":false,"type":"boolean"},"lastName":{"example":"Day","type":"string"},"petCount":{"example":4,"type":"integer"},"phoneNumber":{"example":"+27654324343","type":"string"},"photoUrl":{"example":"https://shared-mybusinessapp.azureedge.net/images/mSI8TgB90dU0wd42WkwZdEQy9vL2-dd43f0be-9dcc-4326-87f1-beea52aed3d1.jpg","type":"string"},"teamCustomerData":{"additionalProperties":{"$ref":"#/components/schemas/customer.TeamCustomerData"},"type":"object"},"teamsAssociatedWith":{"example":["[]"],"items":{"type":"string"},"type":"array","uniqueItems":false},"uid":{"example":"gSI5TgB90dU0wd42WkwZdEQy9vL2","type":"string"},"updatedAt":{"example":"2023-01-05T00:00:00.000Z","type":"string"},"useGravatar":{"example":false,"type":"boolean"},"xeroContactId":{"example":"d12eb97b-d207-4vcb-9ab6-8b466a8b4d39","type":"string"},"xeroContactName":{"example":"Jay Day","type":"string"}},"type":"object"},"customer.CustomerAuthorization":{"properties":{"accountName":{"example":"Bank Card","type":"string"},"authorizationCode":{"example":"AUTH_s5nditseka","type":"string"},"bank":{"example":"TEST BANK","type":"string"},"bin":{"example":"408408","type":"string"},"brand":{"example":"visa","type":"string"},"cardType":{"example":"visa","type":"string"},"channel":{"example":"card","type":"string"},"countryCode":{"example":"NG","type":"string"},"createdAt":{"example":"2023-01-05T00:00:00.000Z","type":"string"},"customerId":{"example":"568c28fffc4be30d44d0398e","type":"string"},"expiryMonth":{"example":"09","type":"string"},"expiryYear":{"example":"2025","type":"string"},"id":{"example":"568c28fffc4be30d44d0398e","type":"string"},"last4":{"example":"4081","type":"string"},"reusable":{"example":true,"type":"boolean"},"signature":{"example":"SIG_qdUrNo5EyBmVbMIq6J0v","type":"string"},"updatedAt":{"example":"2023-01-05T00:00:00.000Z","type":"string"}},"type":"object"},"customer.TeamCustomerData":{"properties":{"authorizationCount":{"example":4,"type":"integer"},"bookingCount":{"example":4,"type":"integer"},"defaultAuthorization":{"$ref":"#/components/schemas/customer.CustomerAuthorization"},"defaultAuthorizationId":{"type":"string"},"isDifficult":{"example":false,"type":"boolean"},"isLatePayer":{"example":false,"type":"boolean"},"isXeroDataStale":{"example":false,"type":"boolean"},"xeroContactId":{"example":"d12eb97b-d207-4vcb-9ab6-8b466a8b4d39","type":"string"},"xeroContactName":{"example":"Jay Day","type":"string"}},"type":"object"},"customer.UpdateCustomer":{"properties":{"defaultAuthorizationId":{"example":"62f298042b32093cf600963f","type":"string"},"defaultEftReference":{"example":"CUS-5543f324","type":"string"},"email":{"example":"info@mppdemo.co.za","type":"string"},"firstName":{"example":"MyPetParlor","minLength":1,"type":"string"},"isDifficult":{"example":false,"type":"boolean"},"isLatePayer":{"example":false,"type":"boolean"},"isXeroDataStale":{"example":false,"type":"boolean"},"lastName":{"example":"Demo","minLength":1,"type":"string"},"phoneNumber":{"example":"+27654324343","type":"string"},"photoUrl":{"example":"https://url-to-photo.com","type":"string"},"teamCustomerData":{"additionalProperties":{"$ref":"#/components/schemas/customer.UpdateTeamCustomerData"},"type":"object"},"uid":{"example":"gSI5TgB90dU0wd42WkwZdEQy9vL2","type":"string"},"useGravatar":{"example":false,"type":"boolean"},"xeroContactId":{"example":"d12eb97b-d207-4vcb-9ab6-8b466a8b4d39","minLength":1,"type":"string"},"xeroContactName":{"example":"Jay Day","minLength":1,"type":"string"}},"type":"object"},"customer.UpdateTeamCustomerData":{"properties":{"authorizationCount":{"example":4,"type":"integer"},"bookingCount":{"example":4,"type":"integer"},"defaultAuthorizationId":{"type":"string"},"isDifficult":{"example":false,"type":"boolean"},"isLatePayer":{"example":false,"type":"boolean"},"isXeroDataStale":{"example":false,"type":"boolean"},"xeroContactId":{"example":"d12eb97b-d207-4vcb-9ab6-8b466a8b4d39","type":"string"},"xeroContactName":{"example":"Jay Day","type":"string"}},"type":"object"},"data":{"properties":{"data":{"$ref":"#/components/schemas/customer.Customer"}},"type":"object"},"entities.CustomFieldValue":{"properties":{"createdAt":{"example":"2023-01-05T00:00:00.000Z","type":"string"},"customFieldId":{"example":"568c28fffc4be30d44d0398e","type":"string"},"id":{"example":"568c28fffc4be30d44d0398e","type":"string"},"referenceId":{"example":"568c28fffc4be30d44d0398e","type":"string"},"referenceType":{"example":"customer","type":"string"},"updatedAt":{"example":"2023-01-05T00:00:00.000Z","type":"string"},"valueDate":{"example":"2023-01-05T00:00:00.000Z","type":"string"},"valueDateTime":{"example":"2023-01-05T00:00:00.000Z","type":"string"},"valueJson":{"type":"object"},"valueNumber":{"example":123.45,"type":"number"},"valueText":{"example":"Some Text","type":"string"}},"type":"object"},"entities.JSONResultFailure":{"properties":{"errors":{"items":{"type":"string"},"type":"array","uniqueItems":false},"message":{"type":"string"},"success":{"type":"boolean"}},"type":"object"},"entities.JSONResultSuccess":{"allOf":[{"$ref":"#/components/schemas/data"}],"properties":{"data":{},"message":{"type":"string"},"metadata":{},"success":{"type":"boolean"}},"type":"object"}}},
-    "info": {"contact":{"email":"support@mybusinessapp.co.za","name":"API Support","url":"https://mybusinessapp.co.za/support"},"description":"Deletes the relationship between a customer and a team, removing team-based access and management","license":{"name":"Apache 2.0","url":"http://www.apache.org/licenses/LICENSE-2.0.html"},"termsOfService":"https://mybusinessapp.co.za/terms","title":"Customer API","version":"1.0"},
-    "externalDocs": {"description":"","url":""},
-    "paths": {"/customers":{"get":{"description":"Retrieves a paginated list of all customer records with optional team filtering","operationId":"get_all_customers","parameters":[{"description":"The API key for the request to gain access the Azure API Management gateway","in":"header","name":"Ocp-Apim-Subscription-Key","required":true,"schema":{"type":"string"}},{"description":"The deployment location of the request to identify the location of the deployed resources (e.g. za0)","in":"header","name":"X-MBA-Deployment-Location","required":true,"schema":{"enum":["za0","za1","uk1","us1"],"type":"string"}},{"description":"The application ID of the request to identify the tenant (e.g. mppdemo)","in":"header","name":"X-MBA-Application-ID","required":true,"schema":{"type":"string"}},{"description":"The type of application making the request to determine the expected response (e.g. mypetparlorapp)","in":"header","name":"X-MBA-Application-Type","required":true,"schema":{"enum":["mypetparlorapp"],"type":"string"}},{"description":"The Firebase ID token of the user making the request used to authenticate and authorise the request","in":"query","name":"firebaseIdToken","required":true,"schema":{"type":"string"}},{"description":"The page number to retrieve","in":"query","name":"page","schema":{"minimum":1,"type":"integer"}},{"description":"The number of items to retrieve per page","in":"query","name":"limit","schema":{"maximum":200,"minimum":1,"type":"integer"}},{"description":"Used to determine if pagination is applied to the results. If true, the results will be paginated. If false, the results will not be paginated and all results will be returned.","in":"query","name":"paginate","schema":{"default":true,"type":"boolean"}},{"description":"Used to filter customers based on being associated with the provided team ID","in":"query","name":"teamId","schema":{"type":"string"}},{"description":"Used to filter customers based on being associated with any of the provided team IDs (comma separated list of team IDs)","in":"query","name":"teamIds","schema":{"type":"string"}}],"requestBody":{"content":{"application/json":{"schema":{"type":"object"}}}},"responses":{"200":{"content":{"application/json":{"schema":{"allOf":[{"$ref":"#/components/schemas/data"}],"properties":{"data":{},"message":{"type":"string"},"metadata":{},"success":{"type":"boolean"}},"type":"object"}}},"description":"OK"},"401":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Unauthorized"},"422":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Unprocessable Entity"},"500":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Internal Server Error"}},"summary":"Get all customer resources","tags":["Customer"]},"post":{"description":"Creates a new customer record with provided details, optionally sending an invitation email and linking to Xero","operationId":"create_single_customer","parameters":[{"description":"The API key for the request to gain access the Azure API Management gateway","in":"header","name":"Ocp-Apim-Subscription-Key","required":true,"schema":{"type":"string"}},{"description":"The deployment location of the request to identify the location of the deployed resources (e.g. za0)","in":"header","name":"X-MBA-Deployment-Location","required":true,"schema":{"enum":["za0","za1","uk1","us1"],"type":"string"}},{"description":"The application ID of the request to identify the tenant (e.g. mppdemo)","in":"header","name":"X-MBA-Application-ID","required":true,"schema":{"type":"string"}},{"description":"The type of application making the request to determine the expected response (e.g. mypetparlorapp)","in":"header","name":"X-MBA-Application-Type","required":true,"schema":{"enum":["mypetparlorapp"],"type":"string"}},{"description":"The Firebase ID token of the user making the request used to authenticate and authorise the request","in":"query","name":"firebaseIdToken","required":true,"schema":{"type":"string"}},{"description":"Optionally send an invite to the customer via email after creation","in":"query","name":"sendInvite","schema":{"default":true,"type":"boolean"}},{"description":"Used to associate the new customer with a team","in":"query","name":"teamId","schema":{"type":"string"}},{"description":"Optionally specify the xero tenant ID to create a contact in Xero for the customer","in":"query","name":"xeroTenantId","schema":{"type":"string"}}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/customer.CreateCustomer"}}},"description":"JSON body to create a customer resource","required":true},"responses":{"201":{"content":{"application/json":{"schema":{"allOf":[{"$ref":"#/components/schemas/data"}],"properties":{"data":{},"message":{"type":"string"},"metadata":{},"success":{"type":"boolean"}},"type":"object"}}},"description":"Created"},"401":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Unauthorized"},"409":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Conflict"},"422":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Unprocessable Entity"},"500":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Internal Server Error"}},"summary":"Create single customer resource","tags":["Customer"]}},"/customers/search":{"get":{"description":"Performs a text-based search across all customer records with pagination and optional team filtering","operationId":"search_all_customers","parameters":[{"description":"The API key for the request to gain access the Azure API Management gateway","in":"header","name":"Ocp-Apim-Subscription-Key","required":true,"schema":{"type":"string"}},{"description":"The deployment location of the request to identify the location of the deployed resources (e.g. za0)","in":"header","name":"X-MBA-Deployment-Location","required":true,"schema":{"enum":["za0","za1","uk1","us1"],"type":"string"}},{"description":"The application ID of the request to identify the tenant (e.g. mppdemo)","in":"header","name":"X-MBA-Application-ID","required":true,"schema":{"type":"string"}},{"description":"The type of application making the request to determine the expected response (e.g. mypetparlorapp)","in":"header","name":"X-MBA-Application-Type","required":true,"schema":{"enum":["mypetparlorapp"],"type":"string"}},{"description":"The Firebase ID token of the user making the request used to authenticate and authorise the request","in":"query","name":"firebaseIdToken","required":true,"schema":{"type":"string"}},{"description":"The page number to retrieve","in":"query","name":"page","schema":{"minimum":1,"type":"integer"}},{"description":"The number of items to retrieve per page","in":"query","name":"limit","schema":{"maximum":200,"minimum":1,"type":"integer"}},{"description":"Used to determine if pagination is applied to the results. If true, the results will be paginated. If false, the results will not be paginated and all results will be returned.","in":"query","name":"paginate","schema":{"default":true,"type":"boolean"}},{"description":"Used to filter customers based on a search query (e.g. 'John')","in":"query","name":"query","schema":{"type":"string"}},{"description":"Used to filter customers based on being associated with the provided team ID","in":"query","name":"teamId","schema":{"type":"string"}},{"description":"Used to filter customers based on being associated with any of the provided team IDs (comma separated list of team IDs)","in":"query","name":"teamIds","schema":{"type":"string"}}],"requestBody":{"content":{"application/json":{"schema":{"type":"object"}}}},"responses":{"200":{"content":{"application/json":{"schema":{"allOf":[{"$ref":"#/components/schemas/data"}],"properties":{"data":{},"message":{"type":"string"},"metadata":{},"success":{"type":"boolean"}},"type":"object"}}},"description":"OK"},"401":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Unauthorized"},"500":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Internal Server Error"}},"summary":"Search all customer resources","tags":["Customer"]}},"/customers/uid/{uid}":{"get":{"description":"Retrieves detailed information for a specific customer by their unique identifier (UID) instead of ID","operationId":"get_single_customer_by_uid","parameters":[{"description":"The API key for the request to gain access the Azure API Management gateway","in":"header","name":"Ocp-Apim-Subscription-Key","required":true,"schema":{"type":"string"}},{"description":"The deployment location of the request to identify the location of the deployed resources (e.g. za0)","in":"header","name":"X-MBA-Deployment-Location","required":true,"schema":{"enum":["za0","za1","uk1","us1"],"type":"string"}},{"description":"The application ID of the request to identify the tenant (e.g. mppdemo)","in":"header","name":"X-MBA-Application-ID","required":true,"schema":{"type":"string"}},{"description":"The type of application making the request to determine the expected response (e.g. mypetparlorapp)","in":"header","name":"X-MBA-Application-Type","required":true,"schema":{"enum":["mypetparlorapp"],"type":"string"}},{"description":"The Firebase ID token of the user making the request used to authenticate and authorise the request","in":"query","name":"firebaseIdToken","required":true,"schema":{"type":"string"}},{"description":"Unique name of the customer resource","in":"path","name":"uid","required":true,"schema":{"type":"string"}}],"requestBody":{"content":{"application/json":{"schema":{"type":"object"}}}},"responses":{"200":{"content":{"application/json":{"schema":{"allOf":[{"$ref":"#/components/schemas/data"}],"properties":{"data":{},"message":{"type":"string"},"metadata":{},"success":{"type":"boolean"}},"type":"object"}}},"description":"OK"},"401":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Unauthorized"},"404":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Not Found"},"422":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Unprocessable Entity"},"500":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Internal Server Error"}},"summary":"Get single customer resource by its unique name","tags":["Customer"]}},"/customers/{id}":{"delete":{"description":"Permanently removes a customer record from the system by their unique ID","operationId":"delete_single_customer","parameters":[{"description":"The API key for the request to gain access the Azure API Management gateway","in":"header","name":"Ocp-Apim-Subscription-Key","required":true,"schema":{"type":"string"}},{"description":"The deployment location of the request to identify the location of the deployed resources (e.g. za0)","in":"header","name":"X-MBA-Deployment-Location","required":true,"schema":{"enum":["za0","za1","uk1","us1"],"type":"string"}},{"description":"The application ID of the request to identify the tenant (e.g. mppdemo)","in":"header","name":"X-MBA-Application-ID","required":true,"schema":{"type":"string"}},{"description":"The type of application making the request to determine the expected response (e.g. mypetparlorapp)","in":"header","name":"X-MBA-Application-Type","required":true,"schema":{"enum":["mypetparlorapp"],"type":"string"}},{"description":"The Firebase ID token of the user making the request used to authenticate and authorise the request","in":"query","name":"firebaseIdToken","required":true,"schema":{"type":"string"}},{"description":"ID of the customer","in":"path","name":"id","required":true,"schema":{"type":"string"}}],"requestBody":{"content":{"application/json":{"schema":{"type":"object"}}}},"responses":{"200":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultSuccess"}}},"description":"OK"},"401":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Unauthorized"},"404":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Not Found"},"422":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Unprocessable Entity"},"500":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Internal Server Error"}},"summary":"Delete single customer","tags":["Customer"]},"get":{"description":"Retrieves detailed information for a specific customer by their unique ID","operationId":"get_single_customer","parameters":[{"description":"The API key for the request to gain access the Azure API Management gateway","in":"header","name":"Ocp-Apim-Subscription-Key","required":true,"schema":{"type":"string"}},{"description":"The deployment location of the request to identify the location of the deployed resources (e.g. za0)","in":"header","name":"X-MBA-Deployment-Location","required":true,"schema":{"enum":["za0","za1","uk1","us1"],"type":"string"}},{"description":"The application ID of the request to identify the tenant (e.g. mppdemo)","in":"header","name":"X-MBA-Application-ID","required":true,"schema":{"type":"string"}},{"description":"The type of application making the request to determine the expected response (e.g. mypetparlorapp)","in":"header","name":"X-MBA-Application-Type","required":true,"schema":{"enum":["mypetparlorapp"],"type":"string"}},{"description":"The Firebase ID token of the user making the request used to authenticate and authorise the request","in":"query","name":"firebaseIdToken","required":true,"schema":{"type":"string"}},{"description":"ID of the customer resource","in":"path","name":"id","required":true,"schema":{"type":"string"}}],"requestBody":{"content":{"application/json":{"schema":{"type":"object"}}}},"responses":{"200":{"content":{"application/json":{"schema":{"allOf":[{"$ref":"#/components/schemas/data"}],"properties":{"data":{},"message":{"type":"string"},"metadata":{},"success":{"type":"boolean"}},"type":"object"}}},"description":"OK"},"401":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Unauthorized"},"404":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Not Found"},"422":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Unprocessable Entity"},"500":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Internal Server Error"}},"summary":"Get single customer resource","tags":["Customer"]},"patch":{"description":"Updates specific fields of an existing customer record identified by ID","operationId":"update_single_customer","parameters":[{"description":"The API key for the request to gain access the Azure API Management gateway","in":"header","name":"Ocp-Apim-Subscription-Key","required":true,"schema":{"type":"string"}},{"description":"The deployment location of the request to identify the location of the deployed resources (e.g. za0)","in":"header","name":"X-MBA-Deployment-Location","required":true,"schema":{"enum":["za0","za1","uk1","us1"],"type":"string"}},{"description":"The application ID of the request to identify the tenant (e.g. mppdemo)","in":"header","name":"X-MBA-Application-ID","required":true,"schema":{"type":"string"}},{"description":"The type of application making the request to determine the expected response (e.g. mypetparlorapp)","in":"header","name":"X-MBA-Application-Type","required":true,"schema":{"enum":["mypetparlorapp"],"type":"string"}},{"description":"The Firebase ID token of the user making the request used to authenticate and authorise the request","in":"query","name":"firebaseIdToken","required":true,"schema":{"type":"string"}},{"description":"ID of the customer","in":"path","name":"id","required":true,"schema":{"type":"string"}}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/customer.UpdateCustomer"}}},"description":"JSON body to update a customer","required":true},"responses":{"200":{"content":{"application/json":{"schema":{"allOf":[{"$ref":"#/components/schemas/data"}],"properties":{"data":{},"message":{"type":"string"},"metadata":{},"success":{"type":"boolean"}},"type":"object"}}},"description":"OK"},"401":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Unauthorized"},"404":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Not Found"},"422":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Unprocessable Entity"},"500":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Internal Server Error"}},"summary":"Update single customer","tags":["Customer"]}},"/customers/{id}/associations/teams/{teamId}":{"delete":{"description":"Deletes the relationship between a customer and a team, removing team-based access and management","operationId":"remove_from_teams_associated_with","parameters":[{"description":"The API key for the request to gain access the Azure API Management gateway","in":"header","name":"Ocp-Apim-Subscription-Key","required":true,"schema":{"type":"string"}},{"description":"The deployment location of the request to identify the location of the deployed resources (e.g. za0)","in":"header","name":"X-MBA-Deployment-Location","required":true,"schema":{"enum":["za0","za1","uk1","us1"],"type":"string"}},{"description":"The application ID of the request to identify the tenant (e.g. mppdemo)","in":"header","name":"X-MBA-Application-ID","required":true,"schema":{"type":"string"}},{"description":"The type of application making the request to determine the expected response (e.g. mypetparlorapp)","in":"header","name":"X-MBA-Application-Type","required":true,"schema":{"enum":["mypetparlorapp"],"type":"string"}},{"description":"The Firebase ID token of the user making the request used to authenticate and authorise the request","in":"query","name":"firebaseIdToken","required":true,"schema":{"type":"string"}},{"description":"ID of the customer","in":"path","name":"id","required":true,"schema":{"type":"string"}},{"description":"ID of the team","in":"path","name":"teamId","required":true,"schema":{"type":"string"}}],"requestBody":{"content":{"application/json":{"schema":{"type":"object"}}}},"responses":{"200":{"content":{"application/json":{"schema":{"allOf":[{"$ref":"#/components/schemas/data"}],"properties":{"data":{},"message":{"type":"string"},"metadata":{},"success":{"type":"boolean"}},"type":"object"}}},"description":"OK"},"401":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Unauthorized"},"404":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Not Found"},"422":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Unprocessable Entity"},"500":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Internal Server Error"}},"summary":"Remove single customer's association with a team","tags":["Customer"]},"post":{"description":"Creates a relationship between a customer and a team, allowing team-based access and management","operationId":"add_to_teams_associated_with","parameters":[{"description":"The API key for the request to gain access the Azure API Management gateway","in":"header","name":"Ocp-Apim-Subscription-Key","required":true,"schema":{"type":"string"}},{"description":"The deployment location of the request to identify the location of the deployed resources (e.g. za0)","in":"header","name":"X-MBA-Deployment-Location","required":true,"schema":{"enum":["za0","za1","uk1","us1"],"type":"string"}},{"description":"The application ID of the request to identify the tenant (e.g. mppdemo)","in":"header","name":"X-MBA-Application-ID","required":true,"schema":{"type":"string"}},{"description":"The type of application making the request to determine the expected response (e.g. mypetparlorapp)","in":"header","name":"X-MBA-Application-Type","required":true,"schema":{"enum":["mypetparlorapp"],"type":"string"}},{"description":"The Firebase ID token of the user making the request used to authenticate and authorise the request","in":"query","name":"firebaseIdToken","required":true,"schema":{"type":"string"}},{"description":"ID of the customer","in":"path","name":"id","required":true,"schema":{"type":"string"}},{"description":"ID of the team","in":"path","name":"teamId","required":true,"schema":{"type":"string"}}],"requestBody":{"content":{"application/json":{"schema":{"type":"object"}}}},"responses":{"200":{"content":{"application/json":{"schema":{"allOf":[{"$ref":"#/components/schemas/data"}],"properties":{"data":{},"message":{"type":"string"},"metadata":{},"success":{"type":"boolean"}},"type":"object"}}},"description":"OK"},"401":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Unauthorized"},"404":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Not Found"},"422":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Unprocessable Entity"},"500":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Internal Server Error"}},"summary":"Add single customer's association with a team","tags":["Customer"]}},"/customers/{id}/unlink-xero-contact":{"patch":{"description":"Removes the association between a customer and their Xero contact, disconnecting the integration","operationId":"unlink_customer_xero_contact","parameters":[{"description":"The API key for the request to gain access the Azure API Management gateway","in":"header","name":"Ocp-Apim-Subscription-Key","required":true,"schema":{"type":"string"}},{"description":"The deployment location of the request to identify the location of the deployed resources (e.g. za0)","in":"header","name":"X-MBA-Deployment-Location","required":true,"schema":{"enum":["za0","za1","uk1","us1"],"type":"string"}},{"description":"The application ID of the request to identify the tenant (e.g. mppdemo)","in":"header","name":"X-MBA-Application-ID","required":true,"schema":{"type":"string"}},{"description":"The type of application making the request to determine the expected response (e.g. mypetparlorapp)","in":"header","name":"X-MBA-Application-Type","required":true,"schema":{"enum":["mypetparlorapp"],"type":"string"}},{"description":"The Firebase ID token of the user making the request used to authenticate and authorise the request","in":"query","name":"firebaseIdToken","required":true,"schema":{"type":"string"}},{"description":"ID of the customer","in":"path","name":"id","required":true,"schema":{"type":"string"}}],"requestBody":{"content":{"application/json":{"schema":{"type":"object"}}}},"responses":{"200":{"content":{"application/json":{"schema":{"allOf":[{"$ref":"#/components/schemas/data"}],"properties":{"data":{},"message":{"type":"string"},"metadata":{},"success":{"type":"boolean"}},"type":"object"}}},"description":"OK"},"401":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Unauthorized"},"404":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Not Found"},"500":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Internal Server Error"}},"summary":"Unlink single customer's xero contact","tags":["Customer"]}}},
+    "components": {
+        "schemas": {
+            "customer.CreateCustomer": {
+                "properties": {
+                    "defaultAuthorizationId": {
+                        "example": "62f298042b32093cf600963f",
+                        "type": "string"
+                    },
+                    "defaultEftReference": {
+                        "example": "CUS-5543f324",
+                        "type": "string"
+                    },
+                    "email": {
+                        "example": "info@mppdemo.co.za",
+                        "type": "string"
+                    },
+                    "firstName": {
+                        "example": "MyPetParlor",
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "gravatarUrl": {
+                        "example": "https://gravatar.com/avatar/fe1dad0128df2f64a8e50ba221fff1d1?d=retro",
+                        "type": "string"
+                    },
+                    "id": {
+                        "example": "568c28fffc4be30d44d0398e",
+                        "type": "string"
+                    },
+                    "isDifficult": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "isLatePayer": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "isXeroDataStale": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "lastName": {
+                        "example": "Demo",
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "password": {
+                        "example": "password12345678",
+                        "type": "string"
+                    },
+                    "phoneNumber": {
+                        "example": "+27654324343",
+                        "type": "string"
+                    },
+                    "photoUrl": {
+                        "example": "https://shared-mybusinessapp.azureedge.net/images/mSI8TgB90dU0wd42WkwZdEQy9vL2-dd43f0be-9dcc-4326-87f1-beea52aed3d1.jpg",
+                        "type": "string"
+                    },
+                    "teamsAssociatedWith": {
+                        "example": [
+                            "[]"
+                        ],
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "uniqueItems": false
+                    },
+                    "uid": {
+                        "example": "gSI5TgB90dU0wd42WkwZdEQy9vL2",
+                        "type": "string"
+                    },
+                    "useGravatar": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "xeroContactId": {
+                        "example": "d12eb97b-d207-4vcb-9ab6-8b466a8b4d39",
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "xeroContactName": {
+                        "example": "Jay Day",
+                        "minLength": 1,
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "customer.Customer": {
+                "properties": {
+                    "addressCount": {
+                        "example": 4,
+                        "type": "integer"
+                    },
+                    "authorizationCount": {
+                        "example": 4,
+                        "type": "integer"
+                    },
+                    "bookingCount": {
+                        "example": 4,
+                        "type": "integer"
+                    },
+                    "createdAt": {
+                        "example": "2023-01-05T00:00:00.000Z",
+                        "type": "string"
+                    },
+                    "customFieldValues": {
+                        "items": {
+                            "$ref": "#/components/schemas/entities.CustomFieldValue"
+                        },
+                        "type": "array",
+                        "uniqueItems": false
+                    },
+                    "defaultAuthorization": {
+                        "$ref": "#/components/schemas/customer.CustomerAuthorization"
+                    },
+                    "defaultAuthorizationId": {
+                        "type": "string"
+                    },
+                    "defaultEftReference": {
+                        "example": "CUS-5543f324",
+                        "type": "string"
+                    },
+                    "email": {
+                        "example": "jydy@gmail.com",
+                        "type": "string"
+                    },
+                    "firstName": {
+                        "example": "Jay",
+                        "type": "string"
+                    },
+                    "gravatarUrl": {
+                        "example": "https://gravatar.com/avatar/d0e9201191872ec2ea8c5916df838e7d?d=retro",
+                        "type": "string"
+                    },
+                    "id": {
+                        "example": "568c28fffc4be30d44d0398e",
+                        "type": "string"
+                    },
+                    "isDifficult": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "isLatePayer": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "isXeroDataStale": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "lastName": {
+                        "example": "Day",
+                        "type": "string"
+                    },
+                    "petCount": {
+                        "example": 4,
+                        "type": "integer"
+                    },
+                    "phoneNumber": {
+                        "example": "+27654324343",
+                        "type": "string"
+                    },
+                    "photoUrl": {
+                        "example": "https://shared-mybusinessapp.azureedge.net/images/mSI8TgB90dU0wd42WkwZdEQy9vL2-dd43f0be-9dcc-4326-87f1-beea52aed3d1.jpg",
+                        "type": "string"
+                    },
+                    "teamCustomerData": {
+                        "additionalProperties": {
+                            "$ref": "#/components/schemas/customer.TeamCustomerData"
+                        },
+                        "type": "object"
+                    },
+                    "teamsAssociatedWith": {
+                        "example": [
+                            "[]"
+                        ],
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "uniqueItems": false
+                    },
+                    "uid": {
+                        "example": "gSI5TgB90dU0wd42WkwZdEQy9vL2",
+                        "type": "string"
+                    },
+                    "updatedAt": {
+                        "example": "2023-01-05T00:00:00.000Z",
+                        "type": "string"
+                    },
+                    "useGravatar": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "xeroContactId": {
+                        "example": "d12eb97b-d207-4vcb-9ab6-8b466a8b4d39",
+                        "type": "string"
+                    },
+                    "xeroContactName": {
+                        "example": "Jay Day",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "customer.CustomerAuthorization": {
+                "properties": {
+                    "accountName": {
+                        "example": "Bank Card",
+                        "type": "string"
+                    },
+                    "authorizationCode": {
+                        "example": "AUTH_s5nditseka",
+                        "type": "string"
+                    },
+                    "bank": {
+                        "example": "TEST BANK",
+                        "type": "string"
+                    },
+                    "bin": {
+                        "example": "408408",
+                        "type": "string"
+                    },
+                    "brand": {
+                        "example": "visa",
+                        "type": "string"
+                    },
+                    "cardType": {
+                        "example": "visa",
+                        "type": "string"
+                    },
+                    "channel": {
+                        "example": "card",
+                        "type": "string"
+                    },
+                    "countryCode": {
+                        "example": "NG",
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "example": "2023-01-05T00:00:00.000Z",
+                        "type": "string"
+                    },
+                    "customerId": {
+                        "example": "568c28fffc4be30d44d0398e",
+                        "type": "string"
+                    },
+                    "expiryMonth": {
+                        "example": "09",
+                        "type": "string"
+                    },
+                    "expiryYear": {
+                        "example": "2025",
+                        "type": "string"
+                    },
+                    "id": {
+                        "example": "568c28fffc4be30d44d0398e",
+                        "type": "string"
+                    },
+                    "last4": {
+                        "example": "4081",
+                        "type": "string"
+                    },
+                    "reusable": {
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "signature": {
+                        "example": "SIG_qdUrNo5EyBmVbMIq6J0v",
+                        "type": "string"
+                    },
+                    "updatedAt": {
+                        "example": "2023-01-05T00:00:00.000Z",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "customer.TeamCustomerData": {
+                "properties": {
+                    "authorizationCount": {
+                        "example": 4,
+                        "type": "integer"
+                    },
+                    "bookingCount": {
+                        "example": 4,
+                        "type": "integer"
+                    },
+                    "defaultAuthorization": {
+                        "$ref": "#/components/schemas/customer.CustomerAuthorization"
+                    },
+                    "defaultAuthorizationId": {
+                        "type": "string"
+                    },
+                    "isDifficult": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "isLatePayer": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "isXeroDataStale": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "xeroContactId": {
+                        "example": "d12eb97b-d207-4vcb-9ab6-8b466a8b4d39",
+                        "type": "string"
+                    },
+                    "xeroContactName": {
+                        "example": "Jay Day",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "customer.UpdateCustomer": {
+                "properties": {
+                    "defaultAuthorizationId": {
+                        "example": "62f298042b32093cf600963f",
+                        "type": "string"
+                    },
+                    "defaultEftReference": {
+                        "example": "CUS-5543f324",
+                        "type": "string"
+                    },
+                    "email": {
+                        "example": "info@mppdemo.co.za",
+                        "type": "string"
+                    },
+                    "firstName": {
+                        "example": "MyPetParlor",
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "isDifficult": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "isLatePayer": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "isXeroDataStale": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "lastName": {
+                        "example": "Demo",
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "phoneNumber": {
+                        "example": "+27654324343",
+                        "type": "string"
+                    },
+                    "photoUrl": {
+                        "example": "https://url-to-photo.com",
+                        "type": "string"
+                    },
+                    "teamCustomerData": {
+                        "additionalProperties": {
+                            "$ref": "#/components/schemas/customer.UpdateTeamCustomerData"
+                        },
+                        "type": "object"
+                    },
+                    "uid": {
+                        "example": "gSI5TgB90dU0wd42WkwZdEQy9vL2",
+                        "type": "string"
+                    },
+                    "useGravatar": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "xeroContactId": {
+                        "example": "d12eb97b-d207-4vcb-9ab6-8b466a8b4d39",
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "xeroContactName": {
+                        "example": "Jay Day",
+                        "minLength": 1,
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "customer.UpdateTeamCustomerData": {
+                "properties": {
+                    "authorizationCount": {
+                        "example": 4,
+                        "type": "integer"
+                    },
+                    "bookingCount": {
+                        "example": 4,
+                        "type": "integer"
+                    },
+                    "defaultAuthorizationId": {
+                        "type": "string"
+                    },
+                    "isDifficult": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "isLatePayer": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "isXeroDataStale": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "xeroContactId": {
+                        "example": "d12eb97b-d207-4vcb-9ab6-8b466a8b4d39",
+                        "type": "string"
+                    },
+                    "xeroContactName": {
+                        "example": "Jay Day",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "data": {
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/customer.Customer"
+                    }
+                },
+                "type": "object"
+            },
+            "entities.CustomFieldValue": {
+                "properties": {
+                    "createdAt": {
+                        "example": "2023-01-05T00:00:00.000Z",
+                        "type": "string"
+                    },
+                    "customFieldId": {
+                        "example": "568c28fffc4be30d44d0398e",
+                        "type": "string"
+                    },
+                    "id": {
+                        "example": "568c28fffc4be30d44d0398e",
+                        "type": "string"
+                    },
+                    "referenceId": {
+                        "example": "568c28fffc4be30d44d0398e",
+                        "type": "string"
+                    },
+                    "referenceType": {
+                        "example": "customer",
+                        "type": "string"
+                    },
+                    "updatedAt": {
+                        "example": "2023-01-05T00:00:00.000Z",
+                        "type": "string"
+                    },
+                    "valueDate": {
+                        "example": "2023-01-05T00:00:00.000Z",
+                        "type": "string"
+                    },
+                    "valueDateTime": {
+                        "example": "2023-01-05T00:00:00.000Z",
+                        "type": "string"
+                    },
+                    "valueJson": {
+                        "type": "object"
+                    },
+                    "valueNumber": {
+                        "example": 123.45,
+                        "type": "number"
+                    },
+                    "valueText": {
+                        "example": "Some Text",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "entities.JSONResultFailure": {
+                "properties": {
+                    "errors": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "uniqueItems": false
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "success": {
+                        "type": "boolean"
+                    }
+                },
+                "type": "object"
+            },
+            "entities.JSONResultSuccess": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/data"
+                    }
+                ],
+                "properties": {
+                    "data": {},
+                    "message": {
+                        "type": "string"
+                    },
+                    "metadata": {},
+                    "success": {
+                        "type": "boolean"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "info": {
+        "contact": {
+            "email": "support@mybusinessapp.co.za",
+            "name": "API Support",
+            "url": "https://mybusinessapp.co.za/support"
+        },
+        "description": "Deletes the relationship between a customer and a team, removing team-based access and management",
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "termsOfService": "https://mybusinessapp.co.za/terms",
+        "title": "Customer API",
+        "version": "1.0"
+    },
+    "externalDocs": {
+        "description": "",
+        "url": ""
+    },
+    "paths": {
+        "/customers": {
+            "get": {
+                "description": "Retrieves a paginated list of all customer records with optional team filtering",
+                "operationId": "get_all_customers",
+                "parameters": [
+                    {
+                        "description": "The API key for the request to gain access the Azure API Management gateway",
+                        "in": "header",
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The deployment location of the request to identify the location of the deployed resources (e.g. za0)",
+                        "in": "header",
+                        "name": "X-MBA-Deployment-Location",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "za0",
+                                "za1",
+                                "uk1",
+                                "us1"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The application ID of the request to identify the tenant (e.g. mppdemo)",
+                        "in": "header",
+                        "name": "X-MBA-Application-ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The type of application making the request to determine the expected response (e.g. mypetparlorapp)",
+                        "in": "header",
+                        "name": "X-MBA-Application-Type",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "mypetparlorapp"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The Firebase ID token of the user making the request used to authenticate and authorise the request",
+                        "in": "query",
+                        "name": "firebaseIdToken",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The page number to retrieve",
+                        "in": "query",
+                        "name": "page",
+                        "schema": {
+                            "minimum": 1,
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "The number of items to retrieve per page",
+                        "in": "query",
+                        "name": "limit",
+                        "schema": {
+                            "maximum": 200,
+                            "minimum": 1,
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Used to determine if pagination is applied to the results. If true, the results will be paginated. If false, the results will not be paginated and all results will be returned.",
+                        "in": "query",
+                        "name": "paginate",
+                        "schema": {
+                            "default": true,
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "description": "Used to filter customers based on being associated with the provided team ID",
+                        "in": "query",
+                        "name": "teamId",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Used to filter customers based on being associated with any of the provided team IDs (comma separated list of team IDs)",
+                        "in": "query",
+                        "name": "teamIds",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/data"
+                                        }
+                                    ],
+                                    "properties": {
+                                        "data": {},
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "metadata": {},
+                                        "success": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Unauthorized"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Unprocessable Entity"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Internal Server Error"
+                    }
+                },
+                "summary": "Get all customer resources",
+                "tags": [
+                    "Customer"
+                ]
+            },
+            "post": {
+                "description": "Creates a new customer record with provided details, optionally sending an invitation email and linking to Xero",
+                "operationId": "create_single_customer",
+                "parameters": [
+                    {
+                        "description": "The API key for the request to gain access the Azure API Management gateway",
+                        "in": "header",
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The deployment location of the request to identify the location of the deployed resources (e.g. za0)",
+                        "in": "header",
+                        "name": "X-MBA-Deployment-Location",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "za0",
+                                "za1",
+                                "uk1",
+                                "us1"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The application ID of the request to identify the tenant (e.g. mppdemo)",
+                        "in": "header",
+                        "name": "X-MBA-Application-ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The type of application making the request to determine the expected response (e.g. mypetparlorapp)",
+                        "in": "header",
+                        "name": "X-MBA-Application-Type",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "mypetparlorapp"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The Firebase ID token of the user making the request used to authenticate and authorise the request",
+                        "in": "query",
+                        "name": "firebaseIdToken",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Optionally send an invite to the customer via email after creation",
+                        "in": "query",
+                        "name": "sendInvite",
+                        "schema": {
+                            "default": true,
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "description": "Used to associate the new customer with a team",
+                        "in": "query",
+                        "name": "teamId",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Optionally specify the xero tenant ID to create a contact in Xero for the customer",
+                        "in": "query",
+                        "name": "xeroTenantId",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/customer.CreateCustomer"
+                            }
+                        }
+                    },
+                    "description": "JSON body to create a customer resource",
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/data"
+                                        }
+                                    ],
+                                    "properties": {
+                                        "data": {},
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "metadata": {},
+                                        "success": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Created"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Unauthorized"
+                    },
+                    "409": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Conflict"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Unprocessable Entity"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Internal Server Error"
+                    }
+                },
+                "summary": "Create single customer resource",
+                "tags": [
+                    "Customer"
+                ]
+            }
+        },
+        "/customers/search": {
+            "get": {
+                "description": "Performs a text-based search across all customer records with pagination and optional team filtering",
+                "operationId": "search_all_customers",
+                "parameters": [
+                    {
+                        "description": "The API key for the request to gain access the Azure API Management gateway",
+                        "in": "header",
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The deployment location of the request to identify the location of the deployed resources (e.g. za0)",
+                        "in": "header",
+                        "name": "X-MBA-Deployment-Location",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "za0",
+                                "za1",
+                                "uk1",
+                                "us1"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The application ID of the request to identify the tenant (e.g. mppdemo)",
+                        "in": "header",
+                        "name": "X-MBA-Application-ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The type of application making the request to determine the expected response (e.g. mypetparlorapp)",
+                        "in": "header",
+                        "name": "X-MBA-Application-Type",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "mypetparlorapp"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The Firebase ID token of the user making the request used to authenticate and authorise the request",
+                        "in": "query",
+                        "name": "firebaseIdToken",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The page number to retrieve",
+                        "in": "query",
+                        "name": "page",
+                        "schema": {
+                            "minimum": 1,
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "The number of items to retrieve per page",
+                        "in": "query",
+                        "name": "limit",
+                        "schema": {
+                            "maximum": 200,
+                            "minimum": 1,
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Used to determine if pagination is applied to the results. If true, the results will be paginated. If false, the results will not be paginated and all results will be returned.",
+                        "in": "query",
+                        "name": "paginate",
+                        "schema": {
+                            "default": true,
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "description": "Used to filter customers based on a search query (e.g. 'John')",
+                        "in": "query",
+                        "name": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Used to filter customers based on being associated with the provided team ID",
+                        "in": "query",
+                        "name": "teamId",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Used to filter customers based on being associated with any of the provided team IDs (comma separated list of team IDs)",
+                        "in": "query",
+                        "name": "teamIds",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/data"
+                                        }
+                                    ],
+                                    "properties": {
+                                        "data": {},
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "metadata": {},
+                                        "success": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Unauthorized"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Internal Server Error"
+                    }
+                },
+                "summary": "Search all customer resources",
+                "tags": [
+                    "Customer"
+                ]
+            }
+        },
+        "/customers/uid/{uid}": {
+            "get": {
+                "description": "Retrieves detailed information for a specific customer by their unique identifier (UID) instead of ID",
+                "operationId": "get_single_customer_by_uid",
+                "parameters": [
+                    {
+                        "description": "The API key for the request to gain access the Azure API Management gateway",
+                        "in": "header",
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The deployment location of the request to identify the location of the deployed resources (e.g. za0)",
+                        "in": "header",
+                        "name": "X-MBA-Deployment-Location",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "za0",
+                                "za1",
+                                "uk1",
+                                "us1"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The application ID of the request to identify the tenant (e.g. mppdemo)",
+                        "in": "header",
+                        "name": "X-MBA-Application-ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The type of application making the request to determine the expected response (e.g. mypetparlorapp)",
+                        "in": "header",
+                        "name": "X-MBA-Application-Type",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "mypetparlorapp"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The Firebase ID token of the user making the request used to authenticate and authorise the request",
+                        "in": "query",
+                        "name": "firebaseIdToken",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Unique name of the customer resource",
+                        "in": "path",
+                        "name": "uid",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/data"
+                                        }
+                                    ],
+                                    "properties": {
+                                        "data": {},
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "metadata": {},
+                                        "success": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Unauthorized"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Not Found"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Unprocessable Entity"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Internal Server Error"
+                    }
+                },
+                "summary": "Get single customer resource by its unique name",
+                "tags": [
+                    "Customer"
+                ]
+            }
+        },
+        "/customers/{id}": {
+            "delete": {
+                "description": "Permanently removes a customer record from the system by their unique ID",
+                "operationId": "delete_single_customer",
+                "parameters": [
+                    {
+                        "description": "The API key for the request to gain access the Azure API Management gateway",
+                        "in": "header",
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The deployment location of the request to identify the location of the deployed resources (e.g. za0)",
+                        "in": "header",
+                        "name": "X-MBA-Deployment-Location",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "za0",
+                                "za1",
+                                "uk1",
+                                "us1"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The application ID of the request to identify the tenant (e.g. mppdemo)",
+                        "in": "header",
+                        "name": "X-MBA-Application-ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The type of application making the request to determine the expected response (e.g. mypetparlorapp)",
+                        "in": "header",
+                        "name": "X-MBA-Application-Type",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "mypetparlorapp"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The Firebase ID token of the user making the request used to authenticate and authorise the request",
+                        "in": "query",
+                        "name": "firebaseIdToken",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "ID of the customer",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultSuccess"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Unauthorized"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Not Found"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Unprocessable Entity"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Internal Server Error"
+                    }
+                },
+                "summary": "Delete single customer",
+                "tags": [
+                    "Customer"
+                ]
+            },
+            "get": {
+                "description": "Retrieves detailed information for a specific customer by their unique ID",
+                "operationId": "get_single_customer",
+                "parameters": [
+                    {
+                        "description": "The API key for the request to gain access the Azure API Management gateway",
+                        "in": "header",
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The deployment location of the request to identify the location of the deployed resources (e.g. za0)",
+                        "in": "header",
+                        "name": "X-MBA-Deployment-Location",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "za0",
+                                "za1",
+                                "uk1",
+                                "us1"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The application ID of the request to identify the tenant (e.g. mppdemo)",
+                        "in": "header",
+                        "name": "X-MBA-Application-ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The type of application making the request to determine the expected response (e.g. mypetparlorapp)",
+                        "in": "header",
+                        "name": "X-MBA-Application-Type",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "mypetparlorapp"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The Firebase ID token of the user making the request used to authenticate and authorise the request",
+                        "in": "query",
+                        "name": "firebaseIdToken",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "ID of the customer resource",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/data"
+                                        }
+                                    ],
+                                    "properties": {
+                                        "data": {},
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "metadata": {},
+                                        "success": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Unauthorized"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Not Found"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Unprocessable Entity"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Internal Server Error"
+                    }
+                },
+                "summary": "Get single customer resource",
+                "tags": [
+                    "Customer"
+                ]
+            },
+            "patch": {
+                "description": "Updates specific fields of an existing customer record identified by ID",
+                "operationId": "update_single_customer",
+                "parameters": [
+                    {
+                        "description": "The API key for the request to gain access the Azure API Management gateway",
+                        "in": "header",
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The deployment location of the request to identify the location of the deployed resources (e.g. za0)",
+                        "in": "header",
+                        "name": "X-MBA-Deployment-Location",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "za0",
+                                "za1",
+                                "uk1",
+                                "us1"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The application ID of the request to identify the tenant (e.g. mppdemo)",
+                        "in": "header",
+                        "name": "X-MBA-Application-ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The type of application making the request to determine the expected response (e.g. mypetparlorapp)",
+                        "in": "header",
+                        "name": "X-MBA-Application-Type",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "mypetparlorapp"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The Firebase ID token of the user making the request used to authenticate and authorise the request",
+                        "in": "query",
+                        "name": "firebaseIdToken",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "ID of the customer",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/customer.UpdateCustomer"
+                            }
+                        }
+                    },
+                    "description": "JSON body to update a customer",
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/data"
+                                        }
+                                    ],
+                                    "properties": {
+                                        "data": {},
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "metadata": {},
+                                        "success": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Unauthorized"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Not Found"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Unprocessable Entity"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Internal Server Error"
+                    }
+                },
+                "summary": "Update single customer",
+                "tags": [
+                    "Customer"
+                ]
+            }
+        },
+        "/customers/{id}/associations/teams/{teamId}": {
+            "delete": {
+                "description": "Deletes the relationship between a customer and a team, removing team-based access and management",
+                "operationId": "remove_from_teams_associated_with",
+                "parameters": [
+                    {
+                        "description": "The API key for the request to gain access the Azure API Management gateway",
+                        "in": "header",
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The deployment location of the request to identify the location of the deployed resources (e.g. za0)",
+                        "in": "header",
+                        "name": "X-MBA-Deployment-Location",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "za0",
+                                "za1",
+                                "uk1",
+                                "us1"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The application ID of the request to identify the tenant (e.g. mppdemo)",
+                        "in": "header",
+                        "name": "X-MBA-Application-ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The type of application making the request to determine the expected response (e.g. mypetparlorapp)",
+                        "in": "header",
+                        "name": "X-MBA-Application-Type",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "mypetparlorapp"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The Firebase ID token of the user making the request used to authenticate and authorise the request",
+                        "in": "query",
+                        "name": "firebaseIdToken",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "ID of the customer",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "ID of the team",
+                        "in": "path",
+                        "name": "teamId",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/data"
+                                        }
+                                    ],
+                                    "properties": {
+                                        "data": {},
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "metadata": {},
+                                        "success": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Unauthorized"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Not Found"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Unprocessable Entity"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Internal Server Error"
+                    }
+                },
+                "summary": "Remove single customer's association with a team",
+                "tags": [
+                    "Customer"
+                ]
+            },
+            "post": {
+                "description": "Creates a relationship between a customer and a team, allowing team-based access and management",
+                "operationId": "add_to_teams_associated_with",
+                "parameters": [
+                    {
+                        "description": "The API key for the request to gain access the Azure API Management gateway",
+                        "in": "header",
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The deployment location of the request to identify the location of the deployed resources (e.g. za0)",
+                        "in": "header",
+                        "name": "X-MBA-Deployment-Location",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "za0",
+                                "za1",
+                                "uk1",
+                                "us1"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The application ID of the request to identify the tenant (e.g. mppdemo)",
+                        "in": "header",
+                        "name": "X-MBA-Application-ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The type of application making the request to determine the expected response (e.g. mypetparlorapp)",
+                        "in": "header",
+                        "name": "X-MBA-Application-Type",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "mypetparlorapp"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The Firebase ID token of the user making the request used to authenticate and authorise the request",
+                        "in": "query",
+                        "name": "firebaseIdToken",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "ID of the customer",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "ID of the team",
+                        "in": "path",
+                        "name": "teamId",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/data"
+                                        }
+                                    ],
+                                    "properties": {
+                                        "data": {},
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "metadata": {},
+                                        "success": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Unauthorized"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Not Found"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Unprocessable Entity"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Internal Server Error"
+                    }
+                },
+                "summary": "Add single customer's association with a team",
+                "tags": [
+                    "Customer"
+                ]
+            }
+        },
+        "/customers/{id}/unlink-xero-contact": {
+            "patch": {
+                "description": "Removes the association between a customer and their Xero contact, disconnecting the integration",
+                "operationId": "unlink_customer_xero_contact",
+                "parameters": [
+                    {
+                        "description": "The API key for the request to gain access the Azure API Management gateway",
+                        "in": "header",
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The deployment location of the request to identify the location of the deployed resources (e.g. za0)",
+                        "in": "header",
+                        "name": "X-MBA-Deployment-Location",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "za0",
+                                "za1",
+                                "uk1",
+                                "us1"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The application ID of the request to identify the tenant (e.g. mppdemo)",
+                        "in": "header",
+                        "name": "X-MBA-Application-ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The type of application making the request to determine the expected response (e.g. mypetparlorapp)",
+                        "in": "header",
+                        "name": "X-MBA-Application-Type",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "mypetparlorapp"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The Firebase ID token of the user making the request used to authenticate and authorise the request",
+                        "in": "query",
+                        "name": "firebaseIdToken",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "ID of the customer",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/data"
+                                        }
+                                    ],
+                                    "properties": {
+                                        "data": {},
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "metadata": {},
+                                        "success": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Unauthorized"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Not Found"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Internal Server Error"
+                    }
+                },
+                "summary": "Unlink single customer's xero contact",
+                "tags": [
+                    "Customer"
+                ]
+            }
+        }
+    },
     "openapi": "3.1.0",
     "servers": [
-        {"url":"https://mpp-api-mybusinessapp-san.azure-api.net/v2/"}
+        {
+            "url": "https://mpp-api-mybusinessapp-san.azure-api.net/v2/"
+        }
     ]
 }

@@ -377,7 +377,8 @@ async def start():
             client=client,
             name="booking_api",
             description="An expert reader of the MyPetParlor App Booking API",
-            instructions="You are an OpenAPI (3.1) expert reader of the MyPetParlor App Booking API.",
+            instructions="""You use the specific API tool to understand the Booking API.
+            You MUST obtain the authentication parameters from the user's prompt and use them through instruction overrides.""",
             tools=booking_api.definitions + code_interpreter.definitions
         )
         
@@ -385,7 +386,8 @@ async def start():
             client=client,
             name="customer_api",
             description="An expert reader of the MyPetParlor App Customer API",
-            instructions="You are an OpenAPI (3.1) expert reader of the MyPetParlor App Customer API.",
+            instructions="""You use the specific API tool to understand the Customer API.
+            You MUST obtain the authentication parameters from the user's prompt and use them through instruction overrides.""",
             tools=customer_api.definitions + code_interpreter.definitions
         )
         
@@ -393,7 +395,8 @@ async def start():
             client=client,
             name="document_api",
             description="An expert reader of the MyPetParlor App Document API",
-            instructions="You are an OpenAPI (3.1) expert reader of the MyPetParlor App Document API.",
+            instructions="""You use the specific API tool to understand the Document API.
+            You MUST obtain the authentication parameters from the user's prompt and use them through instruction overrides.""",
             tools=document_api.definitions + code_interpreter.definitions
         )
         
@@ -401,7 +404,8 @@ async def start():
             client=client,
             name="team_api",
             description="An expert reader of the MyPetParlor App Team API",
-            instructions="You are an OpenAPI (3.1) expert reader of the MyPetParlor App Team API.",
+            instructions="""You use the specific API tool to understand the Team API.
+            You MUST obtain the authentication parameters from the user's prompt and use them through instruction overrides.""",
             tools=team_api.definitions + code_interpreter.definitions
         )
         
@@ -409,7 +413,8 @@ async def start():
             client=client,
             name="tenant_api",
             description="An expert reader of the MyPetParlor App Tenant API",
-            instructions="You are an OpenAPI (3.1) expert reader of the MyPetParlor App Tenant API.",
+            instructions="""You use the specific API tool to understand the Tenant API.
+            You MUST obtain the authentication parameters from the user's prompt and use them through instruction overrides.""",
             tools=tenant_api.definitions + code_interpreter.definitions
         )
 
@@ -417,7 +422,8 @@ async def start():
             client=client,
             name="data_analysis",
             description="An expert in analyzing data that MUST be already fetched from its source (e.g. API) in a previous step",
-            instructions="You are an expert in analyzing fetched data. You can use the Code Interpreter tool to run queries and advancedanalysis on the data.",
+            instructions="""You are an expert in analyzing fetched data.
+            You can use the Code Interpreter tool to run queries and advanced analysis on the data.""",
             tools=code_interpreter.definitions
         )
         
@@ -634,12 +640,13 @@ def create_system_message(user_content: str, auth_settings: dict) -> str:
     </user_message>
     
     <current_date_time>
-    The current date and time is {current_date_time}. Use this information to provide accurate time-related responses.
+    {current_date_time}.
     </current_date_time>
  
-    <api_authentication_parameters include_in_response="false" include_in_instruction_override="true" description="Authentication parameters for the MyPetParlor App APIs as required by the API documentation">
-    {json.dumps(auth_settings)}
-    </api_authentication_parameters>
+    <api_authentication>
+    You MUST share and use these authentication parameters through instruction overrides:
+    {auth_settings}
+    </api_authentication>
     """
     logger.info(f"System message: {system_message}")
     return system_message

@@ -1,10 +1,1661 @@
 {
-    "components": {"schemas":{"data":{"properties":{"data":{"$ref":"#/components/schemas/team.Team"}},"type":"object"},"entities.JSONResultFailure":{"properties":{"errors":{"items":{"type":"string"},"type":"array","uniqueItems":false},"message":{"type":"string"},"success":{"type":"boolean"}},"type":"object"},"entities.JSONResultSuccess":{"allOf":[{"$ref":"#/components/schemas/data"}],"properties":{"data":{},"message":{"type":"string"},"metadata":{},"success":{"type":"boolean"}},"type":"object"},"team.CreateTeam":{"properties":{"coatTypeAllDescription":{"example":"any coat type","type":"string"},"coatTypeAllRequired":{"example":true,"type":"boolean"},"coatTypeDoubleDescription":{"example":"long coat type","type":"string"},"coatTypeDoubleRequired":{"example":true,"type":"boolean"},"coatTypeMediumDescription":{"example":"medium coat type","type":"string"},"coatTypeMediumRequired":{"example":true,"type":"boolean"},"coatTypeSingleDescription":{"example":"short coat type","type":"string"},"coatTypeSingleRequired":{"example":true,"type":"boolean"},"description":{"example":"We collect and deliver for any number of your pets.","maxLength":255,"minLength":1,"type":"string"},"eftConfig":{"$ref":"#/components/schemas/tenant.CreateEFTConfiguration"},"email":{"example":"info@mppdemo.co.za","type":"string"},"enabled":{"example":true,"type":"boolean"},"gravatarUrl":{"example":"https://gravatar.com/avatar/fe1dad0128df2f64a8e50ba221fff1d1?d=retro","type":"string"},"id":{"example":"568c28fffc4be30d44d0398e","type":"string"},"includeProfileTeamId":{"enum":["parlor","mobile","main",""],"example":"mobile","type":"string"},"includes":{"example":["[]"],"items":{"type":"string"},"type":"array","uniqueItems":false},"minimumBookingAdvanceTime":{"example":43200,"minimum":0,"type":"integer"},"name":{"example":"Collect And Deliver","maxLength":50,"minLength":1,"type":"string"},"payParlorConfig":{"$ref":"#/components/schemas/tenant.CreatePayParlorConfiguration"},"paymentConfig":{"$ref":"#/components/schemas/tenant.CreatePaymentConfiguration"},"paystackState":{"enum":["disabled","live","test"],"example":"disabled","type":"string"},"phoneNumber":{"example":"+27654324343","type":"string"},"photoUrl":{"example":"https://shared-mybusinessapp.azureedge.net/images/mSI8TgB90dU0wd42WkwZdEQy9vL2-dd43f0be-9dcc-4326-87f1-beea52aed3d1.jpg","type":"string"},"scheduleConfig":{"$ref":"#/components/schemas/tenant.CreateScheduleConfiguration"},"teamType":{"enum":["parlor","mobile"],"example":"mobile","type":"string"},"useGravatar":{"example":false,"type":"boolean"},"useParentEFT":{"example":true,"type":"boolean"},"useParentPayParlor":{"example":true,"type":"boolean"},"useParentPaystack":{"example":true,"type":"boolean"},"useParentXero":{"example":true,"type":"boolean"},"websiteUrl":{"example":"https://mppdemo.com","type":"string"},"xeroConfig":{"$ref":"#/components/schemas/tenant.CreateXeroConfiguration"},"xeroState":{"enum":["disabled","live","configure"],"example":"disabled","type":"string"}},"required":["description","email","enabled","includes","name","scheduleConfig","teamType","xeroConfig"],"type":"object"},"team.Team":{"properties":{"coatTypeAllDescription":{"example":"any coat type","type":"string"},"coatTypeAllRequired":{"example":true,"type":"boolean"},"coatTypeDoubleDescription":{"example":"long coat type","type":"string"},"coatTypeDoubleRequired":{"example":true,"type":"boolean"},"coatTypeMediumDescription":{"example":"medium coat type","type":"string"},"coatTypeMediumRequired":{"example":true,"type":"boolean"},"coatTypeSingleDescription":{"example":"short coat type","type":"string"},"coatTypeSingleRequired":{"example":true,"type":"boolean"},"createdAt":{"example":"2023-01-05T00:00:00.000Z","type":"string"},"description":{"example":"We collect and deliver for any number of your pets.","type":"string"},"eftConfig":{"$ref":"#/components/schemas/tenant.EFTConfiguration"},"email":{"example":"jydy@gmail.com","type":"string"},"enabled":{"example":true,"type":"boolean"},"gravatarUrl":{"example":"https://gravatar.com/avatar/d0e9201191872ec2ea8c5916df838e7d?d=retro","type":"string"},"id":{"example":"568c28fffc4be30d44d0398e","type":"string"},"includeProfileTeamId":{"example":"mobile","type":"string"},"includes":{"example":["[]"],"items":{"type":"string"},"type":"array","uniqueItems":false},"minimumBookingAdvanceTime":{"example":43200,"type":"integer"},"name":{"example":"Collect And Deliver","type":"string"},"payParlorConfig":{"$ref":"#/components/schemas/tenant.PayParlorConfiguration"},"paymentConfig":{"$ref":"#/components/schemas/tenant.PaymentConfiguration"},"paystackState":{"example":"disabled","type":"string"},"phoneNumber":{"example":"+27654324343","type":"string"},"photoUrl":{"example":"https://shared-mybusinessapp.azureedge.net/images/mSI8TgB90dU0wd42WkwZdEQy9vL2-dd43f0be-9dcc-4326-87f1-beea52aed3d1.jpg","type":"string"},"scheduleConfig":{"$ref":"#/components/schemas/tenant.ScheduleConfiguration"},"teamType":{"example":"mobile","type":"string"},"updatedAt":{"example":"2023-01-05T00:00:00.000Z","type":"string"},"useGravatar":{"example":false,"type":"boolean"},"useParentEFT":{"example":true,"type":"boolean"},"useParentPayParlor":{"example":true,"type":"boolean"},"useParentPaystack":{"example":true,"type":"boolean"},"useParentXero":{"example":true,"type":"boolean"},"websiteUrl":{"example":"https://mppdemo.com","type":"string"},"xeroConfig":{"$ref":"#/components/schemas/tenant.XeroConfiguration"},"xeroState":{"example":"disabled","type":"string"}},"type":"object"},"team.UpdateTeam":{"properties":{"coatTypeAllDescription":{"example":"any coat type","type":"string"},"coatTypeAllRequired":{"example":true,"type":"boolean"},"coatTypeDoubleDescription":{"example":"long coat type","type":"string"},"coatTypeDoubleRequired":{"example":true,"type":"boolean"},"coatTypeMediumDescription":{"example":"medium coat type","type":"string"},"coatTypeMediumRequired":{"example":true,"type":"boolean"},"coatTypeSingleDescription":{"example":"short coat type","type":"string"},"coatTypeSingleRequired":{"example":true,"type":"boolean"},"description":{"example":"We collect and deliver for any number of your pets.","maxLength":255,"minLength":1,"type":"string"},"eftConfig":{"$ref":"#/components/schemas/tenant.UpdateEFTConfiguration"},"email":{"example":"info@mppdemo.co.za","type":"string"},"enabled":{"example":true,"type":"boolean"},"includeProfileTeamId":{"enum":["parlor","mobile","main",""],"example":"mobile","type":"string"},"includes":{"example":["[]"],"items":{"type":"string"},"type":"array","uniqueItems":false},"minimumBookingAdvanceTime":{"example":43200,"minimum":0,"type":"integer"},"name":{"example":"Collect And Deliver","maxLength":50,"minLength":1,"type":"string"},"payParlorConfig":{"$ref":"#/components/schemas/tenant.UpdatePayParlorConfiguration"},"paymentConfig":{"$ref":"#/components/schemas/tenant.UpdatePaymentConfiguration"},"paystackState":{"enum":["disabled","live","test"],"example":"disabled","type":"string"},"phoneNumber":{"example":"+27654324343","type":"string"},"photoUrl":{"example":"https://shared-mybusinessapp.azureedge.net/images/mSI8TgB90dU0wd42WkwZdEQy9vL2-dd43f0be-9dcc-4326-87f1-beea52aed3d1.jpg","type":"string"},"scheduleConfig":{"$ref":"#/components/schemas/tenant.UpdateScheduleConfiguration"},"teamType":{"enum":["parlor","mobile"],"example":"mobile","type":"string"},"useGravatar":{"example":false,"type":"boolean"},"websiteUrl":{"example":"https://mppdemo.com","type":"string"},"xeroConfig":{"$ref":"#/components/schemas/tenant.UpdateXeroConfiguration"},"xeroState":{"enum":["disabled","live","configure"],"example":"disabled","type":"string"}},"type":"object"},"tenant.CreateEFTConfiguration":{"properties":{"accountNumber":{"example":"12345678910","type":"string"},"accountType":{"enum":["cheque","current","savings"],"example":"cheque","type":"string"},"bank":{"example":"FNB","type":"string"},"branchCode":{"example":"34007","type":"string"},"disabled":{"example":false,"type":"boolean"},"referenceBy":{"enum":["customer","booking"],"example":"customer","type":"string"}},"required":["accountNumber","accountType","bank","branchCode","disabled","referenceBy"],"type":"object"},"tenant.CreatePayParlorConfiguration":{"properties":{"acceptCard":{"example":true,"type":"boolean"},"acceptCash":{"example":true,"type":"boolean"},"disabled":{"example":false,"type":"boolean"}},"required":["acceptCard","acceptCash","disabled"],"type":"object"},"tenant.CreatePaymentConfiguration":{"properties":{"precedenceOrder":{"example":["card","eft","payAtParlor"],"items":{"type":"string"},"type":"array","uniqueItems":false}},"type":"object"},"tenant.CreateScheduleConfiguration":{"properties":{"bookingDays":{"example":28,"minimum":1,"type":"integer"},"type":{"enum":["timeblock","intaketime"],"example":"timeblock","type":"string"}},"required":["type"],"type":"object"},"tenant.CreateXeroConfiguration":{"properties":{"accountCode":{"example":"200","type":"string"},"accountId":{"example":"d12eb97b-d207-4vcb-9ab6-8b466a8b4d39","minLength":1,"type":"string"},"connectionId":{"example":"d12eb97b-d207-4vcb-9ab6-8b466a8b4d39","minLength":1,"type":"string"},"enableAutomaticCustomerCreation":{"example":true,"type":"boolean"},"enableAutomaticInvoiceCreation":{"example":true,"type":"boolean"},"isDataStale":{"example":false,"type":"boolean"},"isOrganisationStale":{"example":false,"type":"boolean"},"paymentAccountCode":{"example":"200","type":"string"},"paymentAccountId":{"example":"d12eb97b-d207-4vcb-9ab6-8b466a8b4d39","type":"string"},"tenantId":{"example":"d12eb97b-d207-4vcb-9ab6-8b466a8b4d39","minLength":1,"type":"string"}},"required":["accountCode","accountId","connectionId","enableAutomaticCustomerCreation","enableAutomaticInvoiceCreation","isDataStale","isOrganisationStale","paymentAccountCode","paymentAccountId","tenantId"],"type":"object"},"tenant.EFTConfiguration":{"properties":{"accountNumber":{"example":"12345678910","type":"string"},"accountType":{"example":"cheque","type":"string"},"bank":{"example":"FNB","type":"string"},"branchCode":{"example":"34007","type":"string"},"disabled":{"example":false,"type":"boolean"},"referenceBy":{"example":"customer","type":"string"}},"type":"object"},"tenant.PayParlorConfiguration":{"properties":{"acceptCard":{"example":true,"type":"boolean"},"acceptCash":{"example":true,"type":"boolean"},"disabled":{"example":false,"type":"boolean"}},"type":"object"},"tenant.PaymentConfiguration":{"properties":{"precedenceOrder":{"example":["card","eft","payAtParlor"],"items":{"type":"string"},"type":"array","uniqueItems":false}},"type":"object"},"tenant.ScheduleConfiguration":{"properties":{"bookingDays":{"example":28,"type":"integer"},"type":{"enum":["timeblock","intaketime"],"example":"timeblock","type":"string"}},"type":"object"},"tenant.UpdateEFTConfiguration":{"properties":{"accountNumber":{"example":"12345678910","type":"string"},"accountType":{"enum":["cheque","current","savings"],"example":"cheque","type":"string"},"bank":{"example":"FNB","type":"string"},"branchCode":{"example":"34007","type":"string"},"disabled":{"example":false,"type":"boolean"},"referenceBy":{"enum":["customer","booking"],"example":"customer","type":"string"}},"type":"object"},"tenant.UpdatePayParlorConfiguration":{"properties":{"acceptCard":{"example":true,"type":"boolean"},"acceptCash":{"example":true,"type":"boolean"},"disabled":{"example":false,"type":"boolean"}},"type":"object"},"tenant.UpdatePaymentConfiguration":{"properties":{"precedenceOrder":{"example":["card","eft","payAtParlor"],"items":{"type":"string"},"type":"array","uniqueItems":false}},"type":"object"},"tenant.UpdateScheduleConfiguration":{"properties":{"bookingDays":{"example":28,"minimum":1,"type":"integer"},"type":{"enum":["timeblock","intaketime"],"example":"timeblock","type":"string"}},"type":"object"},"tenant.UpdateXeroConfiguration":{"properties":{"accountCode":{"example":"200","type":"string"},"accountId":{"example":"d12eb97b-d207-4vcb-9ab6-8b466a8b4d39","type":"string"},"connectionId":{"example":"d12eb97b-d207-4vcb-9ab6-8b466a8b4d39","type":"string"},"enableAutomaticCustomerCreation":{"example":true,"type":"boolean"},"enableAutomaticInvoiceCreation":{"example":true,"type":"boolean"},"isDataStale":{"example":false,"type":"boolean"},"isOrganisationStale":{"example":false,"type":"boolean"},"paymentAccountCode":{"example":"200","type":"string"},"paymentAccountId":{"example":"d12eb97b-d207-4vcb-9ab6-8b466a8b4d39","type":"string"},"tenantId":{"example":"d12eb97b-d207-4vcb-9ab6-8b466a8b4d39","type":"string"}},"type":"object"},"tenant.XeroConfiguration":{"properties":{"accountCode":{"example":"200","type":"string"},"accountId":{"example":"d12eb97b-d207-4vcb-9ab6-8b466a8b4d39","type":"string"},"connectionId":{"example":"d12eb97b-d207-4vcb-9ab6-8b466a8b4d39","type":"string"},"enableAutomaticCustomerCreation":{"example":true,"type":"boolean"},"enableAutomaticInvoiceCreation":{"example":true,"type":"boolean"},"isDataStale":{"example":false,"type":"boolean"},"isOrganisationStale":{"example":false,"type":"boolean"},"paymentAccountCode":{"example":"200","type":"string"},"paymentAccountId":{"example":"d12eb97b-d207-4vcb-9ab6-8b466a8b4d39","type":"string"},"tenantId":{"example":"d12eb97b-d207-4vcb-9ab6-8b466a8b4d39","type":"string"}},"type":"object"}}},
-    "info": {"contact":{"email":"support@mybusinessapp.co.za","name":"API Support","url":"https://mybusinessapp.co.za/support"},"description":"Delete a single team by its unique identifier. Permanently removes the team and its configuration from the system.","license":{"name":"Apache 2.0","url":"http://www.apache.org/licenses/LICENSE-2.0.html"},"termsOfService":"https://mybusinessapp.co.za/terms","title":"Team API","version":"1.0"},
-    "externalDocs": {"description":"","url":""},
-    "paths": {"/teams":{"get":{"description":"Get all the team resources for the organization. Returns a paginated list of teams that can be filtered by various parameters.","operationId":"get_all_teams","parameters":[{"description":"Subscription key for the API","in":"header","name":"Ocp-Apim-Subscription-Key","required":true,"schema":{"type":"string"}},{"description":"Deployment location","in":"header","name":"X-MBA-Deployment-Location","required":true,"schema":{"type":"string"}},{"description":"Application ID","in":"header","name":"X-MBA-Application-ID","required":true,"schema":{"type":"string"}},{"description":"Application type","in":"header","name":"X-MBA-Application-Type","required":true,"schema":{"type":"string"}},{"description":"Firebase ID token for authentication","in":"query","name":"firebaseIdToken","schema":{"type":"string"}},{"description":"Page number for pagination","in":"query","name":"page","schema":{"type":"integer"}},{"description":"Number of items per page","in":"query","name":"limit","schema":{"type":"integer"}},{"description":"Sort field","in":"query","name":"sort","schema":{"type":"string"}},{"description":"Sort order (asc or desc)","in":"query","name":"order","schema":{"type":"string"}},{"description":"Search term","in":"query","name":"search","schema":{"type":"string"}}],"requestBody":{"content":{"application/json":{"schema":{"type":"object"}}}},"responses":{"200":{"content":{"application/json":{"schema":{"allOf":[{"$ref":"#/components/schemas/data"}],"properties":{"data":{},"message":{"type":"string"},"metadata":{},"success":{"type":"boolean"}},"type":"object"}}},"description":"OK"},"401":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Unauthorized"},"422":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Unprocessable Entity"},"500":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Internal Server Error"}},"summary":"Get all team resources","tags":["Team"]},"post":{"description":"Create a single team resource with specified configuration. Sets default values for coat types, payment config, and schedule config if not provided.","operationId":"create_single_team","parameters":[{"description":"Subscription key for the API","in":"header","name":"Ocp-Apim-Subscription-Key","required":true,"schema":{"type":"string"}},{"description":"Deployment location","in":"header","name":"X-MBA-Deployment-Location","required":true,"schema":{"type":"string"}},{"description":"Application ID","in":"header","name":"X-MBA-Application-ID","required":true,"schema":{"type":"string"}},{"description":"Application type","in":"header","name":"X-MBA-Application-Type","required":true,"schema":{"type":"string"}},{"description":"Firebase ID token for authentication","in":"query","name":"firebaseIdToken","schema":{"type":"string"}}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/team.CreateTeam"}}},"description":"JSON body to create a team resource","required":true},"responses":{"201":{"content":{"application/json":{"schema":{"allOf":[{"$ref":"#/components/schemas/data"}],"properties":{"data":{},"message":{"type":"string"},"metadata":{},"success":{"type":"boolean"}},"type":"object"}}},"description":"Created"},"401":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Unauthorized"},"409":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Conflict"},"422":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Unprocessable Entity"},"500":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Internal Server Error"}},"summary":"Create single team resource","tags":["Team"]}},"/teams/{id}":{"delete":{"description":"Delete a single team by its unique identifier. Permanently removes the team and its configuration from the system.","operationId":"delete_single_team","parameters":[{"description":"Subscription key for the API","in":"header","name":"Ocp-Apim-Subscription-Key","required":true,"schema":{"type":"string"}},{"description":"Deployment location","in":"header","name":"X-MBA-Deployment-Location","required":true,"schema":{"type":"string"}},{"description":"Application ID","in":"header","name":"X-MBA-Application-ID","required":true,"schema":{"type":"string"}},{"description":"Application type","in":"header","name":"X-MBA-Application-Type","required":true,"schema":{"type":"string"}},{"description":"Firebase ID token for authentication","in":"query","name":"firebaseIdToken","schema":{"type":"string"}},{"description":"ID of the team","in":"path","name":"id","required":true,"schema":{"type":"string"}}],"requestBody":{"content":{"application/json":{"schema":{"type":"object"}}}},"responses":{"200":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultSuccess"}}},"description":"OK"},"401":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Unauthorized"},"404":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Not Found"},"422":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Unprocessable Entity"},"500":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Internal Server Error"}},"summary":"Delete single team","tags":["Team"]},"get":{"description":"Get a single team resource by its unique identifier. Returns detailed information about the team including its configuration.","operationId":"get_single_team","parameters":[{"description":"Subscription key for the API","in":"header","name":"Ocp-Apim-Subscription-Key","required":true,"schema":{"type":"string"}},{"description":"Deployment location","in":"header","name":"X-MBA-Deployment-Location","required":true,"schema":{"type":"string"}},{"description":"Application ID","in":"header","name":"X-MBA-Application-ID","required":true,"schema":{"type":"string"}},{"description":"Application type","in":"header","name":"X-MBA-Application-Type","required":true,"schema":{"type":"string"}},{"description":"Firebase ID token for authentication","in":"query","name":"firebaseIdToken","schema":{"type":"string"}},{"description":"ID of the team resource","in":"path","name":"id","required":true,"schema":{"type":"string"}}],"requestBody":{"content":{"application/json":{"schema":{"type":"object"}}}},"responses":{"200":{"content":{"application/json":{"schema":{"allOf":[{"$ref":"#/components/schemas/data"}],"properties":{"data":{},"message":{"type":"string"},"metadata":{},"success":{"type":"boolean"}},"type":"object"}}},"description":"OK"},"401":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Unauthorized"},"404":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Not Found"},"422":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Unprocessable Entity"},"500":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Internal Server Error"}},"summary":"Get single team resource","tags":["Team"]},"patch":{"description":"Update a single team by its unique identifier. Allows modification of team properties while maintaining other configuration.","operationId":"update_single_team","parameters":[{"description":"Subscription key for the API","in":"header","name":"Ocp-Apim-Subscription-Key","required":true,"schema":{"type":"string"}},{"description":"Deployment location","in":"header","name":"X-MBA-Deployment-Location","required":true,"schema":{"type":"string"}},{"description":"Application ID","in":"header","name":"X-MBA-Application-ID","required":true,"schema":{"type":"string"}},{"description":"Application type","in":"header","name":"X-MBA-Application-Type","required":true,"schema":{"type":"string"}},{"description":"Firebase ID token for authentication","in":"query","name":"firebaseIdToken","schema":{"type":"string"}},{"description":"ID of the team","in":"path","name":"id","required":true,"schema":{"type":"string"}}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/team.UpdateTeam"}}},"description":"JSON body to update a team","required":true},"responses":{"200":{"content":{"application/json":{"schema":{"allOf":[{"$ref":"#/components/schemas/data"}],"properties":{"data":{},"message":{"type":"string"},"metadata":{},"success":{"type":"boolean"}},"type":"object"}}},"description":"OK"},"401":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Unauthorized"},"404":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Not Found"},"422":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Unprocessable Entity"},"500":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/entities.JSONResultFailure"}}},"description":"Error: Internal Server Error"}},"summary":"Update single team","tags":["Team"]}}},
+    "components": {
+        "schemas": {
+            "data": {
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/team.Team"
+                    }
+                },
+                "type": "object"
+            },
+            "entities.JSONResultFailure": {
+                "properties": {
+                    "errors": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "uniqueItems": false
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "success": {
+                        "type": "boolean"
+                    }
+                },
+                "type": "object"
+            },
+            "entities.JSONResultSuccess": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/data"
+                    }
+                ],
+                "properties": {
+                    "data": {},
+                    "message": {
+                        "type": "string"
+                    },
+                    "metadata": {},
+                    "success": {
+                        "type": "boolean"
+                    }
+                },
+                "type": "object"
+            },
+            "team.CreateTeam": {
+                "properties": {
+                    "coatTypeAllDescription": {
+                        "example": "any coat type",
+                        "type": "string"
+                    },
+                    "coatTypeAllRequired": {
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "coatTypeDoubleDescription": {
+                        "example": "long coat type",
+                        "type": "string"
+                    },
+                    "coatTypeDoubleRequired": {
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "coatTypeMediumDescription": {
+                        "example": "medium coat type",
+                        "type": "string"
+                    },
+                    "coatTypeMediumRequired": {
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "coatTypeSingleDescription": {
+                        "example": "short coat type",
+                        "type": "string"
+                    },
+                    "coatTypeSingleRequired": {
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "description": {
+                        "example": "We collect and deliver for any number of your pets.",
+                        "maxLength": 255,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "eftConfig": {
+                        "$ref": "#/components/schemas/tenant.CreateEFTConfiguration"
+                    },
+                    "email": {
+                        "example": "info@mppdemo.co.za",
+                        "type": "string"
+                    },
+                    "enabled": {
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "gravatarUrl": {
+                        "example": "https://gravatar.com/avatar/fe1dad0128df2f64a8e50ba221fff1d1?d=retro",
+                        "type": "string"
+                    },
+                    "id": {
+                        "example": "568c28fffc4be30d44d0398e",
+                        "type": "string"
+                    },
+                    "includeProfileTeamId": {
+                        "enum": [
+                            "parlor",
+                            "mobile",
+                            "main",
+                            ""
+                        ],
+                        "example": "mobile",
+                        "type": "string"
+                    },
+                    "includes": {
+                        "example": [
+                            "[]"
+                        ],
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "uniqueItems": false
+                    },
+                    "minimumBookingAdvanceTime": {
+                        "example": 43200,
+                        "minimum": 0,
+                        "type": "integer"
+                    },
+                    "name": {
+                        "example": "Collect And Deliver",
+                        "maxLength": 50,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "payParlorConfig": {
+                        "$ref": "#/components/schemas/tenant.CreatePayParlorConfiguration"
+                    },
+                    "paymentConfig": {
+                        "$ref": "#/components/schemas/tenant.CreatePaymentConfiguration"
+                    },
+                    "paystackState": {
+                        "enum": [
+                            "disabled",
+                            "live",
+                            "test"
+                        ],
+                        "example": "disabled",
+                        "type": "string"
+                    },
+                    "phoneNumber": {
+                        "example": "+27654324343",
+                        "type": "string"
+                    },
+                    "photoUrl": {
+                        "example": "https://shared-mybusinessapp.azureedge.net/images/mSI8TgB90dU0wd42WkwZdEQy9vL2-dd43f0be-9dcc-4326-87f1-beea52aed3d1.jpg",
+                        "type": "string"
+                    },
+                    "scheduleConfig": {
+                        "$ref": "#/components/schemas/tenant.CreateScheduleConfiguration"
+                    },
+                    "teamType": {
+                        "enum": [
+                            "parlor",
+                            "mobile"
+                        ],
+                        "example": "mobile",
+                        "type": "string"
+                    },
+                    "useGravatar": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "useParentEFT": {
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "useParentPayParlor": {
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "useParentPaystack": {
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "useParentXero": {
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "websiteUrl": {
+                        "example": "https://mppdemo.com",
+                        "type": "string"
+                    },
+                    "xeroConfig": {
+                        "$ref": "#/components/schemas/tenant.CreateXeroConfiguration"
+                    },
+                    "xeroState": {
+                        "enum": [
+                            "disabled",
+                            "live",
+                            "configure"
+                        ],
+                        "example": "disabled",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "description",
+                    "email",
+                    "enabled",
+                    "includes",
+                    "name",
+                    "scheduleConfig",
+                    "teamType",
+                    "xeroConfig"
+                ],
+                "type": "object"
+            },
+            "team.Team": {
+                "properties": {
+                    "coatTypeAllDescription": {
+                        "example": "any coat type",
+                        "type": "string"
+                    },
+                    "coatTypeAllRequired": {
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "coatTypeDoubleDescription": {
+                        "example": "long coat type",
+                        "type": "string"
+                    },
+                    "coatTypeDoubleRequired": {
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "coatTypeMediumDescription": {
+                        "example": "medium coat type",
+                        "type": "string"
+                    },
+                    "coatTypeMediumRequired": {
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "coatTypeSingleDescription": {
+                        "example": "short coat type",
+                        "type": "string"
+                    },
+                    "coatTypeSingleRequired": {
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "createdAt": {
+                        "example": "2023-01-05T00:00:00.000Z",
+                        "type": "string"
+                    },
+                    "description": {
+                        "example": "We collect and deliver for any number of your pets.",
+                        "type": "string"
+                    },
+                    "eftConfig": {
+                        "$ref": "#/components/schemas/tenant.EFTConfiguration"
+                    },
+                    "email": {
+                        "example": "jydy@gmail.com",
+                        "type": "string"
+                    },
+                    "enabled": {
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "gravatarUrl": {
+                        "example": "https://gravatar.com/avatar/d0e9201191872ec2ea8c5916df838e7d?d=retro",
+                        "type": "string"
+                    },
+                    "id": {
+                        "example": "568c28fffc4be30d44d0398e",
+                        "type": "string"
+                    },
+                    "includeProfileTeamId": {
+                        "example": "mobile",
+                        "type": "string"
+                    },
+                    "includes": {
+                        "example": [
+                            "[]"
+                        ],
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "uniqueItems": false
+                    },
+                    "minimumBookingAdvanceTime": {
+                        "example": 43200,
+                        "type": "integer"
+                    },
+                    "name": {
+                        "example": "Collect And Deliver",
+                        "type": "string"
+                    },
+                    "payParlorConfig": {
+                        "$ref": "#/components/schemas/tenant.PayParlorConfiguration"
+                    },
+                    "paymentConfig": {
+                        "$ref": "#/components/schemas/tenant.PaymentConfiguration"
+                    },
+                    "paystackState": {
+                        "example": "disabled",
+                        "type": "string"
+                    },
+                    "phoneNumber": {
+                        "example": "+27654324343",
+                        "type": "string"
+                    },
+                    "photoUrl": {
+                        "example": "https://shared-mybusinessapp.azureedge.net/images/mSI8TgB90dU0wd42WkwZdEQy9vL2-dd43f0be-9dcc-4326-87f1-beea52aed3d1.jpg",
+                        "type": "string"
+                    },
+                    "scheduleConfig": {
+                        "$ref": "#/components/schemas/tenant.ScheduleConfiguration"
+                    },
+                    "teamType": {
+                        "example": "mobile",
+                        "type": "string"
+                    },
+                    "updatedAt": {
+                        "example": "2023-01-05T00:00:00.000Z",
+                        "type": "string"
+                    },
+                    "useGravatar": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "useParentEFT": {
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "useParentPayParlor": {
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "useParentPaystack": {
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "useParentXero": {
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "websiteUrl": {
+                        "example": "https://mppdemo.com",
+                        "type": "string"
+                    },
+                    "xeroConfig": {
+                        "$ref": "#/components/schemas/tenant.XeroConfiguration"
+                    },
+                    "xeroState": {
+                        "example": "disabled",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "team.UpdateTeam": {
+                "properties": {
+                    "coatTypeAllDescription": {
+                        "example": "any coat type",
+                        "type": "string"
+                    },
+                    "coatTypeAllRequired": {
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "coatTypeDoubleDescription": {
+                        "example": "long coat type",
+                        "type": "string"
+                    },
+                    "coatTypeDoubleRequired": {
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "coatTypeMediumDescription": {
+                        "example": "medium coat type",
+                        "type": "string"
+                    },
+                    "coatTypeMediumRequired": {
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "coatTypeSingleDescription": {
+                        "example": "short coat type",
+                        "type": "string"
+                    },
+                    "coatTypeSingleRequired": {
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "description": {
+                        "example": "We collect and deliver for any number of your pets.",
+                        "maxLength": 255,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "eftConfig": {
+                        "$ref": "#/components/schemas/tenant.UpdateEFTConfiguration"
+                    },
+                    "email": {
+                        "example": "info@mppdemo.co.za",
+                        "type": "string"
+                    },
+                    "enabled": {
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "includeProfileTeamId": {
+                        "enum": [
+                            "parlor",
+                            "mobile",
+                            "main",
+                            ""
+                        ],
+                        "example": "mobile",
+                        "type": "string"
+                    },
+                    "includes": {
+                        "example": [
+                            "[]"
+                        ],
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "uniqueItems": false
+                    },
+                    "minimumBookingAdvanceTime": {
+                        "example": 43200,
+                        "minimum": 0,
+                        "type": "integer"
+                    },
+                    "name": {
+                        "example": "Collect And Deliver",
+                        "maxLength": 50,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "payParlorConfig": {
+                        "$ref": "#/components/schemas/tenant.UpdatePayParlorConfiguration"
+                    },
+                    "paymentConfig": {
+                        "$ref": "#/components/schemas/tenant.UpdatePaymentConfiguration"
+                    },
+                    "paystackState": {
+                        "enum": [
+                            "disabled",
+                            "live",
+                            "test"
+                        ],
+                        "example": "disabled",
+                        "type": "string"
+                    },
+                    "phoneNumber": {
+                        "example": "+27654324343",
+                        "type": "string"
+                    },
+                    "photoUrl": {
+                        "example": "https://shared-mybusinessapp.azureedge.net/images/mSI8TgB90dU0wd42WkwZdEQy9vL2-dd43f0be-9dcc-4326-87f1-beea52aed3d1.jpg",
+                        "type": "string"
+                    },
+                    "scheduleConfig": {
+                        "$ref": "#/components/schemas/tenant.UpdateScheduleConfiguration"
+                    },
+                    "teamType": {
+                        "enum": [
+                            "parlor",
+                            "mobile"
+                        ],
+                        "example": "mobile",
+                        "type": "string"
+                    },
+                    "useGravatar": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "websiteUrl": {
+                        "example": "https://mppdemo.com",
+                        "type": "string"
+                    },
+                    "xeroConfig": {
+                        "$ref": "#/components/schemas/tenant.UpdateXeroConfiguration"
+                    },
+                    "xeroState": {
+                        "enum": [
+                            "disabled",
+                            "live",
+                            "configure"
+                        ],
+                        "example": "disabled",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "tenant.CreateEFTConfiguration": {
+                "properties": {
+                    "accountNumber": {
+                        "example": "12345678910",
+                        "type": "string"
+                    },
+                    "accountType": {
+                        "enum": [
+                            "cheque",
+                            "current",
+                            "savings"
+                        ],
+                        "example": "cheque",
+                        "type": "string"
+                    },
+                    "bank": {
+                        "example": "FNB",
+                        "type": "string"
+                    },
+                    "branchCode": {
+                        "example": "34007",
+                        "type": "string"
+                    },
+                    "disabled": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "referenceBy": {
+                        "enum": [
+                            "customer",
+                            "booking"
+                        ],
+                        "example": "customer",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "accountNumber",
+                    "accountType",
+                    "bank",
+                    "branchCode",
+                    "disabled",
+                    "referenceBy"
+                ],
+                "type": "object"
+            },
+            "tenant.CreatePayParlorConfiguration": {
+                "properties": {
+                    "acceptCard": {
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "acceptCash": {
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "disabled": {
+                        "example": false,
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "acceptCard",
+                    "acceptCash",
+                    "disabled"
+                ],
+                "type": "object"
+            },
+            "tenant.CreatePaymentConfiguration": {
+                "properties": {
+                    "precedenceOrder": {
+                        "example": [
+                            "card",
+                            "eft",
+                            "payAtParlor"
+                        ],
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "uniqueItems": false
+                    }
+                },
+                "type": "object"
+            },
+            "tenant.CreateScheduleConfiguration": {
+                "properties": {
+                    "bookingDays": {
+                        "example": 28,
+                        "minimum": 1,
+                        "type": "integer"
+                    },
+                    "type": {
+                        "enum": [
+                            "timeblock",
+                            "intaketime"
+                        ],
+                        "example": "timeblock",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "type"
+                ],
+                "type": "object"
+            },
+            "tenant.CreateXeroConfiguration": {
+                "properties": {
+                    "accountCode": {
+                        "example": "200",
+                        "type": "string"
+                    },
+                    "accountId": {
+                        "example": "d12eb97b-d207-4vcb-9ab6-8b466a8b4d39",
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "connectionId": {
+                        "example": "d12eb97b-d207-4vcb-9ab6-8b466a8b4d39",
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "enableAutomaticCustomerCreation": {
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "enableAutomaticInvoiceCreation": {
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "isDataStale": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "isOrganisationStale": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "paymentAccountCode": {
+                        "example": "200",
+                        "type": "string"
+                    },
+                    "paymentAccountId": {
+                        "example": "d12eb97b-d207-4vcb-9ab6-8b466a8b4d39",
+                        "type": "string"
+                    },
+                    "tenantId": {
+                        "example": "d12eb97b-d207-4vcb-9ab6-8b466a8b4d39",
+                        "minLength": 1,
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "accountCode",
+                    "accountId",
+                    "connectionId",
+                    "enableAutomaticCustomerCreation",
+                    "enableAutomaticInvoiceCreation",
+                    "isDataStale",
+                    "isOrganisationStale",
+                    "paymentAccountCode",
+                    "paymentAccountId",
+                    "tenantId"
+                ],
+                "type": "object"
+            },
+            "tenant.EFTConfiguration": {
+                "properties": {
+                    "accountNumber": {
+                        "example": "12345678910",
+                        "type": "string"
+                    },
+                    "accountType": {
+                        "example": "cheque",
+                        "type": "string"
+                    },
+                    "bank": {
+                        "example": "FNB",
+                        "type": "string"
+                    },
+                    "branchCode": {
+                        "example": "34007",
+                        "type": "string"
+                    },
+                    "disabled": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "referenceBy": {
+                        "example": "customer",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "tenant.PayParlorConfiguration": {
+                "properties": {
+                    "acceptCard": {
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "acceptCash": {
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "disabled": {
+                        "example": false,
+                        "type": "boolean"
+                    }
+                },
+                "type": "object"
+            },
+            "tenant.PaymentConfiguration": {
+                "properties": {
+                    "precedenceOrder": {
+                        "example": [
+                            "card",
+                            "eft",
+                            "payAtParlor"
+                        ],
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "uniqueItems": false
+                    }
+                },
+                "type": "object"
+            },
+            "tenant.ScheduleConfiguration": {
+                "properties": {
+                    "bookingDays": {
+                        "example": 28,
+                        "type": "integer"
+                    },
+                    "type": {
+                        "enum": [
+                            "timeblock",
+                            "intaketime"
+                        ],
+                        "example": "timeblock",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "tenant.UpdateEFTConfiguration": {
+                "properties": {
+                    "accountNumber": {
+                        "example": "12345678910",
+                        "type": "string"
+                    },
+                    "accountType": {
+                        "enum": [
+                            "cheque",
+                            "current",
+                            "savings"
+                        ],
+                        "example": "cheque",
+                        "type": "string"
+                    },
+                    "bank": {
+                        "example": "FNB",
+                        "type": "string"
+                    },
+                    "branchCode": {
+                        "example": "34007",
+                        "type": "string"
+                    },
+                    "disabled": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "referenceBy": {
+                        "enum": [
+                            "customer",
+                            "booking"
+                        ],
+                        "example": "customer",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "tenant.UpdatePayParlorConfiguration": {
+                "properties": {
+                    "acceptCard": {
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "acceptCash": {
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "disabled": {
+                        "example": false,
+                        "type": "boolean"
+                    }
+                },
+                "type": "object"
+            },
+            "tenant.UpdatePaymentConfiguration": {
+                "properties": {
+                    "precedenceOrder": {
+                        "example": [
+                            "card",
+                            "eft",
+                            "payAtParlor"
+                        ],
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "uniqueItems": false
+                    }
+                },
+                "type": "object"
+            },
+            "tenant.UpdateScheduleConfiguration": {
+                "properties": {
+                    "bookingDays": {
+                        "example": 28,
+                        "minimum": 1,
+                        "type": "integer"
+                    },
+                    "type": {
+                        "enum": [
+                            "timeblock",
+                            "intaketime"
+                        ],
+                        "example": "timeblock",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "tenant.UpdateXeroConfiguration": {
+                "properties": {
+                    "accountCode": {
+                        "example": "200",
+                        "type": "string"
+                    },
+                    "accountId": {
+                        "example": "d12eb97b-d207-4vcb-9ab6-8b466a8b4d39",
+                        "type": "string"
+                    },
+                    "connectionId": {
+                        "example": "d12eb97b-d207-4vcb-9ab6-8b466a8b4d39",
+                        "type": "string"
+                    },
+                    "enableAutomaticCustomerCreation": {
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "enableAutomaticInvoiceCreation": {
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "isDataStale": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "isOrganisationStale": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "paymentAccountCode": {
+                        "example": "200",
+                        "type": "string"
+                    },
+                    "paymentAccountId": {
+                        "example": "d12eb97b-d207-4vcb-9ab6-8b466a8b4d39",
+                        "type": "string"
+                    },
+                    "tenantId": {
+                        "example": "d12eb97b-d207-4vcb-9ab6-8b466a8b4d39",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "tenant.XeroConfiguration": {
+                "properties": {
+                    "accountCode": {
+                        "example": "200",
+                        "type": "string"
+                    },
+                    "accountId": {
+                        "example": "d12eb97b-d207-4vcb-9ab6-8b466a8b4d39",
+                        "type": "string"
+                    },
+                    "connectionId": {
+                        "example": "d12eb97b-d207-4vcb-9ab6-8b466a8b4d39",
+                        "type": "string"
+                    },
+                    "enableAutomaticCustomerCreation": {
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "enableAutomaticInvoiceCreation": {
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "isDataStale": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "isOrganisationStale": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "paymentAccountCode": {
+                        "example": "200",
+                        "type": "string"
+                    },
+                    "paymentAccountId": {
+                        "example": "d12eb97b-d207-4vcb-9ab6-8b466a8b4d39",
+                        "type": "string"
+                    },
+                    "tenantId": {
+                        "example": "d12eb97b-d207-4vcb-9ab6-8b466a8b4d39",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "info": {
+        "contact": {
+            "email": "support@mybusinessapp.co.za",
+            "name": "API Support",
+            "url": "https://mybusinessapp.co.za/support"
+        },
+        "description": "Delete a single team by its unique identifier. Permanently removes the team and its configuration from the system.",
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "termsOfService": "https://mybusinessapp.co.za/terms",
+        "title": "Team API",
+        "version": "1.0"
+    },
+    "externalDocs": {
+        "description": "",
+        "url": ""
+    },
+    "paths": {
+        "/teams": {
+            "get": {
+                "description": "Get all the team resources for the organization. Returns a paginated list of teams that can be filtered by various parameters.",
+                "operationId": "get_all_teams",
+                "parameters": [
+                    {
+                        "description": "Subscription key for the API",
+                        "in": "header",
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Deployment location",
+                        "in": "header",
+                        "name": "X-MBA-Deployment-Location",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Application ID",
+                        "in": "header",
+                        "name": "X-MBA-Application-ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Application type",
+                        "in": "header",
+                        "name": "X-MBA-Application-Type",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Firebase ID token for authentication",
+                        "in": "query",
+                        "name": "firebaseIdToken",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Page number for pagination",
+                        "in": "query",
+                        "name": "page",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Number of items per page",
+                        "in": "query",
+                        "name": "limit",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Sort field",
+                        "in": "query",
+                        "name": "sort",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Sort order (asc or desc)",
+                        "in": "query",
+                        "name": "order",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Search term",
+                        "in": "query",
+                        "name": "search",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/data"
+                                        }
+                                    ],
+                                    "properties": {
+                                        "data": {},
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "metadata": {},
+                                        "success": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Unauthorized"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Unprocessable Entity"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Internal Server Error"
+                    }
+                },
+                "summary": "Get all team resources",
+                "tags": [
+                    "Team"
+                ]
+            },
+            "post": {
+                "description": "Create a single team resource with specified configuration. Sets default values for coat types, payment config, and schedule config if not provided.",
+                "operationId": "create_single_team",
+                "parameters": [
+                    {
+                        "description": "Subscription key for the API",
+                        "in": "header",
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Deployment location",
+                        "in": "header",
+                        "name": "X-MBA-Deployment-Location",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Application ID",
+                        "in": "header",
+                        "name": "X-MBA-Application-ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Application type",
+                        "in": "header",
+                        "name": "X-MBA-Application-Type",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Firebase ID token for authentication",
+                        "in": "query",
+                        "name": "firebaseIdToken",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/team.CreateTeam"
+                            }
+                        }
+                    },
+                    "description": "JSON body to create a team resource",
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/data"
+                                        }
+                                    ],
+                                    "properties": {
+                                        "data": {},
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "metadata": {},
+                                        "success": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Created"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Unauthorized"
+                    },
+                    "409": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Conflict"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Unprocessable Entity"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Internal Server Error"
+                    }
+                },
+                "summary": "Create single team resource",
+                "tags": [
+                    "Team"
+                ]
+            }
+        },
+        "/teams/{id}": {
+            "delete": {
+                "description": "Delete a single team by its unique identifier. Permanently removes the team and its configuration from the system.",
+                "operationId": "delete_single_team",
+                "parameters": [
+                    {
+                        "description": "Subscription key for the API",
+                        "in": "header",
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Deployment location",
+                        "in": "header",
+                        "name": "X-MBA-Deployment-Location",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Application ID",
+                        "in": "header",
+                        "name": "X-MBA-Application-ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Application type",
+                        "in": "header",
+                        "name": "X-MBA-Application-Type",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Firebase ID token for authentication",
+                        "in": "query",
+                        "name": "firebaseIdToken",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "ID of the team",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultSuccess"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Unauthorized"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Not Found"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Unprocessable Entity"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Internal Server Error"
+                    }
+                },
+                "summary": "Delete single team",
+                "tags": [
+                    "Team"
+                ]
+            },
+            "get": {
+                "description": "Get a single team resource by its unique identifier. Returns detailed information about the team including its configuration.",
+                "operationId": "get_single_team",
+                "parameters": [
+                    {
+                        "description": "Subscription key for the API",
+                        "in": "header",
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Deployment location",
+                        "in": "header",
+                        "name": "X-MBA-Deployment-Location",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Application ID",
+                        "in": "header",
+                        "name": "X-MBA-Application-ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Application type",
+                        "in": "header",
+                        "name": "X-MBA-Application-Type",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Firebase ID token for authentication",
+                        "in": "query",
+                        "name": "firebaseIdToken",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "ID of the team resource",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/data"
+                                        }
+                                    ],
+                                    "properties": {
+                                        "data": {},
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "metadata": {},
+                                        "success": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Unauthorized"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Not Found"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Unprocessable Entity"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Internal Server Error"
+                    }
+                },
+                "summary": "Get single team resource",
+                "tags": [
+                    "Team"
+                ]
+            },
+            "patch": {
+                "description": "Update a single team by its unique identifier. Allows modification of team properties while maintaining other configuration.",
+                "operationId": "update_single_team",
+                "parameters": [
+                    {
+                        "description": "Subscription key for the API",
+                        "in": "header",
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Deployment location",
+                        "in": "header",
+                        "name": "X-MBA-Deployment-Location",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Application ID",
+                        "in": "header",
+                        "name": "X-MBA-Application-ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Application type",
+                        "in": "header",
+                        "name": "X-MBA-Application-Type",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Firebase ID token for authentication",
+                        "in": "query",
+                        "name": "firebaseIdToken",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "ID of the team",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/team.UpdateTeam"
+                            }
+                        }
+                    },
+                    "description": "JSON body to update a team",
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/data"
+                                        }
+                                    ],
+                                    "properties": {
+                                        "data": {},
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "metadata": {},
+                                        "success": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Unauthorized"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Not Found"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Unprocessable Entity"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Internal Server Error"
+                    }
+                },
+                "summary": "Update single team",
+                "tags": [
+                    "Team"
+                ]
+            }
+        }
+    },
     "openapi": "3.1.0",
     "servers": [
-        {"url":"https://mpp-api-mybusinessapp-san.azure-api.net/v2/"}
+        {
+            "url": "https://mpp-api-mybusinessapp-san.azure-api.net/v2/"
+        }
     ]
 }
