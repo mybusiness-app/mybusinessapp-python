@@ -200,24 +200,12 @@ async def create_agent(client: Any, name: str, description: str,
     Returns:
         Agent definition object
     """
-    # Enhance instructions with better response guidance
-    enhanced_instructions = f"""
-    {instructions}
-    
-    IMPORTANT RESPONSE GUIDELINES:
-    1. Always provide complete, self-contained responses that directly address the user's query
-    2. Use clear structure with headings and sections for complex information
-    3. When analyzing data, include specific findings, patterns, and business implications
-    4. Always synthesize information rather than just listing facts
-    5. Never respond with just a question without providing substantive information
-    6. Avoid echoing back the user's question without adding value
-    """
     
     agent_args = {
         "model": AGENT_MODEL,
         "name": name,
         "description": description,
-        "instructions": enhanced_instructions
+        "instructions": instructions
     }
     
     if tools:
@@ -232,79 +220,22 @@ async def create_agent(client: Any, name: str, description: str,
 BOOKING_API_DESC = """Expert on MyPetParlor App Booking API (OpenAPI 3.1).
 Manages booking resources that belong to customers and teams.
 Note that all monetary values are stored in cents (integers). For example, 1000 cents = 10.00 ZAR.
-
-Key capabilities:
-- Get/search bookings with filtering by customer, employee, state, date, team
-- Create single or recurring bookings with customer details and services
-- View booking details including customer info, pet details, status
-- Update booking information and reschedule appointments
-- Change transportation modes and apply vouchers/discounts
-- Manage booking messages, notes, and service orders
-- Handle accounting system integration
-- Delete bookings individually or in batches
 """
 
 CUSTOMER_API_DESC = """Expert on MyPetParlor App Customer API (OpenAPI 3.1).
 Manages customer resources belonging to tenants with team associations.
-
-Key capabilities:
-- Get/search customers with pagination and team filtering
-- Create customers with contact info, profiles, team associations
-- Send email invitations during customer creation
-- View customer details by ID or UID
-- Update customer information and profile settings
-- Manage payment flags, profile images, and accounting links
-- Add/remove team associations
-- Delete customer records
-- Support Gravatar integration
-- Handle multi-team customer relationships
 """
 
 DOCUMENT_API_DESC = """Expert on MyPetParlor App Document API (OpenAPI 3.1).
-Manages legal documents for tenants, profiles, or teams.
-
-Document types: refund_policy, terms
-Reference types: organisation, profile, team
-
-Key capabilities:
-- Get documents with type/reference filtering
-- Create documents with content and references
-- Retrieve documents by ID or reference
-- Update document content and metadata
-- Generate refund policies and terms based on business details
-- Delete documents
-- Support pagination for multiple documents
-- Manage document relationships across entities
+Manages legal documents (refund policy or terms) for tenants, profiles, or teams.
 """
 
 TEAM_API_DESC = """Expert on MyPetParlor App Team API (OpenAPI 3.1).
 Manages team resources belonging to tenants.
-
-Key capabilities:
-- Get/search teams with pagination and filtering
-- Create teams with coat types, payment, scheduling configurations
-- Set default team properties
-- View team details by ID
-- Update team properties while preserving configuration
-- Delete team records
-- Support Gravatar integration
-- Configure payment precedence and booking schedules
-- Manage team types (e.g., mobile teams with timeblock scheduling)
 """
 
 TENANT_API_DESC = """Expert on MyPetParlor App Tenant API (OpenAPI 3.1).
 Manages tenant resources (parent of all other resources).
-
-Key capabilities:
-- Get tenants with pagination and filtering
-- Create tenants with payment, scheduling, application settings
-- View tenant details by ID or unique identifier
-- Update tenant properties and configurations
-- Delete tenant records
-- Disable specific payment methods
-- Link cloud resources (Azure, Google Cloud)
-- Configure coat requirements and booking advance time
-- Manage third-party integrations like Xero
 """
 
 SETUP_GUIDE_INSTRUCTIONS = """You are an expert in guiding new and existing users of the MyPetParlor App portal.
@@ -393,14 +324,6 @@ When evaluating user requests, follow this process:
    - CRITICALLY IMPORTANT: Do NOT simply repeat or forward what the specialized agent said
    - Do NOT respond with just a question or acknowledgment
    - Always synthesize the information from specialized agents into a complete, coherent answer
-   - Always provide a substantive response that directly addresses the user's query
-   - Structure your response logically with clear sections if appropriate
-   - Include relevant data, insights, and recommendations when applicable
-
-For data analysis requests specifically:
-- When users request trend analysis or data insights, always provide a substantive analysis
-- Include observations about patterns, anomalies, and potential causation
-- Present quantitative information clearly and interpret what it means for the business
 
 Remember: Your value is in providing complete, synthesized answers that integrate specialized knowledge. Never return just the user's question or a simple acknowledgment. If you do not have any information to provide, just say so."""
 
@@ -419,7 +342,7 @@ async def start():
     try:
         # Send a welcome message to the user
         await cl.Message(
-            content="👋 Welcome to MyPetParlor Assistant! How can I help you today?",
+            content="👋 Welcome to MyPetParlor AI Assistant! How can I help you today?",
         ).send()
 
         # Initialize Azure credentials
@@ -453,48 +376,48 @@ async def start():
         booking_api_definition = await create_agent(
             client=client,
             name="booking_api",
-            description="An expert in the MyPetParlor App Booking API",
-            instructions="You are a data expert with access to the MyPetParlor App Booking API and the Code Interpreter tool for data analysis.",
+            description="An expert reader of the MyPetParlor App Booking API",
+            instructions="You are an OpenAPI (3.1) expert reader of the MyPetParlor App Booking API.",
             tools=booking_api.definitions + code_interpreter.definitions
         )
         
         customer_api_definition = await create_agent(
             client=client,
             name="customer_api",
-            description="An expert in the MyPetParlor App Customer API",
-            instructions="You are a data expert with access to the MyPetParlor App Customer API and the Code Interpreter tool for data analysis.",
+            description="An expert reader of the MyPetParlor App Customer API",
+            instructions="You are an OpenAPI (3.1) expert reader of the MyPetParlor App Customer API.",
             tools=customer_api.definitions + code_interpreter.definitions
         )
         
         document_api_definition = await create_agent(
             client=client,
             name="document_api",
-            description="An expert in the MyPetParlor App Document API",
-            instructions="You are a data expert with access to the MyPetParlor App Document API and the Code Interpreter tool for data analysis.",
+            description="An expert reader of the MyPetParlor App Document API",
+            instructions="You are an OpenAPI (3.1) expert reader of the MyPetParlor App Document API.",
             tools=document_api.definitions + code_interpreter.definitions
         )
         
         team_api_definition = await create_agent(
             client=client,
             name="team_api",
-            description="An expert in the MyPetParlor App Team API",
-            instructions="You are a data expert with access to the MyPetParlor App Team API and the Code Interpreter tool for data analysis.",
+            description="An expert reader of the MyPetParlor App Team API",
+            instructions="You are an OpenAPI (3.1) expert reader of the MyPetParlor App Team API.",
             tools=team_api.definitions + code_interpreter.definitions
         )
         
         tenant_api_definition = await create_agent(
             client=client,
             name="tenant_api",
-            description="An expert in the MyPetParlor App Tenant API",
-            instructions="You are a data expert with access to the MyPetParlor App Tenant API and the Code Interpreter tool for data analysis.",
+            description="An expert reader of the MyPetParlor App Tenant API",
+            instructions="You are an OpenAPI (3.1) expert reader of the MyPetParlor App Tenant API.",
             tools=tenant_api.definitions + code_interpreter.definitions
         )
 
         data_analysis_definition = await create_agent(
             client=client,
             name="data_analysis",
-            description="An expert in analyzing data",
-            instructions="You are an expert in analyzing data who can use the Code Interpreter tool to run queries and analysis on the data.",
+            description="An expert in analyzing data that MUST be already fetched from its source (e.g. API) in a previous step",
+            instructions="You are an expert in analyzing fetched data. You can use the Code Interpreter tool to run queries and advancedanalysis on the data.",
             tools=code_interpreter.definitions
         )
         
@@ -526,31 +449,28 @@ async def start():
         booking_api_agent = AzureAIAgent(
             client=client, 
             definition=booking_api_definition,
-            plugins=[scheduling_plugin, data_analysis_agent]
+            plugins=[scheduling_plugin]
         )
         
         customer_api_agent = AzureAIAgent(
             client=client,
             definition=customer_api_definition,
-            plugins=[importer_plugin, data_analysis_agent]
+            plugins=[importer_plugin]
         )
         
         document_api_agent = AzureAIAgent(
             client=client,
-            definition=document_api_definition,
-            plugins=[data_analysis_agent]
+            definition=document_api_definition
         )
         
         team_api_agent = AzureAIAgent(
             client=client,
-            definition=team_api_definition,
-            plugins=[data_analysis_agent]
+            definition=team_api_definition
         )
         
         tenant_api_agent = AzureAIAgent(
             client=client,
-            definition=tenant_api_definition,
-            plugins=[data_analysis_agent]
+            definition=tenant_api_definition
         )
         
         # Main triage agent with all specialized agents as plugins
@@ -563,7 +483,8 @@ async def start():
                 document_api_agent, 
                 team_api_agent, 
                 tenant_api_agent, 
-                booking_api_agent
+                booking_api_agent,
+                data_analysis_agent
             ]
         )
         
@@ -616,22 +537,11 @@ async def main(message: cl.Message):
         # Create a structured system message with authentication details
         system_message = create_system_message(message.content, auth_settings)
         
-        # Create a response orchestration message to ensure proper synthesis
-        orchestration_message = system_message + """
-        <response_requirements>
-        1. IMPORTANT: You MUST synthesize a complete response that directly answers the user's question.
-        2. Do NOT simply ask a question back to the user or acknowledge their request without providing information.
-        3. If analyzing data or trends, provide substantive insights with observations about patterns and business implications.
-        4. Structure your response in a clear, logical manner with appropriate sections.
-        5. Include specific data points when relevant to support your analysis.
-        </response_requirements>
-        """
-        
         # Add user message to thread
         logger.info("Sending message to agents for processing")
         thread_response = await triage_agent.get_response(
             thread=thread,
-            messages=[orchestration_message]
+            messages=[system_message]
         )
         
         # Delete the thinking message
@@ -716,20 +626,9 @@ def create_system_message(user_content: str, auth_settings: dict) -> str:
     Returns:
         Formatted system message string
     """
-    # Extract query parameters
-    query_params = auth_settings.get('queryParameters', {})
-    firebase_token = query_params.get('firebaseIdToken', '')
-    
-    # Extract header parameters
-    header_params = auth_settings.get('headerParameters', {})
-    app_id = header_params.get('x-mba-application-id', '')
-    app_type = header_params.get('x-mba-application-type', '')
-    deploy_location = header_params.get('x-mba-deployment-location', '')
-    subscription_key = header_params.get('ocp-apim-subscription-key', '')
-
     current_date_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     
-    return f"""
+    system_message = f"""
     <user_message>
     {user_content}
     </user_message>
@@ -737,19 +636,13 @@ def create_system_message(user_content: str, auth_settings: dict) -> str:
     <current_date_time>
     The current date and time is {current_date_time}. Use this information to provide accurate time-related responses.
     </current_date_time>
-
-    <api_authentication>
-    When using OpenAPI tools or other agents used to access the MyPetParlor App APIs, 
-    you MUST share and MUST use these authentication parameters through instruction overrides:
-    
-    ALWAYS use the following values for the necessary parameters:
-    firebaseIdToken -> {firebase_token}
-    x-mba-application-id -> {app_id}
-    x-mba-application-type -> {app_type}
-    x-mba-deployment-location -> {deploy_location}
-    ocp-apim-subscription-key -> {subscription_key}
-    </api_authentication>
+ 
+    <api_authentication_parameters include_in_response="false" include_in_instruction_override="true" description="Authentication parameters for the MyPetParlor App APIs as required by the API documentation">
+    {json.dumps(auth_settings)}
+    </api_authentication_parameters>
     """
+    logger.info(f"System message: {system_message}")
+    return system_message
 
 def is_echo_of_question(response: str, question: str) -> bool:
     """
