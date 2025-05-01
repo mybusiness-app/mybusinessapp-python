@@ -2,6 +2,10 @@
 
 This monorepo contains the MyPetParlor App AI Assistant, a sophisticated chatbot interface built with Chainlit that provides intelligent assistance for managing the MyPetParlor App portal.
 
+- [MyPetParlor App Website](https://mypetparlorapp.com)
+- [MyPetParlor App without AI Assistant](https://portal.mypetparlorapp.com/mppdemo/dashboard/overview)
+- [MyPetParlor App with AI Assistant](https://staging.portal.mypetparlorapp.com/mppdemo/dashboard/overview)
+
 ## Quick Start
 
 The project uses Make commands to simplify development workflows. To see all available commands:
@@ -30,7 +34,7 @@ make clean                 # Clean up development environment
 
 ## Architecture
 
-The MyPetParlor App system architecture consists of several integrated components deployed on Azure using the (Deployment Stamp)[https://learn.microsoft.com/en-us/azure/architecture/patterns/deployment-stamp] pattern for high availability and global scale.
+The MyPetParlor App system architecture consists of several integrated components deployed on Azure using the [Deployment Stamp](https://learn.microsoft.com/en-us/azure/architecture/patterns/deployment-stamp) pattern for high availability and global scale.
 
 ### Azure Container Apps Environment (Per Stamp)
 
@@ -43,9 +47,9 @@ The system utilizes a unified Azure Container Apps environment that hosts multip
    - Communicates with Azure AI services for advanced reasoning
 
 2. **Server-Side Rendered (SSR) Web Application**
-   - Built with the Vike framework (https://vike.dev/)
+   - Built with the Vike framework [https://vike.dev/](https://vike.dev/)
    - Deployed to the same Azure Container Apps environment
-   - Accessible at https://staging.portal.mypetparlorapp.com/mppdemo/dashboard/overview
+   - Accessible at [https://staging.portal.mypetparlorapp.com/mppdemo/dashboard/overview](https://staging.portal.mypetparlorapp.com/mppdemo/dashboard/overview)
    - Provides the user interface for the MyPetParlor App portal
    - Implements server-side rendering for improved performance and SEO
 
