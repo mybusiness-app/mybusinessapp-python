@@ -217,25 +217,91 @@ async def create_agent(client: Any, name: str, description: str,
 # API Description Constants
 # -----------------------------------------------------------------------------
 
-BOOKING_API_DESC = """Expert on MyPetParlor App Booking API (OpenAPI 3.1).
-Manages booking resources that belong to customers and teams.
-Note that all monetary values are stored in cents (integers). For example, 1000 cents = 10.00 ZAR.
+API_AUTH_PARAMETERS_DESC = """Use the parameters provided in the instructions to map them to the OpenAPI Specification.
+
+Example authentication parameters from instructions:
+{
+    "queryParameters": {
+        "firebaseIdToken": "1234567890"
+    },
+    "headerParameters": {
+        "x-mba-application-id": "mppdemo",
+        "x-mba-application-type": "mypetparlorapp",
+        "x-mba-deployment-location": "za0",
+        "ocp-apim-subscription-key": "0987654321"
+    }
+}
+
+Example of OpenAPI specification:
+{
+    "in": "header",
+    "name": "Ocp-Apim-Subscription-Key",
+    "required": true,
+    "schema": {
+        "type": "string"
+    }
+},
+{
+    "in": "header",
+    "name": "X-MBA-Deployment-Location",
+    "required": true,
+    "schema": {
+        "enum": [
+            "za0",
+            "za1",
+            "uk1",
+            "us1"
+        ],
+        "type": "string"
+    }
+},
+{
+    "in": "header",
+    "name": "X-MBA-Application-ID",
+    "required": true,
+    "schema": {
+        "type": "string"
+    }
+},
+{
+    "in": "header",
+    "name": "X-MBA-Application-Type",
+    "required": true,
+    "schema": {
+        "enum": [
+            "mypetparlorapp"
+        ],
+        "type": "string"
+    }
+},
+{
+    "in": "query",
+    "name": "firebaseIdToken",
+    "required": true,
+    "schema": {
+        "type": "string"
+    }
+}
 """
 
-CUSTOMER_API_DESC = """Expert on MyPetParlor App Customer API (OpenAPI 3.1).
-Manages customer resources belonging to tenants with team associations.
+BOOKING_API_DESC = """Manages booking resources that belong to customers and teams.
+{API_AUTH_PARAMETERS_DESC}
 """
 
-DOCUMENT_API_DESC = """Expert on MyPetParlor App Document API (OpenAPI 3.1).
-Manages legal documents (refund policy or terms) for tenants, profiles, or teams.
+CUSTOMER_API_DESC = """Manages customer resources belonging to tenants with team associations.
+{API_AUTH_PARAMETERS_DESC}
 """
 
-TEAM_API_DESC = """Expert on MyPetParlor App Team API (OpenAPI 3.1).
-Manages team resources belonging to tenants.
+DOCUMENT_API_DESC = """Manages legal documents (refund policy or terms).
+{API_AUTH_PARAMETERS_DESC}
 """
 
-TENANT_API_DESC = """Expert on MyPetParlor App Tenant API (OpenAPI 3.1).
-Manages tenant resources (parent of all other resources).
+TEAM_API_DESC = """Manages team resources belonging to tenants.
+{API_AUTH_PARAMETERS_DESC}
+"""
+
+TENANT_API_DESC = """Manages tenant resources (parent of all other resources).
+{API_AUTH_PARAMETERS_DESC}
 """
 
 SETUP_GUIDE_INSTRUCTIONS = """You are an expert in guiding new and existing users of the MyPetParlor App portal.
@@ -373,49 +439,54 @@ async def start():
         )
         
         # API-specific agents - each specializes in one API domain
-        booking_api_definition = await create_agent(
+        booking_read_api_definition = await create_agent(
             client=client,
-            name="booking_api",
-            description="An expert reader of the MyPetParlor App Booking API",
+            name="booking_read_api",
+            description="Booking API (read-only)",
             instructions="""You use the specific API tool to understand the Booking API.
+            You can only read data from the Booking API.
             You MUST obtain the authentication parameters from the user's prompt and use them through instruction overrides.""",
-            tools=booking_api.definitions + code_interpreter.definitions
+            tools=booking_api.definitions
         )
         
-        customer_api_definition = await create_agent(
+        customer_read_api_definition = await create_agent(
             client=client,
-            name="customer_api",
-            description="An expert reader of the MyPetParlor App Customer API",
+            name="customer_read_api",
+            description="Customer API (read-only)",
             instructions="""You use the specific API tool to understand the Customer API.
+            You can only read data from the Customer API.
             You MUST obtain the authentication parameters from the user's prompt and use them through instruction overrides.""",
-            tools=customer_api.definitions + code_interpreter.definitions
+            tools=customer_api.definitions
         )
         
-        document_api_definition = await create_agent(
+        document_read_api_definition = await create_agent(
             client=client,
-            name="document_api",
-            description="An expert reader of the MyPetParlor App Document API",
+            name="document_read_api",
+            description="Document API (read-only)",
             instructions="""You use the specific API tool to understand the Document API.
+            You can only read data from the Document API.
             You MUST obtain the authentication parameters from the user's prompt and use them through instruction overrides.""",
-            tools=document_api.definitions + code_interpreter.definitions
+            tools=document_api.definitions
         )
         
-        team_api_definition = await create_agent(
+        team_read_api_definition = await create_agent(
             client=client,
-            name="team_api",
-            description="An expert reader of the MyPetParlor App Team API",
+            name="team_read_api",
+            description="Team API (read-only)",
             instructions="""You use the specific API tool to understand the Team API.
+            You can only read data from the Team API.
             You MUST obtain the authentication parameters from the user's prompt and use them through instruction overrides.""",
-            tools=team_api.definitions + code_interpreter.definitions
+            tools=team_api.definitions
         )
         
-        tenant_api_definition = await create_agent(
+        tenant_read_api_definition = await create_agent(
             client=client,
-            name="tenant_api",
-            description="An expert reader of the MyPetParlor App Tenant API",
+            name="tenant_read_api",
+            description="Tenant API (read-only)",
             instructions="""You use the specific API tool to understand the Tenant API.
+            You can only read data from the Tenant API.
             You MUST obtain the authentication parameters from the user's prompt and use them through instruction overrides.""",
-            tools=tenant_api.definitions + code_interpreter.definitions
+            tools=tenant_api.definitions
         )
 
         data_analysis_definition = await create_agent(
@@ -454,29 +525,29 @@ async def start():
         
         booking_api_agent = AzureAIAgent(
             client=client, 
-            definition=booking_api_definition,
+            definition=booking_read_api_definition,
             plugins=[scheduling_plugin]
         )
         
         customer_api_agent = AzureAIAgent(
             client=client,
-            definition=customer_api_definition,
+            definition=customer_read_api_definition,
             plugins=[importer_plugin]
         )
         
         document_api_agent = AzureAIAgent(
             client=client,
-            definition=document_api_definition
+            definition=document_read_api_definition
         )
         
         team_api_agent = AzureAIAgent(
             client=client,
-            definition=team_api_definition
+            definition=team_read_api_definition
         )
         
         tenant_api_agent = AzureAIAgent(
             client=client,
-            definition=tenant_api_definition
+            definition=tenant_read_api_definition
         )
         
         # Main triage agent with all specialized agents as plugins
