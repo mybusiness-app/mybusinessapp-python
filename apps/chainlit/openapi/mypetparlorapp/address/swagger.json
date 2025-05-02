@@ -1,0 +1,1097 @@
+{
+    "components": {
+        "schemas": {
+            "address.CreateAddress": {
+                "properties": {
+                    "country": {
+                        "example": "South Africa",
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "customerId": {
+                        "example": "568c28fffc4be30d44d0398e",
+                        "type": "string"
+                    },
+                    "id": {
+                        "example": "568c28fffc4be30d44d0398e",
+                        "type": "string"
+                    },
+                    "isDefault": {
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "location": {
+                        "$ref": "#/components/schemas/address.CreateLocation"
+                    },
+                    "name": {
+                        "example": "Home",
+                        "maxLength": 50,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "postalCode": {
+                        "example": "2309",
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "province": {
+                        "example": "North West",
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "streetName": {
+                        "example": "Du Plooy St",
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "streetNumber": {
+                        "example": "92",
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "suburb": {
+                        "example": "George East",
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "town": {
+                        "example": "George",
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "unitName": {
+                        "example": "Mooikloof Golf \u0026 Lifestyle Estate",
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "unitNumber": {
+                        "example": "9",
+                        "minLength": 1,
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "country",
+                    "customerId",
+                    "isDefault",
+                    "location",
+                    "name",
+                    "postalCode",
+                    "province",
+                    "streetName",
+                    "streetNumber",
+                    "suburb",
+                    "town"
+                ],
+                "type": "object"
+            },
+            "address.CreateLocation": {
+                "properties": {
+                    "coordinates": {
+                        "example": [
+                            22.9375,
+                            30.5595
+                        ],
+                        "items": {
+                            "type": "number"
+                        },
+                        "type": "array",
+                        "uniqueItems": false
+                    },
+                    "type": {
+                        "enum": [
+                            "Point"
+                        ],
+                        "example": "Point",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "coordinates",
+                    "type"
+                ],
+                "type": "object"
+            },
+            "address.Location": {
+                "properties": {
+                    "coordinates": {
+                        "example": [
+                            22.9375,
+                            30.5595
+                        ],
+                        "items": {
+                            "type": "number"
+                        },
+                        "type": "array",
+                        "uniqueItems": false
+                    },
+                    "type": {
+                        "enum": [
+                            "Point"
+                        ],
+                        "example": "Point",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "address.UpdateAddress": {
+                "properties": {
+                    "country": {
+                        "example": "South Africa",
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "customerId": {
+                        "example": "568c28fffc4be30d44d0398e",
+                        "type": "string"
+                    },
+                    "isDefault": {
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "location": {
+                        "$ref": "#/components/schemas/address.UpdateLocation"
+                    },
+                    "name": {
+                        "example": "Home",
+                        "maxLength": 50,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "postalCode": {
+                        "example": "2309",
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "province": {
+                        "example": "North West",
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "streetName": {
+                        "example": "Du Plooy St",
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "streetNumber": {
+                        "example": "92",
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "suburb": {
+                        "example": "George East",
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "town": {
+                        "example": "George",
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "unitName": {
+                        "example": "Mooikloof Golf \u0026 Lifestyle Estate",
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "unitNumber": {
+                        "example": "9",
+                        "minLength": 1,
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "address.UpdateLocation": {
+                "properties": {
+                    "coordinates": {
+                        "example": [
+                            22.9375,
+                            30.5595
+                        ],
+                        "items": {
+                            "type": "number"
+                        },
+                        "type": "array",
+                        "uniqueItems": false
+                    },
+                    "type": {
+                        "enum": [
+                            "Point"
+                        ],
+                        "example": "Point",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "data": {
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/github_com_mybusiness-app_mybusinessapp-go_lib_user_address.Address"
+                    }
+                },
+                "type": "object"
+            },
+            "entities.JSONResultFailure": {
+                "properties": {
+                    "errors": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "uniqueItems": false
+                    },
+                    "message": {
+                        "example": "Operation failed",
+                        "type": "string"
+                    },
+                    "success": {
+                        "example": false,
+                        "type": "boolean"
+                    }
+                },
+                "type": "object"
+            },
+            "entities.JSONResultSuccess": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/data"
+                    }
+                ],
+                "properties": {
+                    "data": {},
+                    "message": {
+                        "example": "Operation completed successfully",
+                        "type": "string"
+                    },
+                    "metadata": {},
+                    "success": {
+                        "example": true,
+                        "type": "boolean"
+                    }
+                },
+                "type": "object"
+            },
+            "github_com_mybusiness-app_mybusinessapp-go_lib_user_address.Address": {
+                "properties": {
+                    "country": {
+                        "example": "South Africa",
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "example": "2023-01-05T00:00:00.000Z",
+                        "type": "string"
+                    },
+                    "customerId": {
+                        "example": "568c28fffc4be30d44d0398e",
+                        "type": "string"
+                    },
+                    "id": {
+                        "example": "568c28fffc4be30d44d0398e",
+                        "type": "string"
+                    },
+                    "isDefault": {
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "location": {
+                        "$ref": "#/components/schemas/address.Location"
+                    },
+                    "name": {
+                        "example": "Home",
+                        "type": "string"
+                    },
+                    "postalCode": {
+                        "example": "2309",
+                        "type": "string"
+                    },
+                    "province": {
+                        "example": "North West",
+                        "type": "string"
+                    },
+                    "streetName": {
+                        "example": "Du Plooy St",
+                        "type": "string"
+                    },
+                    "streetNumber": {
+                        "example": "92",
+                        "type": "string"
+                    },
+                    "suburb": {
+                        "example": "George East",
+                        "type": "string"
+                    },
+                    "town": {
+                        "example": "George",
+                        "type": "string"
+                    },
+                    "unitName": {
+                        "example": "Mooikloof Golf \u0026 Lifestyle Estate",
+                        "type": "string"
+                    },
+                    "unitNumber": {
+                        "example": "9",
+                        "type": "string"
+                    },
+                    "updatedAt": {
+                        "example": "2023-01-05T00:00:00.000Z",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "info": {
+        "contact": {
+            "email": "support@mybusinessapp.co.za",
+            "name": "API Support",
+            "url": "https://mybusinessapp.co.za/support"
+        },
+        "description": "Permanently deletes address record and associated data. Cannot be undone.",
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "termsOfService": "https://mybusinessapp.co.za/terms",
+        "title": "Address Management API",
+        "version": "1.0"
+    },
+    "externalDocs": {
+        "description": "",
+        "url": ""
+    },
+    "paths": {
+        "/addresses": {
+            "get": {
+                "description": "Retrieves a paginated list of addresses with optional customer-based filtering. Supports customizable page size and customer-specific views. Returns address records with their associated metadata.",
+                "operationId": "get_all_addresses",
+                "parameters": [
+                    {
+                        "description": "Azure API Management subscription key for authentication",
+                        "in": "header",
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Deployment region identifier (e.g. za0, za1, uk1, us1)",
+                        "in": "header",
+                        "name": "X-MBA-Deployment-Location",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "za0",
+                                "za1",
+                                "uk1",
+                                "us1"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Tenant identifier for multi-tenant isolation",
+                        "in": "header",
+                        "name": "X-MBA-Application-ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Application type for response formatting",
+                        "in": "header",
+                        "name": "X-MBA-Application-Type",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "mypetparlorapp"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Firebase authentication token",
+                        "in": "query",
+                        "name": "firebaseIdToken",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Page number for pagination",
+                        "in": "query",
+                        "name": "page",
+                        "schema": {
+                            "minimum": 1,
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Number of addresses per page",
+                        "in": "query",
+                        "name": "limit",
+                        "schema": {
+                            "maximum": 200,
+                            "minimum": 1,
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Enable or disable pagination",
+                        "in": "query",
+                        "name": "paginate",
+                        "schema": {
+                            "default": true,
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "description": "Filter addresses by specific customer ID",
+                        "in": "query",
+                        "name": "customerId",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/data"
+                                        }
+                                    ],
+                                    "properties": {
+                                        "data": {},
+                                        "message": {
+                                            "example": "Operation completed successfully",
+                                            "type": "string"
+                                        },
+                                        "metadata": {},
+                                        "success": {
+                                            "example": true,
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Successfully retrieved address list"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Authentication failed or token invalid"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Server error processing request"
+                    }
+                },
+                "summary": "List all addresses with pagination and filtering",
+                "tags": [
+                    "Address"
+                ]
+            },
+            "post": {
+                "description": "Creates a new address record with comprehensive location data. Handles address validation and timestamp initialization.",
+                "operationId": "create_single_address",
+                "parameters": [
+                    {
+                        "description": "Azure API Management subscription key for authentication",
+                        "in": "header",
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Deployment region identifier (e.g. za0, za1, uk1, us1)",
+                        "in": "header",
+                        "name": "X-MBA-Deployment-Location",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "za0",
+                                "za1",
+                                "uk1",
+                                "us1"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Tenant identifier for multi-tenant isolation",
+                        "in": "header",
+                        "name": "X-MBA-Application-ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Application type for response formatting",
+                        "in": "header",
+                        "name": "X-MBA-Application-Type",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "mypetparlorapp"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Firebase authentication token",
+                        "in": "query",
+                        "name": "firebaseIdToken",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/address.CreateAddress"
+                            }
+                        }
+                    },
+                    "description": "Address data",
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/data"
+                                        }
+                                    ],
+                                    "properties": {
+                                        "data": {},
+                                        "message": {
+                                            "example": "Operation completed successfully",
+                                            "type": "string"
+                                        },
+                                        "metadata": {},
+                                        "success": {
+                                            "example": true,
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Address successfully created"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Authentication failed or token invalid"
+                    },
+                    "409": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Address already exists"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Invalid address data provided"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Server error processing request"
+                    }
+                },
+                "summary": "Create new address record",
+                "tags": [
+                    "Address"
+                ]
+            }
+        },
+        "/addresses/{id}": {
+            "delete": {
+                "description": "Permanently deletes address record and associated data. Cannot be undone.",
+                "operationId": "delete_single_address",
+                "parameters": [
+                    {
+                        "description": "Azure API Management subscription key for authentication",
+                        "in": "header",
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Deployment region identifier (e.g. za0, za1, uk1, us1)",
+                        "in": "header",
+                        "name": "X-MBA-Deployment-Location",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "za0",
+                                "za1",
+                                "uk1",
+                                "us1"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Tenant identifier for multi-tenant isolation",
+                        "in": "header",
+                        "name": "X-MBA-Application-ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Application type for response formatting",
+                        "in": "header",
+                        "name": "X-MBA-Application-Type",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "mypetparlorapp"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Firebase authentication token",
+                        "in": "query",
+                        "name": "firebaseIdToken",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Address's unique identifier",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultSuccess"
+                                }
+                            }
+                        },
+                        "description": "Address successfully deleted"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Authentication failed or token invalid"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Address not found"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Server error processing request"
+                    }
+                },
+                "summary": "Remove address record",
+                "tags": [
+                    "Address"
+                ]
+            },
+            "get": {
+                "description": "Fetches detailed address information using its unique identifier. Returns complete address data including associated metadata.",
+                "operationId": "get_single_address",
+                "parameters": [
+                    {
+                        "description": "Azure API Management subscription key for authentication",
+                        "in": "header",
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Deployment region identifier (e.g. za0, za1, uk1, us1)",
+                        "in": "header",
+                        "name": "X-MBA-Deployment-Location",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "za0",
+                                "za1",
+                                "uk1",
+                                "us1"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Tenant identifier for multi-tenant isolation",
+                        "in": "header",
+                        "name": "X-MBA-Application-ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Application type for response formatting",
+                        "in": "header",
+                        "name": "X-MBA-Application-Type",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "mypetparlorapp"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Firebase authentication token",
+                        "in": "query",
+                        "name": "firebaseIdToken",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Address's unique identifier",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/data"
+                                        }
+                                    ],
+                                    "properties": {
+                                        "data": {},
+                                        "message": {
+                                            "example": "Operation completed successfully",
+                                            "type": "string"
+                                        },
+                                        "metadata": {},
+                                        "success": {
+                                            "example": true,
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Address details successfully retrieved"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Authentication failed or token invalid"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Address not found"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Server error processing request"
+                    }
+                },
+                "summary": "Retrieve address by ID",
+                "tags": [
+                    "Address"
+                ]
+            },
+            "patch": {
+                "description": "Updates address information with partial or complete changes. Supports field-level updates and maintains data consistency. Automatically handles timestamp updates.",
+                "operationId": "update_single_address",
+                "parameters": [
+                    {
+                        "description": "Azure API Management subscription key for authentication",
+                        "in": "header",
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Deployment region identifier (e.g. za0, za1, uk1, us1)",
+                        "in": "header",
+                        "name": "X-MBA-Deployment-Location",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "za0",
+                                "za1",
+                                "uk1",
+                                "us1"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Tenant identifier for multi-tenant isolation",
+                        "in": "header",
+                        "name": "X-MBA-Application-ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Application type for response formatting",
+                        "in": "header",
+                        "name": "X-MBA-Application-Type",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "mypetparlorapp"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Firebase authentication token",
+                        "in": "query",
+                        "name": "firebaseIdToken",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Address's unique identifier",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/address.UpdateAddress"
+                            }
+                        }
+                    },
+                    "description": "Updated address data",
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/data"
+                                        }
+                                    ],
+                                    "properties": {
+                                        "data": {},
+                                        "message": {
+                                            "example": "Operation completed successfully",
+                                            "type": "string"
+                                        },
+                                        "metadata": {},
+                                        "success": {
+                                            "example": true,
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Address successfully updated"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Authentication failed or token invalid"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Address not found"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Invalid update data"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Server error processing request"
+                    }
+                },
+                "summary": "Modify address record",
+                "tags": [
+                    "Address"
+                ]
+            }
+        }
+    },
+    "openapi": "3.1.0",
+    "servers": [
+        {
+            "url": "https://mpp-api-mybusinessapp-san.azure-api.net/v2/"
+        }
+    ]
+}

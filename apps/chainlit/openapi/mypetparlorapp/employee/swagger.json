@@ -1,0 +1,1688 @@
+{
+    "components": {
+        "schemas": {
+            "auth.CreateEmployeeRoles": {
+                "properties": {
+                    "isAdmin": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "isDeveloper": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "isEmployee": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "isGroomer": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "isOwner": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "isReception": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "isTaxi": {
+                        "example": false,
+                        "type": "boolean"
+                    }
+                },
+                "type": "object"
+            },
+            "auth.EmployeeRoles": {
+                "properties": {
+                    "isAdmin": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "isDeveloper": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "isEmployee": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "isGroomer": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "isOwner": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "isReception": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "isTaxi": {
+                        "example": false,
+                        "type": "boolean"
+                    }
+                },
+                "type": "object"
+            },
+            "auth.UpdateEmployeeRoles": {
+                "properties": {
+                    "isAdmin": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "isDeveloper": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "isEmployee": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "isGroomer": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "isOwner": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "isReception": {
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "isTaxi": {
+                        "example": false,
+                        "type": "boolean"
+                    }
+                },
+                "type": "object"
+            },
+            "data": {
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/employee.Employee"
+                    }
+                },
+                "type": "object"
+            },
+            "employee.CreateEmployee": {
+                "properties": {
+                    "email": {
+                        "example": "info@mppdemo.co.za",
+                        "type": "string"
+                    },
+                    "firstName": {
+                        "example": "MyPetParlor",
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "gravatarUrl": {
+                        "example": "https://gravatar.com/avatar/fe1dad0128df2f64a8e50ba221fff1d1?d=retro",
+                        "type": "string"
+                    },
+                    "id": {
+                        "example": "568c28fffc4be30d44d0398e",
+                        "type": "string"
+                    },
+                    "lastName": {
+                        "example": "Demo",
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "password": {
+                        "example": "password12345678",
+                        "minLength": 8,
+                        "type": "string"
+                    },
+                    "phoneNumber": {
+                        "example": "+27654324343",
+                        "type": "string"
+                    },
+                    "photoUrl": {
+                        "example": "https://shared-mybusinessapp.azureedge.net/images/mSI8TgB90dU0wd42WkwZdEQy9vL2-dd43f0be-9dcc-4326-87f1-beea52aed3d1.jpg",
+                        "type": "string"
+                    },
+                    "roles": {
+                        "$ref": "#/components/schemas/auth.CreateEmployeeRoles"
+                    },
+                    "teamIds": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "uniqueItems": false
+                    },
+                    "title": {
+                        "example": "Sr. Vice President",
+                        "type": "string"
+                    },
+                    "uid": {
+                        "example": "gSI5TgB90dU0wd42WkwZdEQy9vL2",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "roles"
+                ],
+                "type": "object"
+            },
+            "employee.Employee": {
+                "properties": {
+                    "createdAt": {
+                        "example": "2023-01-05T00:00:00.000Z",
+                        "type": "string"
+                    },
+                    "email": {
+                        "example": "jydy@gmail.com",
+                        "type": "string"
+                    },
+                    "firstName": {
+                        "example": "Jay",
+                        "type": "string"
+                    },
+                    "gravatarUrl": {
+                        "example": "https://gravatar.com/avatar/d0e9201191872ec2ea8c5916df838e7d?d=retro",
+                        "type": "string"
+                    },
+                    "id": {
+                        "example": "568c28fffc4be30d44d0398e",
+                        "type": "string"
+                    },
+                    "inviteStatus": {
+                        "enum": [
+                            "pending",
+                            "accepted",
+                            "declined"
+                        ],
+                        "example": "pending",
+                        "type": "string"
+                    },
+                    "lastName": {
+                        "example": "Day",
+                        "type": "string"
+                    },
+                    "phoneNumber": {
+                        "example": "+27654324343",
+                        "type": "string"
+                    },
+                    "photoUrl": {
+                        "example": "https://shared-mybusinessapp.azureedge.net/images/mSI8TgB90dU0wd42WkwZdEQy9vL2-dd43f0be-9dcc-4326-87f1-beea52aed3d1.jpg",
+                        "type": "string"
+                    },
+                    "roles": {
+                        "$ref": "#/components/schemas/auth.EmployeeRoles"
+                    },
+                    "teamIds": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "uniqueItems": false
+                    },
+                    "title": {
+                        "example": "Sr. Vice President",
+                        "type": "string"
+                    },
+                    "uid": {
+                        "example": "gSI5TgB90dU0wd42WkwZdEQy9vL2",
+                        "type": "string"
+                    },
+                    "updatedAt": {
+                        "example": "2023-01-05T00:00:00.000Z",
+                        "type": "string"
+                    },
+                    "useGravatar": {
+                        "example": false,
+                        "type": "boolean"
+                    }
+                },
+                "type": "object"
+            },
+            "employee.UpdateEmployee": {
+                "properties": {
+                    "email": {
+                        "example": "info@mppdemo.co.za",
+                        "type": "string"
+                    },
+                    "firstName": {
+                        "example": "MyPetParlor",
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "inviteStatus": {
+                        "enum": [
+                            "pending",
+                            "accepted",
+                            "declined"
+                        ],
+                        "example": "pending",
+                        "type": "string"
+                    },
+                    "lastName": {
+                        "example": "Demo",
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "phoneNumber": {
+                        "example": "+27654324343",
+                        "type": "string"
+                    },
+                    "photoUrl": {
+                        "example": "https://url-to-photo.com",
+                        "type": "string"
+                    },
+                    "roles": {
+                        "$ref": "#/components/schemas/auth.UpdateEmployeeRoles"
+                    },
+                    "teamIds": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "uniqueItems": false
+                    },
+                    "title": {
+                        "example": "Sr. Vice President",
+                        "type": "string"
+                    },
+                    "uid": {
+                        "example": "gSI5TgB90dU0wd42WkwZdEQy9vL2",
+                        "type": "string"
+                    },
+                    "useGravatar": {
+                        "example": false,
+                        "type": "boolean"
+                    }
+                },
+                "type": "object"
+            },
+            "employee.UpdateEmployeeTeams": {
+                "properties": {
+                    "teamIds": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "uniqueItems": false
+                    }
+                },
+                "type": "object"
+            },
+            "entities.JSONResultFailure": {
+                "properties": {
+                    "errors": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "uniqueItems": false
+                    },
+                    "message": {
+                        "example": "Operation failed",
+                        "type": "string"
+                    },
+                    "success": {
+                        "example": false,
+                        "type": "boolean"
+                    }
+                },
+                "type": "object"
+            },
+            "entities.JSONResultSuccess": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/data"
+                    }
+                ],
+                "properties": {
+                    "data": {},
+                    "message": {
+                        "example": "Operation completed successfully",
+                        "type": "string"
+                    },
+                    "metadata": {},
+                    "success": {
+                        "example": true,
+                        "type": "boolean"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "info": {
+        "contact": {
+            "email": "support@mybusinessapp.co.za",
+            "name": "API Support",
+            "url": "https://mybusinessapp.co.za/support"
+        },
+        "description": "Permanently deletes employee record and associated data. Handles cleanup of related resources including user account. Cannot be undone.",
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "termsOfService": "https://mybusinessapp.co.za/terms",
+        "title": "Employee Management API",
+        "version": "1.0"
+    },
+    "externalDocs": {
+        "description": "",
+        "url": ""
+    },
+    "paths": {
+        "/employees": {
+            "get": {
+                "description": "Retrieves a paginated list of employees with optional team-based filtering. Supports customizable page size and team-specific views. Returns employee profiles with their associated metadata, roles, and team relationships.",
+                "operationId": "get_all_employees",
+                "parameters": [
+                    {
+                        "description": "Azure API Management subscription key for authentication",
+                        "in": "header",
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Deployment region identifier (e.g. za0, za1, uk1, us1)",
+                        "in": "header",
+                        "name": "X-MBA-Deployment-Location",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "za0",
+                                "za1",
+                                "uk1",
+                                "us1"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Tenant identifier for multi-tenant isolation",
+                        "in": "header",
+                        "name": "X-MBA-Application-ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Application type for response formatting",
+                        "in": "header",
+                        "name": "X-MBA-Application-Type",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "mypetparlorapp"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Firebase authentication token",
+                        "in": "query",
+                        "name": "firebaseIdToken",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Page number for pagination",
+                        "in": "query",
+                        "name": "page",
+                        "schema": {
+                            "minimum": 1,
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Number of employees per page",
+                        "in": "query",
+                        "name": "limit",
+                        "schema": {
+                            "maximum": 200,
+                            "minimum": 1,
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Enable or disable pagination",
+                        "in": "query",
+                        "name": "paginate",
+                        "schema": {
+                            "default": true,
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "description": "Filter employees by specific team ID",
+                        "in": "query",
+                        "name": "teamId",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter employees by multiple team IDs (comma-separated)",
+                        "in": "query",
+                        "name": "teamIds",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/data"
+                                        }
+                                    ],
+                                    "properties": {
+                                        "data": {},
+                                        "message": {
+                                            "example": "Operation completed successfully",
+                                            "type": "string"
+                                        },
+                                        "metadata": {},
+                                        "success": {
+                                            "example": true,
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Successfully retrieved employee list"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Authentication failed or token invalid"
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Forbidden"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Invalid parameters provided"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Server error processing request"
+                    }
+                },
+                "summary": "List all employees with pagination and filtering",
+                "tags": [
+                    "Employee"
+                ]
+            },
+            "post": {
+                "description": "Creates a new employee record with comprehensive profile data. Supports role assignment, team associations, and automatic Gravatar integration. Handles user account creation and default field initialization.",
+                "operationId": "create_single_employee",
+                "parameters": [
+                    {
+                        "description": "Azure API Management subscription key for authentication",
+                        "in": "header",
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Deployment region identifier (e.g. za0, za1, uk1, us1)",
+                        "in": "header",
+                        "name": "X-MBA-Deployment-Location",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "za0",
+                                "za1",
+                                "uk1",
+                                "us1"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Tenant identifier for multi-tenant isolation",
+                        "in": "header",
+                        "name": "X-MBA-Application-ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Application type for response formatting",
+                        "in": "header",
+                        "name": "X-MBA-Application-Type",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "mypetparlorapp"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Firebase authentication token",
+                        "in": "query",
+                        "name": "firebaseIdToken",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/employee.CreateEmployee"
+                            }
+                        }
+                    },
+                    "description": "Employee profile data",
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/data"
+                                        }
+                                    ],
+                                    "properties": {
+                                        "data": {},
+                                        "message": {
+                                            "example": "Operation completed successfully",
+                                            "type": "string"
+                                        },
+                                        "metadata": {},
+                                        "success": {
+                                            "example": true,
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Employee successfully created"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Authentication failed or token invalid"
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Forbidden"
+                    },
+                    "409": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Employee already exists"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Invalid employee data provided"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Server error processing request"
+                    }
+                },
+                "summary": "Create new employee profile",
+                "tags": [
+                    "Employee"
+                ]
+            }
+        },
+        "/employees/uid/{uid}": {
+            "get": {
+                "description": "Fetches employee profile using their unique identifier (UID). Alternative lookup method that uses UID instead of internal ID. Returns complete employee data including roles and associations.",
+                "operationId": "get_single_employee_by_uid",
+                "parameters": [
+                    {
+                        "description": "Azure API Management subscription key for authentication",
+                        "in": "header",
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Deployment region identifier (e.g. za0, za1, uk1, us1)",
+                        "in": "header",
+                        "name": "X-MBA-Deployment-Location",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "za0",
+                                "za1",
+                                "uk1",
+                                "us1"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Tenant identifier for multi-tenant isolation",
+                        "in": "header",
+                        "name": "X-MBA-Application-ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Application type for response formatting",
+                        "in": "header",
+                        "name": "X-MBA-Application-Type",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "mypetparlorapp"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Firebase authentication token",
+                        "in": "query",
+                        "name": "firebaseIdToken",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Employee's unique identifier (UID)",
+                        "in": "path",
+                        "name": "uid",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/data"
+                                        }
+                                    ],
+                                    "properties": {
+                                        "data": {},
+                                        "message": {
+                                            "example": "Operation completed successfully",
+                                            "type": "string"
+                                        },
+                                        "metadata": {},
+                                        "success": {
+                                            "example": true,
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Employee details successfully retrieved"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Authentication failed or token invalid"
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Forbidden"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Employee not found"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Invalid UID format"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Server error processing request"
+                    }
+                },
+                "summary": "Retrieve employee by UID",
+                "tags": [
+                    "Employee"
+                ]
+            }
+        },
+        "/employees/{id}": {
+            "delete": {
+                "description": "Permanently deletes employee record and associated data. Handles cleanup of related resources including user account. Cannot be undone.",
+                "operationId": "delete_single_employee",
+                "parameters": [
+                    {
+                        "description": "Azure API Management subscription key for authentication",
+                        "in": "header",
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Deployment region identifier (e.g. za0, za1, uk1, us1)",
+                        "in": "header",
+                        "name": "X-MBA-Deployment-Location",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "za0",
+                                "za1",
+                                "uk1",
+                                "us1"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Tenant identifier for multi-tenant isolation",
+                        "in": "header",
+                        "name": "X-MBA-Application-ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Application type for response formatting",
+                        "in": "header",
+                        "name": "X-MBA-Application-Type",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "mypetparlorapp"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Firebase authentication token",
+                        "in": "query",
+                        "name": "firebaseIdToken",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Employee's unique identifier",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultSuccess"
+                                }
+                            }
+                        },
+                        "description": "Employee successfully deleted"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Authentication failed or token invalid"
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Forbidden"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Employee not found"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Invalid employee ID format"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Server error processing request"
+                    }
+                },
+                "summary": "Remove employee profile",
+                "tags": [
+                    "Employee"
+                ]
+            },
+            "get": {
+                "description": "Fetches detailed employee information using their unique identifier. Returns complete profile including role assignments, team associations, and profile metadata.",
+                "operationId": "get_single_employee",
+                "parameters": [
+                    {
+                        "description": "Azure API Management subscription key for authentication",
+                        "in": "header",
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Deployment region identifier (e.g. za0, za1, uk1, us1)",
+                        "in": "header",
+                        "name": "X-MBA-Deployment-Location",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "za0",
+                                "za1",
+                                "uk1",
+                                "us1"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Tenant identifier for multi-tenant isolation",
+                        "in": "header",
+                        "name": "X-MBA-Application-ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Application type for response formatting",
+                        "in": "header",
+                        "name": "X-MBA-Application-Type",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "mypetparlorapp"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Firebase authentication token",
+                        "in": "query",
+                        "name": "firebaseIdToken",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Employee's unique identifier",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/data"
+                                        }
+                                    ],
+                                    "properties": {
+                                        "data": {},
+                                        "message": {
+                                            "example": "Operation completed successfully",
+                                            "type": "string"
+                                        },
+                                        "metadata": {},
+                                        "success": {
+                                            "example": true,
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Employee details successfully retrieved"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Authentication failed or token invalid"
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Forbidden"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Employee not found"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Invalid employee ID format"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Server error processing request"
+                    }
+                },
+                "summary": "Retrieve employee by ID",
+                "tags": [
+                    "Employee"
+                ]
+            },
+            "patch": {
+                "description": "Updates employee information with partial or complete profile changes. Supports field-level updates and maintains data consistency. Automatically handles timestamp updates and Gravatar settings.",
+                "operationId": "update_single_employee",
+                "parameters": [
+                    {
+                        "description": "Azure API Management subscription key for authentication",
+                        "in": "header",
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Deployment region identifier (e.g. za0, za1, uk1, us1)",
+                        "in": "header",
+                        "name": "X-MBA-Deployment-Location",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "za0",
+                                "za1",
+                                "uk1",
+                                "us1"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Tenant identifier for multi-tenant isolation",
+                        "in": "header",
+                        "name": "X-MBA-Application-ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Application type for response formatting",
+                        "in": "header",
+                        "name": "X-MBA-Application-Type",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "mypetparlorapp"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Firebase authentication token",
+                        "in": "query",
+                        "name": "firebaseIdToken",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Employee's unique identifier",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/employee.UpdateEmployee"
+                            }
+                        }
+                    },
+                    "description": "Updated employee data",
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/data"
+                                        }
+                                    ],
+                                    "properties": {
+                                        "data": {},
+                                        "message": {
+                                            "example": "Operation completed successfully",
+                                            "type": "string"
+                                        },
+                                        "metadata": {},
+                                        "success": {
+                                            "example": true,
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Employee successfully updated"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Authentication failed or token invalid"
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Forbidden"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Employee not found"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Invalid update data"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Server error processing request"
+                    }
+                },
+                "summary": "Modify employee profile",
+                "tags": [
+                    "Employee"
+                ]
+            }
+        },
+        "/employees/{id}/roles": {
+            "patch": {
+                "description": "Updates role assignments for an employee. Manages administrative, owner, groomer, reception, and taxi role permissions. Updates both database records and authentication claims.",
+                "operationId": "set_roles_for_employee",
+                "parameters": [
+                    {
+                        "description": "Azure API Management subscription key for authentication",
+                        "in": "header",
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Deployment region identifier (e.g. za0, za1, uk1, us1)",
+                        "in": "header",
+                        "name": "X-MBA-Deployment-Location",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "za0",
+                                "za1",
+                                "uk1",
+                                "us1"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Tenant identifier for multi-tenant isolation",
+                        "in": "header",
+                        "name": "X-MBA-Application-ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Application type for response formatting",
+                        "in": "header",
+                        "name": "X-MBA-Application-Type",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "mypetparlorapp"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Firebase authentication token",
+                        "in": "query",
+                        "name": "firebaseIdToken",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Employee's unique identifier",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/auth.UpdateEmployeeRoles"
+                            }
+                        }
+                    },
+                    "description": "Updated role assignments",
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/data"
+                                        }
+                                    ],
+                                    "properties": {
+                                        "data": {},
+                                        "message": {
+                                            "example": "Operation completed successfully",
+                                            "type": "string"
+                                        },
+                                        "metadata": {},
+                                        "success": {
+                                            "example": true,
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Roles successfully updated"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Authentication failed or token invalid"
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Forbidden"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Employee not found"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Invalid role data"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Server error processing request"
+                    }
+                },
+                "summary": "Update employee roles",
+                "tags": [
+                    "Employee"
+                ]
+            }
+        },
+        "/employees/{id}/teams": {
+            "patch": {
+                "description": "Updates team associations for an employee. Manages which teams the employee belongs to and can access. Updates both database records and authentication claims.",
+                "operationId": "set_teams_for_employee",
+                "parameters": [
+                    {
+                        "description": "Azure API Management subscription key for authentication",
+                        "in": "header",
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Deployment region identifier (e.g. za0, za1, uk1, us1)",
+                        "in": "header",
+                        "name": "X-MBA-Deployment-Location",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "za0",
+                                "za1",
+                                "uk1",
+                                "us1"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Tenant identifier for multi-tenant isolation",
+                        "in": "header",
+                        "name": "X-MBA-Application-ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Application type for response formatting",
+                        "in": "header",
+                        "name": "X-MBA-Application-Type",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "mypetparlorapp"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Firebase authentication token",
+                        "in": "query",
+                        "name": "firebaseIdToken",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Employee's unique identifier",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/employee.UpdateEmployeeTeams"
+                            }
+                        }
+                    },
+                    "description": "Updated team assignments",
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/data"
+                                        }
+                                    ],
+                                    "properties": {
+                                        "data": {},
+                                        "message": {
+                                            "example": "Operation completed successfully",
+                                            "type": "string"
+                                        },
+                                        "metadata": {},
+                                        "success": {
+                                            "example": true,
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Teams successfully updated"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Authentication failed or token invalid"
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Error: Forbidden"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Employee not found"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Invalid team data"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Server error processing request"
+                    }
+                },
+                "summary": "Update employee team assignments",
+                "tags": [
+                    "Employee"
+                ]
+            }
+        }
+    },
+    "openapi": "3.1.0",
+    "servers": [
+        {
+            "url": "https://mpp-api-mybusinessapp-san.azure-api.net/v2/"
+        }
+    ]
+}

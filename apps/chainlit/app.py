@@ -284,6 +284,10 @@ Example of OpenAPI specification:
 }
 """
 
+ADDRESS_API_DESC = """Manages address resources belonging to customers.
+{API_AUTH_PARAMETERS_DESC}
+"""
+
 BOOKING_API_DESC = """Manages booking resources that belong to customers and teams.
 {API_AUTH_PARAMETERS_DESC}
 """
@@ -293,6 +297,14 @@ CUSTOMER_API_DESC = """Manages customer resources belonging to tenants with team
 """
 
 DOCUMENT_API_DESC = """Manages legal documents (refund policy or terms).
+{API_AUTH_PARAMETERS_DESC}
+"""
+
+EMPLOYEE_API_DESC = """Manages employee resources belonging to tenants.
+{API_AUTH_PARAMETERS_DESC}
+"""
+
+PET_API_DESC = """Manages pet resources belonging to customers.
 {API_AUTH_PARAMETERS_DESC}
 """
 
@@ -421,9 +433,12 @@ async def start():
         code_interpreter = CodeInterpreterTool()
         
         # Create API tools with proper descriptions
+        address_api = create_api_tool("address", ADDRESS_API_DESC)
         booking_api = create_api_tool("booking", BOOKING_API_DESC)
         customer_api = create_api_tool("customer", CUSTOMER_API_DESC)
         document_api = create_api_tool("document", DOCUMENT_API_DESC)
+        employee_api = create_api_tool("employee", EMPLOYEE_API_DESC)
+        pet_api = create_api_tool("pet", PET_API_DESC)
         team_api = create_api_tool("team", TEAM_API_DESC)
         tenant_api = create_api_tool("tenants", TENANT_API_DESC)
         
@@ -439,6 +454,17 @@ async def start():
         )
         
         # API-specific agents - each specializes in one API domain
+        address_read_api_definition = await create_agent(
+            client=client,
+            name="address_read_api",
+            description="Address API (read-only)",
+            instructions="""You use the specific API tool to understand the Address API.
+            You can only read data from the Address API.
+            You MUST obtain the authentication parameters from the user's prompt and use them through instruction overrides.
+            If the query is for a specific customer, you MUST include the customer's ID as a query parameter "customerId" through instruction overrides.""",
+            tools=address_api.definitions
+        )
+        
         booking_read_api_definition = await create_agent(
             client=client,
             name="booking_read_api",
@@ -468,7 +494,28 @@ async def start():
             You MUST obtain the authentication parameters from the user's prompt and use them through instruction overrides.""",
             tools=document_api.definitions
         )
-        
+
+        employee_read_api_definition = await create_agent(
+            client=client,
+            name="employee_read_api",
+            description="Employee API (read-only)",
+            instructions="""You use the specific API tool to understand the Employee API.
+            You can only read data from the Employee API.
+            You MUST obtain the authentication parameters from the user's prompt and use them through instruction overrides.""",
+            tools=employee_api.definitions
+        )
+
+        pet_read_api_definition = await create_agent(
+            client=client,
+            name="pet_read_api",
+            description="Pet API (read-only)",
+            instructions="""You use the specific API tool to understand the Pet API.
+            You can only read data from the Pet API.
+            You MUST obtain the authentication parameters from the user's prompt and use them through instruction overrides.
+            If the query is for a specific customer, you MUST include the customer's ID as a query parameter "customerId" through instruction overrides.""",
+            tools=pet_api.definitions
+        )
+
         team_read_api_definition = await create_agent(
             client=client,
             name="team_read_api",
@@ -522,6 +569,11 @@ async def start():
             client=client,
             definition=data_analysis_definition
         )
+
+        address_api_agent = AzureAIAgent(
+            client=client,
+            definition=address_read_api_definition
+        )
         
         booking_api_agent = AzureAIAgent(
             client=client, 
@@ -539,6 +591,16 @@ async def start():
             client=client,
             definition=document_read_api_definition
         )
+
+        employee_api_agent = AzureAIAgent(
+            client=client,
+            definition=employee_read_api_definition
+        )
+        
+        pet_api_agent = AzureAIAgent(
+            client=client,
+            definition=pet_read_api_definition
+        )
         
         team_api_agent = AzureAIAgent(
             client=client,
@@ -549,6 +611,8 @@ async def start():
             client=client,
             definition=tenant_read_api_definition
         )
+
+        
         
         # Main triage agent with all specialized agents as plugins
         triage_agent = AzureAIAgent(
@@ -556,12 +620,14 @@ async def start():
             definition=triage_definition,
             plugins=[
                 setup_guide_agent, 
+                address_api_agent,
+                booking_api_agent,
                 customer_api_agent, 
                 document_api_agent, 
+                employee_api_agent,
+                pet_api_agent,
                 team_api_agent, 
-                tenant_api_agent, 
-                booking_api_agent,
-                data_analysis_agent
+                tenant_api_agent
             ]
         )
         

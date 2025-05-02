@@ -1,0 +1,1138 @@
+{
+    "components": {
+        "schemas": {
+            "data": {
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/pet.Pet"
+                    }
+                },
+                "type": "object"
+            },
+            "entities.JSONResultFailure": {
+                "properties": {
+                    "errors": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "uniqueItems": false
+                    },
+                    "message": {
+                        "example": "Operation failed",
+                        "type": "string"
+                    },
+                    "success": {
+                        "example": false,
+                        "type": "boolean"
+                    }
+                },
+                "type": "object"
+            },
+            "entities.JSONResultSuccess": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/data"
+                    }
+                ],
+                "properties": {
+                    "data": {},
+                    "message": {
+                        "example": "Operation completed successfully",
+                        "type": "string"
+                    },
+                    "metadata": {},
+                    "success": {
+                        "example": true,
+                        "type": "boolean"
+                    }
+                },
+                "type": "object"
+            },
+            "pet.CreatePet": {
+                "properties": {
+                    "additionalInfo": {
+                        "example": "He is partially blind, please take care.",
+                        "maxLength": 400,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "age": {
+                        "example": 4,
+                        "maximum": 50,
+                        "type": "integer"
+                    },
+                    "breedUniqueName": {
+                        "example": "affenpinscher",
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "coatType": {
+                        "enum": [
+                            "double",
+                            "medium",
+                            "single"
+                        ],
+                        "example": "single",
+                        "type": "string"
+                    },
+                    "customerId": {
+                        "example": "568c28fffc4be30d44d0398e",
+                        "type": "string"
+                    },
+                    "dateOfBirth": {
+                        "example": "2021-02-23",
+                        "type": "string"
+                    },
+                    "id": {
+                        "example": "568c28fffc4be30d44d0398e",
+                        "type": "string"
+                    },
+                    "name": {
+                        "example": "Jay",
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "photoUrl": {
+                        "example": "https://en.wikipedia.org/wiki/Affenpinscher",
+                        "type": "string"
+                    },
+                    "sex": {
+                        "enum": [
+                            "male",
+                            "female"
+                        ],
+                        "example": "male",
+                        "type": "string"
+                    },
+                    "type": {
+                        "enum": [
+                            "dog",
+                            "cat"
+                        ],
+                        "example": "dog",
+                        "type": "string"
+                    },
+                    "weight": {
+                        "example": 4,
+                        "maximum": 100,
+                        "type": "number"
+                    },
+                    "weightClassSize": {
+                        "enum": [
+                            "small",
+                            "medium",
+                            "large",
+                            "extraLarge"
+                        ],
+                        "example": "large",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "age",
+                    "coatType",
+                    "customerId",
+                    "name",
+                    "sex",
+                    "type",
+                    "weight"
+                ],
+                "type": "object"
+            },
+            "pet.Pet": {
+                "properties": {
+                    "additionalInfo": {
+                        "example": "He is partially blind, please take care.",
+                        "type": "string"
+                    },
+                    "age": {
+                        "example": 4,
+                        "type": "integer"
+                    },
+                    "breed": {
+                        "$ref": "#/components/schemas/pet.PetBreed"
+                    },
+                    "coatType": {
+                        "enum": [
+                            "double",
+                            "medium",
+                            "single"
+                        ],
+                        "example": "single",
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "example": "2023-01-05T00:00:00.000Z",
+                        "type": "string"
+                    },
+                    "customerId": {
+                        "example": "568c28fffc4be30d44d0398e",
+                        "type": "string"
+                    },
+                    "dateOfBirth": {
+                        "example": "2021-02-23",
+                        "type": "string"
+                    },
+                    "id": {
+                        "example": "568c28fffc4be30d44d0398e",
+                        "type": "string"
+                    },
+                    "name": {
+                        "example": "Jay",
+                        "type": "string"
+                    },
+                    "photoUrl": {
+                        "example": "https://en.wikipedia.org/wiki/Affenpinscher",
+                        "type": "string"
+                    },
+                    "sex": {
+                        "enum": [
+                            "male",
+                            "female"
+                        ],
+                        "example": "male",
+                        "type": "string"
+                    },
+                    "type": {
+                        "enum": [
+                            "dog",
+                            "cat"
+                        ],
+                        "example": "dog",
+                        "type": "string"
+                    },
+                    "updatedAt": {
+                        "example": "2023-01-05T00:00:00.000Z",
+                        "type": "string"
+                    },
+                    "weight": {
+                        "example": 4,
+                        "type": "number"
+                    },
+                    "weightClass": {
+                        "$ref": "#/components/schemas/pet.PetWeightClass"
+                    },
+                    "weightClassByTeam": {
+                        "additionalProperties": {
+                            "$ref": "#/components/schemas/pet.PetWeightClass"
+                        },
+                        "type": "object"
+                    },
+                    "weightClassSize": {
+                        "enum": [
+                            "small",
+                            "medium",
+                            "large",
+                            "extraLarge"
+                        ],
+                        "example": "large",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "pet.PetBreed": {
+                "properties": {
+                    "name": {
+                        "example": "Affenpinscher",
+                        "type": "string"
+                    },
+                    "uniqueName": {
+                        "example": "affenpinscher",
+                        "type": "string"
+                    },
+                    "url": {
+                        "example": "https://en.wikipedia.org/wiki/Affenpinscher",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "pet.PetWeightClass": {
+                "properties": {
+                    "displayName": {
+                        "example": "Medium",
+                        "type": "string"
+                    },
+                    "maxWeight": {
+                        "example": 20,
+                        "type": "number"
+                    },
+                    "minWeight": {
+                        "example": 10,
+                        "type": "number"
+                    },
+                    "size": {
+                        "enum": [
+                            "small",
+                            "medium",
+                            "large",
+                            "extraLarge"
+                        ],
+                        "example": "large",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "pet.UpdatePet": {
+                "properties": {
+                    "additionalInfo": {
+                        "example": "He is partially blind, please take care.",
+                        "maxLength": 400,
+                        "minLength": 0,
+                        "type": "string"
+                    },
+                    "age": {
+                        "example": 4,
+                        "maximum": 50,
+                        "type": "integer"
+                    },
+                    "breed": {
+                        "$ref": "#/components/schemas/pet.PetBreed"
+                    },
+                    "breedUniqueName": {
+                        "example": "affenpinscher",
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "coatType": {
+                        "enum": [
+                            "double",
+                            "medium",
+                            "single"
+                        ],
+                        "example": "single",
+                        "type": "string"
+                    },
+                    "customerId": {
+                        "example": "568c28fffc4be30d44d0398e",
+                        "type": "string"
+                    },
+                    "dateOfBirth": {
+                        "example": "2021-02-23",
+                        "type": "string"
+                    },
+                    "name": {
+                        "example": "Jay",
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "photoUrl": {
+                        "example": "https://en.wikipedia.org/wiki/Affenpinscher",
+                        "type": "string"
+                    },
+                    "sex": {
+                        "enum": [
+                            "male",
+                            "female"
+                        ],
+                        "example": "male",
+                        "type": "string"
+                    },
+                    "type": {
+                        "enum": [
+                            "dog",
+                            "cat"
+                        ],
+                        "example": "dog",
+                        "type": "string"
+                    },
+                    "weight": {
+                        "example": 4,
+                        "maximum": 100,
+                        "type": "number"
+                    },
+                    "weightClass": {
+                        "$ref": "#/components/schemas/pet.PetWeightClass"
+                    },
+                    "weightClassByTeam": {
+                        "additionalProperties": {
+                            "$ref": "#/components/schemas/pet.PetWeightClass"
+                        },
+                        "type": "object"
+                    },
+                    "weightClassSize": {
+                        "enum": [
+                            "small",
+                            "medium",
+                            "large",
+                            "extraLarge"
+                        ],
+                        "example": "large",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "info": {
+        "contact": {
+            "email": "support@mybusinessapp.co.za",
+            "name": "API Support",
+            "url": "https://mybusinessapp.co.za/support"
+        },
+        "description": "Permanently deletes pet record and associated data. Cannot be undone.",
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "termsOfService": "https://mybusinessapp.co.za/terms",
+        "title": "Pet Management API",
+        "version": "1.0"
+    },
+    "externalDocs": {
+        "description": "",
+        "url": ""
+    },
+    "paths": {
+        "/pets": {
+            "get": {
+                "description": "Retrieves a paginated list of pets with optional customer-based filtering. Supports customizable page size and customer-specific views. Returns pet records with their associated metadata.",
+                "operationId": "get_all_pets",
+                "parameters": [
+                    {
+                        "description": "Azure API Management subscription key for authentication",
+                        "in": "header",
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Deployment region identifier (e.g. za0, za1, uk1, us1)",
+                        "in": "header",
+                        "name": "X-MBA-Deployment-Location",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "za0",
+                                "za1",
+                                "uk1",
+                                "us1"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Tenant identifier for multi-tenant isolation",
+                        "in": "header",
+                        "name": "X-MBA-Application-ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Application type for response formatting",
+                        "in": "header",
+                        "name": "X-MBA-Application-Type",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "mypetparlorapp"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Firebase authentication token",
+                        "in": "query",
+                        "name": "firebaseIdToken",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Page number for pagination",
+                        "in": "query",
+                        "name": "page",
+                        "schema": {
+                            "minimum": 1,
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Number of pets per page",
+                        "in": "query",
+                        "name": "limit",
+                        "schema": {
+                            "maximum": 200,
+                            "minimum": 1,
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Enable or disable pagination",
+                        "in": "query",
+                        "name": "paginate",
+                        "schema": {
+                            "default": true,
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "description": "Filter pets by specific customer ID",
+                        "in": "query",
+                        "name": "customerId",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/data"
+                                        }
+                                    ],
+                                    "properties": {
+                                        "data": {},
+                                        "message": {
+                                            "example": "Operation completed successfully",
+                                            "type": "string"
+                                        },
+                                        "metadata": {},
+                                        "success": {
+                                            "example": true,
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Successfully retrieved pet list"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Authentication failed or token invalid"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Server error processing request"
+                    }
+                },
+                "summary": "List all pets with pagination and filtering",
+                "tags": [
+                    "Pet"
+                ]
+            },
+            "post": {
+                "description": "Creates a new pet record with comprehensive profile data. Supports team association and handles timestamp initialization.",
+                "operationId": "create_single_pet",
+                "parameters": [
+                    {
+                        "description": "Azure API Management subscription key for authentication",
+                        "in": "header",
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Deployment region identifier (e.g. za0, za1, uk1, us1)",
+                        "in": "header",
+                        "name": "X-MBA-Deployment-Location",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "za0",
+                                "za1",
+                                "uk1",
+                                "us1"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Tenant identifier for multi-tenant isolation",
+                        "in": "header",
+                        "name": "X-MBA-Application-ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Application type for response formatting",
+                        "in": "header",
+                        "name": "X-MBA-Application-Type",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "mypetparlorapp"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Firebase authentication token",
+                        "in": "query",
+                        "name": "firebaseIdToken",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Associate pet with specific team",
+                        "in": "query",
+                        "name": "teamId",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/pet.CreatePet"
+                            }
+                        }
+                    },
+                    "description": "Pet profile data",
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/data"
+                                        }
+                                    ],
+                                    "properties": {
+                                        "data": {},
+                                        "message": {
+                                            "example": "Operation completed successfully",
+                                            "type": "string"
+                                        },
+                                        "metadata": {},
+                                        "success": {
+                                            "example": true,
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Pet successfully created"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Authentication failed or token invalid"
+                    },
+                    "409": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Pet already exists"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Invalid pet data provided"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Server error processing request"
+                    }
+                },
+                "summary": "Create new pet record",
+                "tags": [
+                    "Pet"
+                ]
+            }
+        },
+        "/pets/{id}": {
+            "delete": {
+                "description": "Permanently deletes pet record and associated data. Cannot be undone.",
+                "operationId": "delete_single_pet",
+                "parameters": [
+                    {
+                        "description": "Azure API Management subscription key for authentication",
+                        "in": "header",
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Deployment region identifier (e.g. za0, za1, uk1, us1)",
+                        "in": "header",
+                        "name": "X-MBA-Deployment-Location",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "za0",
+                                "za1",
+                                "uk1",
+                                "us1"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Tenant identifier for multi-tenant isolation",
+                        "in": "header",
+                        "name": "X-MBA-Application-ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Application type for response formatting",
+                        "in": "header",
+                        "name": "X-MBA-Application-Type",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "mypetparlorapp"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Firebase authentication token",
+                        "in": "query",
+                        "name": "firebaseIdToken",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Pet's unique identifier",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultSuccess"
+                                }
+                            }
+                        },
+                        "description": "Pet successfully deleted"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Authentication failed or token invalid"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Pet not found"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Server error processing request"
+                    }
+                },
+                "summary": "Remove pet record",
+                "tags": [
+                    "Pet"
+                ]
+            },
+            "get": {
+                "description": "Fetches detailed pet information using its unique identifier. Returns complete pet data including associated metadata.",
+                "operationId": "get_single_pet",
+                "parameters": [
+                    {
+                        "description": "Azure API Management subscription key for authentication",
+                        "in": "header",
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Deployment region identifier (e.g. za0, za1, uk1, us1)",
+                        "in": "header",
+                        "name": "X-MBA-Deployment-Location",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "za0",
+                                "za1",
+                                "uk1",
+                                "us1"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Tenant identifier for multi-tenant isolation",
+                        "in": "header",
+                        "name": "X-MBA-Application-ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Application type for response formatting",
+                        "in": "header",
+                        "name": "X-MBA-Application-Type",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "mypetparlorapp"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Firebase authentication token",
+                        "in": "query",
+                        "name": "firebaseIdToken",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Pet's unique identifier",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/data"
+                                        }
+                                    ],
+                                    "properties": {
+                                        "data": {},
+                                        "message": {
+                                            "example": "Operation completed successfully",
+                                            "type": "string"
+                                        },
+                                        "metadata": {},
+                                        "success": {
+                                            "example": true,
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Pet details successfully retrieved"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Authentication failed or token invalid"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Pet not found"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Server error processing request"
+                    }
+                },
+                "summary": "Retrieve pet by ID",
+                "tags": [
+                    "Pet"
+                ]
+            },
+            "patch": {
+                "description": "Updates pet information with partial or complete changes. Supports field-level updates and maintains data consistency. Automatically handles timestamp updates and team associations.",
+                "operationId": "update_single_pet",
+                "parameters": [
+                    {
+                        "description": "Azure API Management subscription key for authentication",
+                        "in": "header",
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Deployment region identifier (e.g. za0, za1, uk1, us1)",
+                        "in": "header",
+                        "name": "X-MBA-Deployment-Location",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "za0",
+                                "za1",
+                                "uk1",
+                                "us1"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Tenant identifier for multi-tenant isolation",
+                        "in": "header",
+                        "name": "X-MBA-Application-ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Application type for response formatting",
+                        "in": "header",
+                        "name": "X-MBA-Application-Type",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "mypetparlorapp"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Firebase authentication token",
+                        "in": "query",
+                        "name": "firebaseIdToken",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Pet's unique identifier",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Update pet's team association",
+                        "in": "query",
+                        "name": "teamId",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/pet.UpdatePet"
+                            }
+                        }
+                    },
+                    "description": "Updated pet data",
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/data"
+                                        }
+                                    ],
+                                    "properties": {
+                                        "data": {},
+                                        "message": {
+                                            "example": "Operation completed successfully",
+                                            "type": "string"
+                                        },
+                                        "metadata": {},
+                                        "success": {
+                                            "example": true,
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Pet successfully updated"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Authentication failed or token invalid"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Pet not found"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Invalid update data"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/entities.JSONResultFailure"
+                                }
+                            }
+                        },
+                        "description": "Server error processing request"
+                    }
+                },
+                "summary": "Modify pet record",
+                "tags": [
+                    "Pet"
+                ]
+            }
+        }
+    },
+    "openapi": "3.1.0",
+    "servers": [
+        {
+            "url": "https://mpp-api-mybusinessapp-san.azure-api.net/v2/"
+        }
+    ]
+}
