@@ -386,11 +386,14 @@ When evaluating user requests, follow this process:
 
 1. IDENTIFY THE REQUEST TYPE - Carefully analyze what the user is asking for:
    - For setup/guide questions → Use SetupGuideAgent
+   - For address-related queries → Use AddressAPIAgent
+   - For booking-related queries → Use BookingAPIAgent
    - For customer-related queries → Use CustomerAPIAgent
    - For document-related queries → Use DocumentAPIAgent
+   - For employee-related queries → Use EmployeeAPIAgent
+   - For pet-related queries → Use PetAPIAgent
    - For team-related queries → Use TeamAPIAgent
    - For tenant-related queries → Use TenantAPIAgent
-   - For booking-related queries → Use BookingAPIAgent
    - For general questions, respond directly
 
 2. AGENT CONSULTATION PROCESS:
