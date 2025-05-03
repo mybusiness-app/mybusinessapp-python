@@ -27,6 +27,12 @@ make clean                 # Clean up development environment
 - `.github/`: GitHub Actions workflows for CI/CD
 - `apps/`: Application code
   - `chainlit/`: Chainlit-based AI Assistant implementation
+    - `custom_agents/`: Specialized agent implementations
+      - `base_client.py`: Base class for all agent clients
+      - `read_api/`: Read-only API agents implementation
+      - `setup_guide/`: Setup guide agents implementation
+      - `triage/`: Triage agent implementation
+    - `app.py`: Main Chainlit application
 - `tests/`: Test suites
 - `docker/`: Docker configuration files
 - `scripts/`: Utility scripts
@@ -112,9 +118,6 @@ The system leverages Azure's AI capabilities:
 7. Results are returned to the user through the web interface
 
 This architecture provides a scalable, globally distributed system with enterprise-grade security while leveraging Azure's managed services for reliability and performance.
-
-
-
 
 ## Key Features
 
@@ -235,23 +238,66 @@ make test-integration # Integration tests only
 
 ### AI Assistant Components
 
-1. **Triage System**:
+1. **Client-based Agent Architecture**:
+   - `BaseClient`: Common functionality for all agent clients
+   - `ReadAPIClient`: Manages read-only API agents with plugin support
+   - `SetupGuideClient`: Handles setup and configuration agents
+   - `TriageClient`: Coordinates the main triage agent
+
+2. **Triage System**:
    - Main coordinator for routing requests
    - Intelligent request analysis
    - Multi-agent orchestration
    - Response synthesis
 
-2. **Specialized Agents**:
-   - Each agent focuses on specific API domain
-   - Built-in data analysis capabilities
-   - Code interpretation abilities
-   - Plugin support for extended functionality
+3. **Specialized Agents**:
+   - **Read API Agents** (managed by ReadAPIClient):
+     - Address API Agent: Manages customer address resources
+     - Booking API Agent: Handles booking resources with scheduling plugin
+     - Customer API Agent: Manages customer data with import plugin
+     - Document API Agent: Handles legal documents and policies
+     - Employee API Agent: Manages employee resources
+     - Pet API Agent: Handles pet profiles and care requirements
+     - Team API Agent: Manages team resources and configurations
+     - Tenant API Agent: Handles tenant-level resources
 
-3. **Tools and Plugins**:
+   - **Setup Guide Agents** (managed by SetupGuideClient):
+     - User Setup Agent: Guides through user profile configuration
+     - Organization Setup Agent: Assists with organization profile setup
+     - Staff Profile Agent: Helps configure staff profiles and roles
+     - Team Setup Agent: Manages team creation and configuration
+     - Customer Setup Agent: Guides through customer profile setup
+     - Booking Setup Agent: Configures booking and scheduling systems
+
+   - **Data Analysis Agent** (managed by TriageClient):
+     - Provides advanced data analysis using Code Interpreter
+     - Processes data from other agents
+     - Generates insights and reports
+
+4. **Tools and Plugins**:
    - OpenAPI tools for API access
    - Code interpreter for data analysis
-   - Scheduling plugin for optimization
-   - File import plugin for data processing
+   - Scheduling plugin for optimization (integrated with Booking API Agent)
+   - File import plugin for data processing (integrated with Customer API Agent)
+
+### Code Organization
+
+The AI Assistant follows a client-based architecture for better code organization:
+
+1. **Base Client**:
+   - Provides common functionality for all agent clients
+   - Handles agent creation and model deployment
+   - Manages environment variables and logging
+
+2. **Specialized Clients**:
+   - Each client encapsulates its domain's agents and tools
+   - Manages agent initialization and plugin integration
+   - Provides clear interfaces for agent interaction
+
+3. **Plugin System**:
+   - Plugins are integrated during agent initialization
+   - Each plugin focuses on specific functionality
+   - Plugins are managed by their respective clients
 
 ### Authentication and Security
 
