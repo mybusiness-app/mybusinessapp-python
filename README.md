@@ -32,6 +32,19 @@ make clean                 # Clean up development environment
       - `read_api/`: Read-only API agents implementation
       - `setup_guide/`: Setup guide agents implementation
       - `triage/`: Triage agent implementation
+    - `telemetry/`: Azure Monitor and OpenTelemetry integration
+      - `appinsights.py`: Azure Application Insights configuration
+      - `__init__.py`: Package initialization
+    - `openapi/`: OpenAPI specifications for API integration
+      - `mypetparlorapp/`: MyPetParlor App API specifications
+        - `address/`: Address API OpenAPI specs
+        - `booking/`: Booking API OpenAPI specs
+        - `customer/`: Customer API OpenAPI specs
+        - `document/`: Document API OpenAPI specs
+        - `employee/`: Employee API OpenAPI specs
+        - `pet/`: Pet API OpenAPI specs
+        - `team/`: Team API OpenAPI specs
+        - `tenants/`: Tenant API OpenAPI specs
     - `app.py`: Main Chainlit application
 - `tests/`: Test suites
 - `docker/`: Docker configuration files
@@ -236,75 +249,93 @@ make test-integration # Integration tests only
 
 ## Architecture
 
-### AI Assistant Components
+### Telemetry and Monitoring
 
-1. **Client-based Agent Architecture**:
-   - `BaseClient`: Common functionality for all agent clients
-   - `ReadAPIClient`: Manages read-only API agents with plugin support
-   - `SetupGuideClient`: Handles setup and configuration agents
-   - `TriageClient`: Coordinates the main triage agent
+The AI Assistant uses Azure Monitor with OpenTelemetry for comprehensive telemetry (logging, metrics, and tracing):
 
-2. **Triage System**:
-   - Main coordinator for routing requests
-   - Intelligent request analysis
-   - Multi-agent orchestration
-   - Response synthesis
+1. **Azure Application Insights Integration**:
+   - Automatic instrumentation of Python applications
+   - Distributed tracing across services
+   - Request and dependency tracking
+   - Performance monitoring and metrics
+   - Custom event tracking
+   - Exception logging and monitoring
 
-3. **Specialized Agents**:
-   - **Read API Agents** (managed by ReadAPIClient):
-     - Address API Agent: Manages customer address resources
-     - Booking API Agent: Handles booking resources with scheduling plugin
-     - Customer API Agent: Manages customer data with import plugin
-     - Document API Agent: Handles legal documents and policies
-     - Employee API Agent: Manages employee resources
-     - Pet API Agent: Handles pet profiles and care requirements
-     - Team API Agent: Manages team resources and configurations
-     - Tenant API Agent: Handles tenant-level resources
+2. **OpenTelemetry Configuration**:
+   - Standardized observability framework
+   - Custom trace attributes for AI operations
+   - Metric collection for agent performance
+   - Context propagation across components
+   - Integration with Azure Monitor
 
-   - **Setup Guide Agents** (managed by SetupGuideClient):
-     - User Setup Agent: Guides through user profile configuration
-     - Organization Setup Agent: Assists with organization profile setup
-     - Staff Profile Agent: Helps configure staff profiles and roles
-     - Team Setup Agent: Manages team creation and configuration
-     - Customer Setup Agent: Guides through customer profile setup
-     - Booking Setup Agent: Configures booking and scheduling systems
+3. **Monitoring Capabilities**:
+   - End-to-end request tracing
+   - Agent operation metrics
+   - API call monitoring
+   - Performance analytics
+   - Error tracking and alerting
+   - Resource utilization metrics
 
-   - **Data Analysis Agent** (managed by TriageClient):
-     - Provides advanced data analysis using Code Interpreter
-     - Processes data from other agents
-     - Generates insights and reports
+### API Integration
 
-4. **Tools and Plugins**:
-   - OpenAPI tools for API access
-   - Code interpreter for data analysis
-   - Scheduling plugin for optimization (integrated with Booking API Agent)
-   - File import plugin for data processing (integrated with Customer API Agent)
+The AI Assistant integrates with MyPetParlor App APIs through OpenAPI specifications:
 
-### Code Organization
+1. **OpenAPI Structure**:
+   - Organized by domain-specific APIs
+   - Each API has its own OpenAPI/Swagger specification
+   - Standardized authentication parameters
+   - Detailed endpoint documentation
+   - Request/response schemas
+   - Error definitions
 
-The AI Assistant follows a client-based architecture for better code organization:
+2. **API Domains**:
+   - **Address API**: Customer location management
+     - Address validation
+     - Geocoding integration
+     - Location-based services
+   
+   - **Booking API**: Service scheduling
+     - Appointment management
+     - Schedule optimization
+     - Availability checking
+   
+   - **Customer API**: Client management
+     - Profile management
+     - Preference tracking
+     - Service history
+   
+   - **Document API**: Legal document handling
+     - Policy management
+     - Terms and conditions
+     - Document versioning
+   
+   - **Employee API**: Staff management
+     - Profile management
+     - Skill tracking
+     - Availability management
+   
+   - **Pet API**: Pet profile management
+     - Health records
+     - Care preferences
+     - Service requirements
+   
+   - **Team API**: Team organization
+     - Team structure
+     - Role management
+     - Service area definition
+   
+   - **Tenant API**: Business management
+     - Organization settings
+     - Business rules
+     - Configuration management
 
-1. **Base Client**:
-   - Provides common functionality for all agent clients
-   - Handles agent creation and model deployment
-   - Manages environment variables and logging
-
-2. **Specialized Clients**:
-   - Each client encapsulates its domain's agents and tools
-   - Manages agent initialization and plugin integration
-   - Provides clear interfaces for agent interaction
-
-3. **Plugin System**:
-   - Plugins are integrated during agent initialization
-   - Each plugin focuses on specific functionality
-   - Plugins are managed by their respective clients
-
-### Authentication and Security
-
-- Firebase token authentication
-- API key management
-- Header-based authentication
-- Deployment location awareness
+3. **Integration Features**:
+   - Automatic tool generation from OpenAPI specs
+   - Type-safe API interactions
+   - Authentication handling
+   - Error mapping
+   - Response validation
+   - Rate limiting support
 
 ## Monitoring and Evaluation
 
