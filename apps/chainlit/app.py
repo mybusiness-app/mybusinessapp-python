@@ -12,8 +12,8 @@ import logging
 import json
 from typing import Optional, List, Dict, Any
 from datetime import datetime
-import asyncio
 from pathlib import Path
+import asyncio
 
 # Third-party imports
 import chainlit as cl
@@ -22,19 +22,39 @@ from azure.ai.projects.models import (
     OpenApiTool, 
     OpenApiAnonymousAuthDetails
 )
-from semantic_kernel.agents import AzureAIAgent, AzureAIAgentThread
+from azure.ai.projects import AIProjectClient
+from semantic_kernel.agents import Agent, AzureAIAgent, AzureAIAgentThread
 from semantic_kernel.functions import kernel_function
 from pydantic import BaseModel, Field, validator
 from azure.identity import DefaultAzureCredential
 
+# Initialize Azure credentials
+credential = DefaultAzureCredential()
+
+# Create Azure AI Agent client
+client = AzureAIAgent.create_client(credential=credential)
+
 # Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
 logger = logging.getLogger(__name__)
 
-# Constants
+from custom_agents.setup_guide import SetupGuideClient
+from telemetry.appinsights import AzureMonitor
+
+# Enable Azure Monitor tracing
+async def init_application_insights():
+    connection_string = await client.telemetry.get_connection_string()
+    if not connection_string:
+        print("Application Insights was not enabled for this project.")
+        print("Enable it via the 'Tracing' tab in your AI Foundry project page.")
+        exit()
+    azureMonitor = AzureMonitor(connection_string=connection_string)
+    azureMonitor.set_up_logging()
+    azureMonitor.set_up_tracing()
+    azureMonitor.set_up_metrics()
+
+# Run the initialization
+asyncio.run(init_application_insights())
+
 OPENAPI_DIR = Path("openapi/mypetparlorapp")
 AGENT_MODEL = os.getenv("AZURE_AI_AGENT_MODEL_DEPLOYMENT_NAME")
 
@@ -185,8 +205,8 @@ def create_api_tool(api_name: str, description: str) -> OpenApiTool:
 # Agent Factory Functions 
 # -----------------------------------------------------------------------------
 
-async def create_agent(client: Any, name: str, description: str, 
-                      instructions: str, tools: Optional[List] = None) -> Any:
+def create_agent(client: AIProjectClient, name: str, description: str, 
+                      instructions: str, tools: Optional[List] = None) -> Agent:
     """
     Create an Azure AI Agent with the specified parameters.
     
@@ -211,7 +231,7 @@ async def create_agent(client: Any, name: str, description: str,
     if tools:
         agent_args["tools"] = tools
         
-    return await client.agents.create_agent(**agent_args)
+    return client.agents.create_agent(**agent_args)
 
 # -----------------------------------------------------------------------------
 # API Description Constants
@@ -231,154 +251,39 @@ Example authentication parameters from instructions:
         "ocp-apim-subscription-key": "0987654321"
     }
 }
-
-Example of OpenAPI specification:
-{
-    "in": "header",
-    "name": "Ocp-Apim-Subscription-Key",
-    "required": true,
-    "schema": {
-        "type": "string"
-    }
-},
-{
-    "in": "header",
-    "name": "X-MBA-Deployment-Location",
-    "required": true,
-    "schema": {
-        "enum": [
-            "za0",
-            "za1",
-            "uk1",
-            "us1"
-        ],
-        "type": "string"
-    }
-},
-{
-    "in": "header",
-    "name": "X-MBA-Application-ID",
-    "required": true,
-    "schema": {
-        "type": "string"
-    }
-},
-{
-    "in": "header",
-    "name": "X-MBA-Application-Type",
-    "required": true,
-    "schema": {
-        "enum": [
-            "mypetparlorapp"
-        ],
-        "type": "string"
-    }
-},
-{
-    "in": "query",
-    "name": "firebaseIdToken",
-    "required": true,
-    "schema": {
-        "type": "string"
-    }
-}
 """
 
-ADDRESS_API_DESC = """Manages address resources belonging to customers.
+ADDRESS_API_DESC = f"""Manages address resources belonging to customers.
 {API_AUTH_PARAMETERS_DESC}
 """
 
-BOOKING_API_DESC = """Manages booking resources that belong to customers and teams.
+BOOKING_API_DESC = f"""Manages booking resources that belong to customers and teams.
 {API_AUTH_PARAMETERS_DESC}
 """
 
-CUSTOMER_API_DESC = """Manages customer resources belonging to tenants with team associations.
+CUSTOMER_API_DESC = f"""Manages customer resources belonging to tenants with team associations.
 {API_AUTH_PARAMETERS_DESC}
 """
 
-DOCUMENT_API_DESC = """Manages legal documents (refund policy or terms).
+DOCUMENT_API_DESC = f"""Manages legal documents (refund policy or terms).
 {API_AUTH_PARAMETERS_DESC}
 """
 
-EMPLOYEE_API_DESC = """Manages employee resources belonging to tenants.
+EMPLOYEE_API_DESC = f"""Manages employee resources belonging to tenants.
 {API_AUTH_PARAMETERS_DESC}
 """
 
-PET_API_DESC = """Manages pet resources belonging to customers.
+PET_API_DESC = f"""Manages pet resources belonging to customers.
 {API_AUTH_PARAMETERS_DESC}
 """
 
-TEAM_API_DESC = """Manages team resources belonging to tenants.
+TEAM_API_DESC = f"""Manages team resources belonging to tenants.
 {API_AUTH_PARAMETERS_DESC}
 """
 
-TENANT_API_DESC = """Manages tenant resources (parent of all other resources).
+TENANT_API_DESC = f"""Manages tenant resources (parent of all other resources).
 {API_AUTH_PARAMETERS_DESC}
 """
-
-SETUP_GUIDE_INSTRUCTIONS = """You are an expert in guiding new and existing users of the MyPetParlor App portal.
-
-Follow this structured approach to help users set up their portal:
-
-1. User Setup Guide:
-   - Create user account and login
-   - Set user email and password
-   - Configure user preferences
-
-2. Organization Setup Guide:
-   - Create organization profile
-   - Set organization name
-   - Configure organization settings
-   - Set organization address
-   - Setup organization operating hours
-   - Configure organization service area
-
-3. Profile Setup Guide:
-   - Create staff profile
-   - Set staff name
-   - Configure staff role
-   - Set staff email
-   - Set staff phone number
-   - Configure staff schedule
-   - Set staff service area
-
-4. Team Setup Guide:
-   - Create team profile
-   - Set team name
-   - Configure team settings
-   - Set team service area
-   - Configure team schedule
-   - Set team operating hours
-   - Configure team members
-
-5. Customer Setup Guide (Optional):
-   - Create customer profiles
-   - Set customer names
-   - Configure customer preferences
-   - Set customer addresses
-   - Configure customer pets
-   - Set customer contact info
-   - Configure customer billing
-   - Set customer notes
-
-6. Booking Setup Guide (Optional):
-   - Configure booking settings
-   - Set booking durations
-   - Configure booking types
-   - Set booking prices
-   - Configure booking notifications
-   - Set booking restrictions
-   - Configure booking cancellation policy
-   - Set booking reminders
-
-Important Guidelines:
-- Guides 1-4 (User, Organization, Profile, Team) are REQUIRED and must be completed in order
-- Guides 5-6 (Customer, Booking) are OPTIONAL but recommended for full functionality
-- Use the MyPetParlorAppOpenAPIAgent to verify setup status and configuration
-- Guide users through each section systematically, ensuring all required fields are completed
-- Provide clear explanations and examples for each setup step
-- Verify completion of each guide before moving to the next
-- Help troubleshoot any issues that arise during setup"""
 
 TRIAGE_INSTRUCTIONS = f"""You are the main coordinator for the MyPetParlor AI Assistant. Your role is to properly route and synthesize information from specialized agents.
 
@@ -388,12 +293,16 @@ When evaluating user requests, follow this process:
    - For setup/guide questions → Use SetupGuideAgent
    - For address-related queries → Use AddressAPIAgent
    - For booking-related queries → Use BookingAPIAgent
-   - For customer-related queries → Use CustomerAPIAgent
    - For document-related queries → Use DocumentAPIAgent
    - For employee-related queries → Use EmployeeAPIAgent
    - For pet-related queries → Use PetAPIAgent
    - For team-related queries → Use TeamAPIAgent
    - For tenant-related queries → Use TenantAPIAgent
+   - For customer-related queries → Use CustomerAPIAgent
+        - You MUST ALWAYS use the ID from the "id" field of the CustomerAPIAgent response and not any other field like "userId" or "uid"
+        - For customer-specific pet-related queries → ALWAYS Use CustomerAPIAgent first to obtain necessary ID and then use PetAPIAgent to obtain customer's pets by filtering with the required customer ID
+        - For customer-specific address-related queries → ALWAYS Use CustomerAPIAgent first to obtain necessary ID and then use AddressAPIAgent to obtain customer's address by filtering with the required customer ID
+        - For customer-specific booking-related queries → ALWAYS Use CustomerAPIAgent first to obtain necessary ID and then use BookingAPIAgent to obtain customer's bookings by filtering with the required customer ID
    - For general questions, respond directly
 
 2. AGENT CONSULTATION PROCESS:
@@ -418,6 +327,7 @@ async def start():
     Initialize chat session with Azure AI Agent when a user starts a new chat.
     This sets up all necessary agents and tools.
     """
+
     logger.info("Starting new chat session")
     
     try:
@@ -425,16 +335,8 @@ async def start():
         await cl.Message(
             content="👋 Welcome to MyPetParlor AI Assistant! How can I help you today?",
         ).send()
-
-        # Initialize Azure credentials
-        credential = DefaultAzureCredential()
-        
-        # Create Azure AI Agent client
-        client = AzureAIAgent.create_client(credential=credential)
-        
         # Create common tools
         code_interpreter = CodeInterpreterTool()
-        
         # Create API tools with proper descriptions
         address_api = create_api_tool("address", ADDRESS_API_DESC)
         booking_api = create_api_tool("booking", BOOKING_API_DESC)
@@ -444,20 +346,11 @@ async def start():
         pet_api = create_api_tool("pet", PET_API_DESC)
         team_api = create_api_tool("team", TEAM_API_DESC)
         tenant_api = create_api_tool("tenants", TENANT_API_DESC)
-        
         # Create specialized agent definitions
         logger.info("Creating specialized agent definitions")
         
-        # Setup guide agent - helps users navigate the setup process
-        setup_guide_definition = await create_agent(
-            client=client,
-            name="setup_guide",
-            description="A setup guide specialist that helps users set up their MyPetParlor App portal",
-            instructions=SETUP_GUIDE_INSTRUCTIONS
-        )
-        
         # API-specific agents - each specializes in one API domain
-        address_read_api_definition = await create_agent(
+        address_read_api_definition = create_agent(
             client=client,
             name="address_read_api",
             description="Address API (read-only)",
@@ -467,8 +360,7 @@ async def start():
             If the query is for a specific customer, you MUST include the customer's ID as a query parameter "customerId" through instruction overrides.""",
             tools=address_api.definitions
         )
-        
-        booking_read_api_definition = await create_agent(
+        booking_read_api_definition = create_agent(
             client=client,
             name="booking_read_api",
             description="Booking API (read-only)",
@@ -477,8 +369,7 @@ async def start():
             You MUST obtain the authentication parameters from the user's prompt and use them through instruction overrides.""",
             tools=booking_api.definitions
         )
-        
-        customer_read_api_definition = await create_agent(
+        customer_read_api_definition = create_agent(
             client=client,
             name="customer_read_api",
             description="Customer API (read-only)",
@@ -487,8 +378,7 @@ async def start():
             You MUST obtain the authentication parameters from the user's prompt and use them through instruction overrides.""",
             tools=customer_api.definitions
         )
-        
-        document_read_api_definition = await create_agent(
+        document_read_api_definition = create_agent(
             client=client,
             name="document_read_api",
             description="Document API (read-only)",
@@ -497,8 +387,7 @@ async def start():
             You MUST obtain the authentication parameters from the user's prompt and use them through instruction overrides.""",
             tools=document_api.definitions
         )
-
-        employee_read_api_definition = await create_agent(
+        employee_read_api_definition = create_agent(
             client=client,
             name="employee_read_api",
             description="Employee API (read-only)",
@@ -507,8 +396,7 @@ async def start():
             You MUST obtain the authentication parameters from the user's prompt and use them through instruction overrides.""",
             tools=employee_api.definitions
         )
-
-        pet_read_api_definition = await create_agent(
+        pet_read_api_definition = create_agent(
             client=client,
             name="pet_read_api",
             description="Pet API (read-only)",
@@ -518,8 +406,7 @@ async def start():
             If the query is for a specific customer, you MUST include the customer's ID as a query parameter "customerId" through instruction overrides.""",
             tools=pet_api.definitions
         )
-
-        team_read_api_definition = await create_agent(
+        team_read_api_definition = create_agent(
             client=client,
             name="team_read_api",
             description="Team API (read-only)",
@@ -528,8 +415,7 @@ async def start():
             You MUST obtain the authentication parameters from the user's prompt and use them through instruction overrides.""",
             tools=team_api.definitions
         )
-        
-        tenant_read_api_definition = await create_agent(
+        tenant_read_api_definition = create_agent(
             client=client,
             name="tenant_read_api",
             description="Tenant API (read-only)",
@@ -538,8 +424,7 @@ async def start():
             You MUST obtain the authentication parameters from the user's prompt and use them through instruction overrides.""",
             tools=tenant_api.definitions
         )
-
-        data_analysis_definition = await create_agent(
+        data_analysis_definition = create_agent(
             client=client,
             name="data_analysis",
             description="An expert in analyzing data that MUST be already fetched from its source (e.g. API) in a previous step",
@@ -547,82 +432,67 @@ async def start():
             You can use the Code Interpreter tool to run queries and advanced analysis on the data.""",
             tools=code_interpreter.definitions
         )
-        
         # Triage agent - orchestrates between specialized agents
-        triage_definition = await create_agent(
+        triage_definition = create_agent(
             client=client,
             name="triage",
             description="Main coordinator that routes requests to specialized agents",
             instructions=TRIAGE_INSTRUCTIONS
         )
-        
         # Create agent instances with their plugins
         logger.info("Initializing agent instances")
-        
         # Create plugins
         scheduling_plugin = SchedulingPlugin()
         importer_plugin = ImporterPlugin()
-
-        setup_guide_agent = AzureAIAgent(
-            client=client,
-            definition=setup_guide_definition
-        )
-
+        
+        # Main setup guide agent with specialized setup agents as plugins
+        setup_guide_client = SetupGuideClient(client=client)
+        setup_guide_agent = await setup_guide_client.initialize()
         data_analysis_agent = AzureAIAgent(
             client=client,
             definition=data_analysis_definition
         )
-
         address_api_agent = AzureAIAgent(
             client=client,
             definition=address_read_api_definition
         )
-        
         booking_api_agent = AzureAIAgent(
             client=client, 
             definition=booking_read_api_definition,
             plugins=[scheduling_plugin]
         )
-        
         customer_api_agent = AzureAIAgent(
             client=client,
             definition=customer_read_api_definition,
             plugins=[importer_plugin]
         )
-        
         document_api_agent = AzureAIAgent(
             client=client,
-            definition=document_read_api_definition
+            definition=document_read_api_definition,
+            
         )
-
         employee_api_agent = AzureAIAgent(
             client=client,
             definition=employee_read_api_definition
         )
-        
         pet_api_agent = AzureAIAgent(
             client=client,
             definition=pet_read_api_definition
         )
-        
         team_api_agent = AzureAIAgent(
             client=client,
             definition=team_read_api_definition
         )
-        
         tenant_api_agent = AzureAIAgent(
             client=client,
             definition=tenant_read_api_definition
         )
-
-        
-        
         # Main triage agent with all specialized agents as plugins
         triage_agent = AzureAIAgent(
             client=client,
             definition=triage_definition,
             plugins=[
-                setup_guide_agent, 
+                setup_guide_agent,
                 address_api_agent,
                 booking_api_agent,
                 customer_api_agent, 
@@ -633,24 +503,20 @@ async def start():
                 tenant_api_agent
             ]
         )
-        
         # Create a new thread for the chat session
         thread = AzureAIAgentThread(client=client)
-        
         # Add Chainlit filter to capture function calls as Steps
         sk_filter = cl.SemanticKernelFilter(kernel=triage_agent.kernel)
-
         # Run a copilot function call to obtain the authentication object
         logger.info("Retrieving authentication settings")
         fn = cl.CopilotFunction(name="get_copilot_auth_settings", args={})
         auth_settings = await fn.acall()
-        
         # Store session variables - including client for proper cleanup
         cl.user_session.set("auth_settings", auth_settings)
         cl.user_session.set("client", client)
         cl.user_session.set("triage_agent", triage_agent)
         cl.user_session.set("thread", thread)
-        
+
     except Exception as e:
         logger.error(f"Error initializing chat session: {str(e)}", exc_info=True)
         await cl.Message(

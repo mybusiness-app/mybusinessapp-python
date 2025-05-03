@@ -14,6 +14,10 @@ check-prereqs: ## Check prerequisites
 	@chmod +x scripts/check_prerequisites.sh
 	@./scripts/check_prerequisites.sh
 
+create-service-principal: ## Create a service principal
+	@chmod +x scripts/create_service_principal.sh
+	@./scripts/create_service_principal.sh
+
 setup: check-prereqs ## Setup development environment
 	@chmod +x scripts/setup.sh
 	@./scripts/setup.sh

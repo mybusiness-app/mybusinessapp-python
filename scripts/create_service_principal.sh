@@ -6,6 +6,22 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
+# Default environment
+ENVIRONMENT=
+# Parse command line arguments
+while [[ "$#" -gt 0 ]]; do
+    case $1 in
+        --environment)
+            ENVIRONMENT="$2"
+            shift 2
+            ;;
+        *)
+            echo "Unknown parameter: $1"
+            exit 1
+            ;;
+    esac
+done
+
 # Function to check if command exists
 command_exists() {
     command -v "$1" >/dev/null 2>&1
@@ -52,6 +68,10 @@ read -p "Enter the project name (default is 'aihp-mppdev-odm3'): " PROJECT_NAME
 PROJECT_NAME=${PROJECT_NAME:-"aihp-mppdev-odm3"}
 echo -e "${YELLOW}Setting project name to: $PROJECT_NAME${NC}\n"
 
+read -p "Enter the application insights name (default is 'appi-mppdev-odm3'): " APPLICATION_INSIGHTS_NAME
+APPLICATION_INSIGHTS_NAME=${APPLICATION_INSIGHTS_NAME:-"appi-mppdev-odm3"}
+echo -e "${YELLOW}Setting application insights name to: $APPLICATION_INSIGHTS_NAME${NC}\n"
+
 # Create resource group if it doesn't exist
 if ! az group show --name $RESOURCE_GROUP >/dev/null 2>&1; then
     echo -e "\n${YELLOW}Creating resource group: $RESOURCE_GROUP${NC}"
@@ -60,9 +80,9 @@ fi
 
 # Select environment
 echo -e "\n${YELLOW}Select environment to deploy:${NC}"
-select ENVIRONMENT in "dev" "staging" "prod"; do
+select ENVIRONMENT in "development" "production"; do
     case $ENVIRONMENT in
-        dev|staging|prod ) break;;
+        development|production ) break;;
         * ) echo "Invalid selection. Please choose 1, 2, or 3.";;
     esac
 done
@@ -84,21 +104,29 @@ SP_CREATION=$(az ad sp create-for-rbac \
 CLIENT_ID=$(echo $SP_CREATION | jq -r '.clientId')
 CLIENT_SECRET=$(echo $SP_CREATION | jq -r '.clientSecret')
 TENANT_ID=$(echo $SP_CREATION | jq -r '.tenantId')
+
+
+echo "Assigning Monitoring Contributor role to the service principal"
+az role assignment create \
+    --assignee $CLIENT_ID \
+    --role "Monitoring Contributor" \
+    --scope /subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.Insights/components/$APPLICATION_INSIGHTS_NAME
+
 # Update .env file
-echo -e "\n${YELLOW}Updating .env file with Azure configuration...${NC}"
+echo -e "\n${YELLOW}Updating .env.$ENVIRONMENT file with Azure configuration...${NC}"
 
 # Create .env from example if it doesn't exist
-if [ ! -f ./.env ]; then
-    cp ./.env.example ./.env
+if [ ! -f ./.env.$ENVIRONMENT ]; then
+    cp ./.env.example ./.env.$ENVIRONMENT
 fi
 
 # Update Azure settings in .env
 sed -i.bak -e "s|^AZURE_CLIENT_ID=.*|AZURE_CLIENT_ID=$CLIENT_ID|" \
     -e "s|^AZURE_TENANT_ID=.*|AZURE_TENANT_ID=$TENANT_ID|" \
-    -e "s|^AZURE_CLIENT_SECRET=.*|AZURE_CLIENT_SECRET=$CLIENT_SECRET|" ./.env
+    -e "s|^AZURE_CLIENT_SECRET=.*|AZURE_CLIENT_SECRET=$CLIENT_SECRET|" ./.env.$ENVIRONMENT
 
 # Remove backup file
-rm -f ./.env.bak
+rm -f ./.env.$ENVIRONMENT.bak
 
 echo -e "\n${GREEN}Setup complete!${NC}"
 echo -e "Azure configuration:"

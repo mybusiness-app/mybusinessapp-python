@@ -124,13 +124,23 @@ The Chainlit-based AI Assistant provides:
 
 - **Intelligent Request Routing**: Uses a triage system to direct queries to specialized agents
 - **Multiple Specialized Agents**:
-  - Setup Guide Agent: Helps users configure their portal
-  - Booking API Agent: Manages pet care bookings and scheduling
-  - Customer API Agent: Handles customer data and relationships
-  - Document API Agent: Manages legal documents and policies
-  - Team API Agent: Configures team settings and operations
-  - Tenant API Agent: Manages tenant-level configurations
-  - Data Analysis Agent: Provides data insights and analysis
+  - Setup Guide Agent: Coordinates specialized setup agents
+    - User Setup Agent: Guides through user profile configuration
+    - Organization Setup Agent: Assists with organization profile setup
+    - Staff Profile Agent: Helps configure staff profiles and roles
+    - Team Setup Agent: Manages team creation and configuration
+    - Customer Setup Agent: Guides through customer profile setup
+    - Booking Setup Agent: Configures booking and scheduling systems
+  - API Agents (Read-only):
+    - Address API Agent: Manages customer address resources
+    - Booking API Agent: Handles booking resources with scheduling capabilities
+    - Customer API Agent: Manages customer data with import functionality
+    - Document API Agent: Handles legal documents and policies
+    - Employee API Agent: Manages employee resources
+    - Pet API Agent: Handles pet profiles and care requirements
+    - Team API Agent: Manages team resources and configurations
+    - Tenant API Agent: Handles tenant-level resources
+  - Data Analysis Agent: Provides advanced data analysis using Code Interpreter
 
 ### Core Functionality
 
